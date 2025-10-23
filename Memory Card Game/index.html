@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Card Game</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
+    <main class="centralize-items">
+      <article class="about--section">
+        <h1>About The Game</h1>
+        <p>
+          The Memory Card Game tests your memory by finding matching pairs of
+          cards. Flip two cards at a time if they match, they fade away
+          <br />if not, flip them back. Keep playing until all pairs are found.
+          It’s a fun way to improve focus and memory.
+        </p>
+      </article>
+      <div class="container hidden">
+        <div class="moves">
+          <span>Moves :</span>
+          <span class="score">0</span>
+        </div>
+        <!-- <div class="box">
+          <div class="face front centralize-items">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+              <image
+                href="./images/eeyore-halloween.svg"
+                width="100"
+                height="100"
+              />
+            </svg>
+          </div>
+          <div class="face back centralize-items">
+            <div class="frame centralize-items">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+                <image href="./images/crown.svg" width="100" height="100" />
+              </svg>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <div class="second-container hidden">
+        <div class="moves">
+          <span>Moves :</span>
+          <span class="score">0</span>
+        </div>
+      </div>
+      <button type="button" class="btn btn--next">Next Level</button>
+      <div class="timer" title="Game Timer">00:00</div>
+    </main>
+  </body>
+</html>
