@@ -1,0 +1,275 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(
+    to left top,
+    rgb(105, 208, 255),
+    rgb(173, 215, 255),
+    rgb(254, 194, 232),
+    rgb(231, 137, 255)
+  );
+  color: rgb(187, 76, 235);
+}
+nav {
+  height: 10%;
+  width: 100%;
+  text-align: center;
+  padding: 1%;
+}
+nav h1 {
+  font-size: 1.5rem;
+  padding: 1%;
+  background-color: rgba(255, 255, 255, 0.671);
+  width: 30%;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
+main {
+  width: 100%;
+  height: 80vh;
+  display: grid;
+  place-items: center;
+}
+
+.section {
+  width: 60%;
+  height: 80%;
+  background-color: rgba(255, 255, 255, 0.671);
+  border-radius: 12px;
+  transition: all 0.5s linear;
+}
+.About--section header {
+  height: 20%;
+  font-size: 2rem;
+  padding: 5%;
+  display: grid;
+  place-items: center;
+}
+.About--section hr {
+  margin: 20px auto;
+  width: 75%;
+  border: 1px solid rgb(220, 183, 88);
+}
+.About--section article {
+  padding: 5%;
+  font-size: 2rem;
+  text-align: center;
+  overflow: auto;
+}
+.shadowing {
+  box-shadow: 0 0 10px rgb(102, 199, 255);
+}
+
+.btn {
+  color: white;
+  background-color: rgb(187, 76, 235);
+  width: 90px;
+  height: 40px;
+  border: none;
+  border-radius: 12px;
+  position: absolute;
+  left: 47%;
+  bottom: 5%;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: large;
+  transition: background-color 0.3s linear;
+}
+
+.btn:hover {
+  background-color: rgb(148, 60, 186);
+}
+
+.hidden {
+  transform: translateY(30%);
+  opacity: 0;
+}
+
+.remove {
+  display: none;
+  visibility: hidden;
+}
+
+.start--story {
+  width: 100%;
+  height: 100%;
+  font-size: 3rem;
+  display: grid;
+  place-items: center;
+  transition: all 0.5s linear;
+}
+.story--telling {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(1fr, 3);
+  gap: 10px;
+  grid-template-areas: 'image text text';
+  transition: all 0.5s linear;
+}
+
+.story--telling .image--container,
+.story--telling .story--part {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.story--telling .image--container img {
+  width: 300px;
+  height: 300px;
+  border-radius: 12px;
+}
+
+.story--part {
+  font-size: 2.5rem;
+}
+
+.question {
+  font-size: 1.5rem;
+  text-align: center;
+  height: 30%;
+  display: grid;
+  place-items: center;
+}
+
+.score {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  font-weight: bold;
+  color: rgb(187, 76, 235);
+}
+
+.score-value {
+  color: rgb(17, 199, 17);
+}
+
+.answers {
+  list-style-type: none;
+  height: 70%;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+}
+
+.answer {
+  place-self: center;
+  width: 75%;
+  height: 40%;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 5px rgb(76, 159, 204);
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.5s linear;
+}
+
+.answer--animation {
+  transform: translateY(-30%);
+}
+
+/* .answer:hover {
+  transform: translateY(-30%);
+} */
+
+.correct--answer {
+  background-color: rgb(17, 199, 17);
+  color: white;
+}
+
+.wrong--answer {
+  background-color: red;
+  color: white;
+}
+
+/* Modal Styles */
+.scores-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.scores-modal.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+.scores-modal.hidden .modal-content {
+  transform: translateY(-20px);
+}
+
+.modal-content h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: rgb(187, 76, 235);
+}
+
+.story-scores {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.story-score {
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.story-score h3 {
+  color: rgb(187, 76, 235);
+  margin-bottom: 0.5rem;
+}
+
+.total-score {
+  background: rgb(187, 76, 235);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.modal-close {
+  position: static;
+  left: auto;
+  bottom: auto;
+  margin: 1rem auto 0;
+  display: block;
+  width: 120px;
+}

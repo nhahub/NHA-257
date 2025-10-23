@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="./script.js"></script>
+    <title>Story Chain Game</title>
+  </head>
+  <body>
+    <nav>
+      <h1 class="shadowing"><b>Story Chain Game</b></h1>
+    </nav>
+    <main>
+      <section class="section About--section shadowing hidden remove">
+        <header>
+          <h2><b>About the Game</b></h2>
+        </header>
+        <hr />
+        <article>
+          <p>
+            Read or listen to a short story carefully. After it ends, answer
+            questions about what you remember names, colors, numbers and events.
+            Each correct answer increases your memory score. Try to recall as
+            many details as possible before time runs out!
+          </p>
+        </article>
+        <button class="btn btn-about shadowing">Continue</button>
+      </section>
+      <section class="section shadowing hidden remove">
+        <article class="start--story">
+          <h1>Start the Story ?</h1>
+          <button class="btn btn--start--story">Start</button>
+        </article>
+      </section>
+
+      <section class="section story shadowing">
+        <article class="story--telling">
+          <div class="image--container">
+            <img src="" class="shadowing story--img" />
+          </div>
+          <p class="story--part">
+            Lina went to the park on a windy afternoon with her younger brother,
+            Youssef.
+          </p>
+        </article>
+        <button class="btn btn--next">Continue</button>
+      </section>
+
+      <section class="section questions--container shadowing hidden remove">
+        <div class="score">Score: <span class="score-value">0</span>/10</div>
+        <p class="question">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, earum?
+        </p>
+        <ul class="answers">
+          <li class="answer">Lorem, ipsum dolor.</li>
+          <li class="answer">Lorem, ipsum dolor.</li>
+          <li class="answer">Lorem, ipsum dolor.</li>
+          <li class="answer">Lorem, ipsum dolor.</li>
+        </ul>
+        <button class="btn btn--question remove">NEXT</button>
+      </section>
+    </main>
+    <div class="scores-modal hidden">
+      <div class="modal-content">
+        <h2>Your Story Chain Scores</h2>
+        <div class="story-scores">
+          <div class="story-score">
+            <h3>Story 1</h3>
+            <p>Score: <span class="story1-score">0</span>/10</p>
+          </div>
+          <div class="story-score">
+            <h3>Story 2</h3>
+            <p>Score: <span class="story2-score">0</span>/10</p>
+          </div>
+          <div class="story-score">
+            <h3>Story 3</h3>
+            <p>Score: <span class="story3-score">0</span>/10</p>
+          </div>
+          <div class="total-score">
+            <h3>Total Score</h3>
+            <p>Score: <span class="total-score-value">0</span>/30</p>
+          </div>
+        </div>
+        <button class="btn modal-close">Close</button>
+      </div>
+    </div>
+  </body>
+</html>
