@@ -1,0 +1,44 @@
+[
+  {
+    "ContainingType": "MemoryGameKidsBack.Controllers.GameSessionController",
+    "Method": "GetGameSessions",
+    "RelativePath": "GameSession",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[MemoryGameKidsBack.DTOs.GetGameSessionDTO, MemoryGameKidsBack, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MemoryGameKidsBack.Controllers.GameSessionController",
+    "Method": "AddGameSession",
+    "RelativePath": "GameSession",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "gameSessionDTO",
+        "Type": "MemoryGameKidsBack.DTOs.PostGameSessionDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

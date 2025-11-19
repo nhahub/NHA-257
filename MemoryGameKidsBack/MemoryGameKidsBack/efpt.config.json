@@ -1,0 +1,94 @@
+﻿{
+   "CodeGenerationMode": 5,
+   "ContextClassName": "KidsMemoreyTestDBContext",
+   "ContextNamespace": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": true,
+   "MinimumProductVersion": "2.6.1186",
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "MemoryGameKidsBack",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 2,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "[dbo].[lkpGame]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[lkpGameCategory]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[lkpUserType]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tblChildProfile]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tblClinicProfile]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tblDoctorProfile]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tblGameSession]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tblMemoryScoreSummary]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tblUser]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[sp_AddGameSession]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_GetDoctorDashboard]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[sp_RegisterUser]",
+         "ObjectType": 1
+      }
+   ],
+   "UiHint": null,
+   "UncountableWords": null,
+   "UseAsyncStoredProcedureCalls": true,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": true,
+   "UseDatabaseNamesForRoutines": true,
+   "UseDateOnlyTimeOnly": true,
+   "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": false,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseInternalAccessModifiersForSprocsAndFunctions": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UsePrefixNavigationNaming": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false,
+   "UseT4Split": false
+}
