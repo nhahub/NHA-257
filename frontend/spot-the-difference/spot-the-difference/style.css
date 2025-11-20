@@ -1,0 +1,63 @@
+ body {
+        font-family: 'Roboto', sans-serif;
+        color: white;
+        background-color: SlateGrey;
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .title {
+        color: DarkOrange;
+        margin: 0;
+      }
+      .description {
+        margin: 5px 0 15px;
+      }
+      .button {
+        color: DarkOrange;
+        font-size: 24px;
+        border: 2px solid DarkOrange;
+        border-radius: 20px;
+        padding: 10px 30px;
+        cursor: pointer;
+      }
+      .button:hover {
+        background-color: DarkOrange;
+        color: white;
+      }
+      .scores {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+      }
+      .scores > p {
+        margin: 5px;
+      }
+      .game-wrapper {
+        width: calc(100vw - 20px);
+        height: calc(100vw - 20px);
+        max-width: 750px;
+        max-height: 750px;
+        border: 1px solid white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .row {
+        display: flex;
+      }
+      .character {
+        width: calc((100vw - 20px) / 20);
+        height: calc((100vw - 20px) / 20);
+        max-width: 30px;
+        max-height: 30px;
+        font-size: 22px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }

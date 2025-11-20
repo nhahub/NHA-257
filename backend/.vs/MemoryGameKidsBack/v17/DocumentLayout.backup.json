@@ -1,0 +1,311 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|c:\\users\\menan\\desktop\\depi\\kidsbackend\\memorygamekidsback\\memorygamekidsback\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|solutionrelative:memorygamekidsback\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|c:\\users\\menan\\desktop\\depi\\kidsbackend\\memorygamekidsback\\memorygamekidsback\\controllers\\gamesessioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|solutionrelative:memorygamekidsback\\controllers\\gamesessioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|c:\\users\\menan\\desktop\\depi\\kidsbackend\\memorygamekidsback\\memorygamekidsback\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|solutionrelative:memorygamekidsback\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|c:\\users\\menan\\desktop\\depi\\kidsbackend\\memorygamekidsback\\memorygamekidsback\\models\\memoryscoresummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|solutionrelative:memorygamekidsback\\models\\memoryscoresummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|c:\\users\\menan\\desktop\\depi\\kidsbackend\\memorygamekidsback\\memorygamekidsback\\dtos\\getgamesessiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|solutionrelative:memorygamekidsback\\dtos\\getgamesessiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|c:\\users\\menan\\desktop\\depi\\kidsbackend\\memorygamekidsback\\memorygamekidsback\\services\\gamesessionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|solutionrelative:memorygamekidsback\\services\\gamesessionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|c:\\users\\menan\\desktop\\depi\\kidsbackend\\memorygamekidsback\\memorygamekidsback\\models\\kidsmemoreytestdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|solutionrelative:memorygamekidsback\\models\\kidsmemoreytestdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|c:\\users\\menan\\desktop\\depi\\kidsbackend\\memorygamekidsback\\memorygamekidsback\\unitofworks\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|solutionrelative:memorygamekidsback\\unitofworks\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|c:\\users\\menan\\desktop\\depi\\kidsbackend\\memorygamekidsback\\memorygamekidsback\\models\\gamesession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|solutionrelative:memorygamekidsback\\models\\gamesession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|c:\\users\\menan\\desktop\\depi\\kidsbackend\\memorygamekidsback\\memorygamekidsback\\dtos\\postgamesessiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|solutionrelative:memorygamekidsback\\dtos\\postgamesessiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|c:\\users\\menan\\desktop\\depi\\kidsbackend\\memorygamekidsback\\memorygamekidsback\\models\\dbcontextextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|solutionrelative:memorygamekidsback\\models\\dbcontextextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|c:\\users\\menan\\desktop\\depi\\kidsbackend\\memorygamekidsback\\memorygamekidsback\\repository\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|solutionrelative:memorygamekidsback\\repository\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|c:\\users\\menan\\desktop\\depi\\kidsbackend\\memorygamekidsback\\memorygamekidsback\\unitofworks\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|solutionrelative:memorygamekidsback\\unitofworks\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|c:\\users\\menan\\desktop\\depi\\kidsbackend\\memorygamekidsback\\memorygamekidsback\\services\\igamesessionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|solutionrelative:memorygamekidsback\\services\\igamesessionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|c:\\users\\menan\\desktop\\depi\\kidsbackend\\memorygamekidsback\\memorygamekidsback\\repository\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|solutionrelative:memorygamekidsback\\repository\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|c:\\users\\menan\\desktop\\depi\\kidsbackend\\memorygamekidsback\\memorygamekidsback\\models\\sp_getdoctordashboardresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|solutionrelative:memorygamekidsback\\models\\sp_getdoctordashboardresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|c:\\users\\menan\\desktop\\depi\\kidsbackend\\memorygamekidsback\\memorygamekidsback\\models\\doctorprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|solutionrelative:memorygamekidsback\\models\\doctorprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|c:\\users\\menan\\desktop\\depi\\kidsbackend\\memorygamekidsback\\memorygamekidsback\\models\\childprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F3C26CB-8160-4CE2-895B-0D1923FFE0A1}|MemoryGameKidsBack\\MemoryGameKidsBack.csproj|solutionrelative:memorygamekidsback\\models\\childprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "GameSession.cs",
+              "DocumentMoniker": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Models\\GameSession.cs",
+              "RelativeDocumentMoniker": "MemoryGameKidsBack\\Models\\GameSession.cs",
+              "ToolTip": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Models\\GameSession.cs",
+              "RelativeToolTip": "MemoryGameKidsBack\\Models\\GameSession.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-01T15:40:24.64Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GetGameSessionDTO.cs",
+              "DocumentMoniker": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\DTOs\\GetGameSessionDTO.cs",
+              "RelativeDocumentMoniker": "MemoryGameKidsBack\\DTOs\\GetGameSessionDTO.cs",
+              "ToolTip": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\DTOs\\GetGameSessionDTO.cs",
+              "RelativeToolTip": "MemoryGameKidsBack\\DTOs\\GetGameSessionDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-01T15:32:58.177Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MemoryScoreSummary.cs",
+              "DocumentMoniker": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Models\\MemoryScoreSummary.cs",
+              "RelativeDocumentMoniker": "MemoryGameKidsBack\\Models\\MemoryScoreSummary.cs",
+              "ToolTip": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Models\\MemoryScoreSummary.cs",
+              "RelativeToolTip": "MemoryGameKidsBack\\Models\\MemoryScoreSummary.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-01T14:05:20.117Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\appsettings.json",
+              "RelativeDocumentMoniker": "MemoryGameKidsBack\\appsettings.json",
+              "ToolTip": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\appsettings.json",
+              "RelativeToolTip": "MemoryGameKidsBack\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAACbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-01T16:26:37.637Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GameSessionController.cs",
+              "DocumentMoniker": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Controllers\\GameSessionController.cs",
+              "RelativeDocumentMoniker": "MemoryGameKidsBack\\Controllers\\GameSessionController.cs",
+              "ToolTip": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Controllers\\GameSessionController.cs",
+              "RelativeToolTip": "MemoryGameKidsBack\\Controllers\\GameSessionController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAwwBwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-01T15:42:57.19Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "DbContextExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Models\\DbContextExtensions.cs",
+              "RelativeDocumentMoniker": "MemoryGameKidsBack\\Models\\DbContextExtensions.cs",
+              "ToolTip": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Models\\DbContextExtensions.cs",
+              "RelativeToolTip": "MemoryGameKidsBack\\Models\\DbContextExtensions.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-01T16:35:25.191Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Program.cs",
+              "RelativeDocumentMoniker": "MemoryGameKidsBack\\Program.cs",
+              "ToolTip": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Program.cs",
+              "RelativeToolTip": "MemoryGameKidsBack\\Program.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAcwEIAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-01T13:57:11.437Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GameSessionService.cs",
+              "DocumentMoniker": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Services\\GameSessionService.cs",
+              "RelativeDocumentMoniker": "MemoryGameKidsBack\\Services\\GameSessionService.cs",
+              "ToolTip": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Services\\GameSessionService.cs",
+              "RelativeToolTip": "MemoryGameKidsBack\\Services\\GameSessionService.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAswCkAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-01T15:21:21.119Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "KidsMemoreyTestDBContext.cs",
+              "DocumentMoniker": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Models\\KidsMemoreyTestDBContext.cs",
+              "RelativeDocumentMoniker": "MemoryGameKidsBack\\Models\\KidsMemoreyTestDBContext.cs",
+              "ToolTip": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Models\\KidsMemoreyTestDBContext.cs",
+              "RelativeToolTip": "MemoryGameKidsBack\\Models\\KidsMemoreyTestDBContext.cs",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAswH4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-01T13:37:28.83Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UnitOfWork.cs",
+              "DocumentMoniker": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\UnitOfWorks\\UnitOfWork.cs",
+              "RelativeDocumentMoniker": "MemoryGameKidsBack\\UnitOfWorks\\UnitOfWork.cs",
+              "ToolTip": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\UnitOfWorks\\UnitOfWork.cs",
+              "RelativeToolTip": "MemoryGameKidsBack\\UnitOfWorks\\UnitOfWork.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAC4AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-01T14:45:16.216Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PostGameSessionDTO.cs",
+              "DocumentMoniker": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\DTOs\\PostGameSessionDTO.cs",
+              "RelativeDocumentMoniker": "MemoryGameKidsBack\\DTOs\\PostGameSessionDTO.cs",
+              "ToolTip": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\DTOs\\PostGameSessionDTO.cs",
+              "RelativeToolTip": "MemoryGameKidsBack\\DTOs\\PostGameSessionDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-01T15:13:55.017Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "GenericRepository.cs",
+              "DocumentMoniker": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Repository\\GenericRepository.cs",
+              "RelativeDocumentMoniker": "MemoryGameKidsBack\\Repository\\GenericRepository.cs",
+              "ToolTip": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Repository\\GenericRepository.cs",
+              "RelativeToolTip": "MemoryGameKidsBack\\Repository\\GenericRepository.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-01T14:17:53.266Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IUnitOfWork.cs",
+              "DocumentMoniker": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\UnitOfWorks\\IUnitOfWork.cs",
+              "RelativeDocumentMoniker": "MemoryGameKidsBack\\UnitOfWorks\\IUnitOfWork.cs",
+              "ToolTip": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\UnitOfWorks\\IUnitOfWork.cs",
+              "RelativeToolTip": "MemoryGameKidsBack\\UnitOfWorks\\IUnitOfWork.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-01T14:38:01.695Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IGameSessionService.cs",
+              "DocumentMoniker": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Services\\IGameSessionService.cs",
+              "RelativeDocumentMoniker": "MemoryGameKidsBack\\Services\\IGameSessionService.cs",
+              "ToolTip": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Services\\IGameSessionService.cs",
+              "RelativeToolTip": "MemoryGameKidsBack\\Services\\IGameSessionService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-01T15:45:29.033Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Repository\\IRepository.cs",
+              "RelativeDocumentMoniker": "MemoryGameKidsBack\\Repository\\IRepository.cs",
+              "ToolTip": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Repository\\IRepository.cs",
+              "RelativeToolTip": "MemoryGameKidsBack\\Repository\\IRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-01T14:19:57.836Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "sp_GetDoctorDashboardResult.cs",
+              "DocumentMoniker": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Models\\sp_GetDoctorDashboardResult.cs",
+              "RelativeDocumentMoniker": "MemoryGameKidsBack\\Models\\sp_GetDoctorDashboardResult.cs",
+              "ToolTip": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Models\\sp_GetDoctorDashboardResult.cs",
+              "RelativeToolTip": "MemoryGameKidsBack\\Models\\sp_GetDoctorDashboardResult.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-01T14:07:38.296Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "DoctorProfile.cs",
+              "DocumentMoniker": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Models\\DoctorProfile.cs",
+              "RelativeDocumentMoniker": "MemoryGameKidsBack\\Models\\DoctorProfile.cs",
+              "ToolTip": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Models\\DoctorProfile.cs",
+              "RelativeToolTip": "MemoryGameKidsBack\\Models\\DoctorProfile.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-01T14:05:04.939Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ChildProfile.cs",
+              "DocumentMoniker": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Models\\ChildProfile.cs",
+              "RelativeDocumentMoniker": "MemoryGameKidsBack\\Models\\ChildProfile.cs",
+              "ToolTip": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\Models\\ChildProfile.cs",
+              "RelativeToolTip": "MemoryGameKidsBack\\Models\\ChildProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-01T13:43:34.671Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

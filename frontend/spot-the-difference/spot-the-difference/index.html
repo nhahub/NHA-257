@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css">
+    <title>Spot The Difference</title>
+  </head>
+
+  <body>
+    <h1 class="title">Spot The Difference</h1>
+    <p id="description" class="description">Find the different emoji!</p>
+
+    <div class="scores">
+      <p>Score: <span id="current-score">0</span></p>
+      <p>Best: <span id="max-score">0</span></p>
+    </div>
+
+    <div class="game-wrapper">
+      <div id="game"></div>
+      <button id="start-button" class="button" onclick="startGame()">Start Game</button>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
