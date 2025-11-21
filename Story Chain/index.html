@@ -61,28 +61,51 @@
         <button class="btn btn--question remove">NEXT</button>
       </section>
     </main>
-    <div class="scores-modal hidden">
+    <div class="scores-modal hidden remove">
       <div class="modal-content">
-        <h2>Your Story Chain Scores</h2>
-        <div class="story-scores">
-          <div class="story-score">
-            <h3>Story 1</h3>
-            <p>Score: <span class="story1-score">0</span>/10</p>
+        <button class="modal-close">&times;</button>
+
+        <h2 class="modal-title">🎉 Game Complete! 🎉</h2>
+
+        <div class="scores-section">
+          <h3>Story Scores</h3>
+          <div class="score-item">
+            <span class="score-label">Story 1 - Park Adventure:</span>
+            <span class="story1-score">0</span>/10
           </div>
-          <div class="story-score">
-            <h3>Story 2</h3>
-            <p>Score: <span class="story2-score">0</span>/10</p>
+          <div class="score-item">
+            <span class="score-label">Story 2 - Prince's Quest:</span>
+            <span class="story2-score">0</span>/10
           </div>
-          <div class="story-score">
-            <h3>Story 3</h3>
-            <p>Score: <span class="story3-score">0</span>/10</p>
+          <div class="score-item">
+            <span class="score-label">Story 3 - Omar's Kindness:</span>
+            <span class="story3-score">0</span>/10
           </div>
-          <div class="total-score">
-            <h3>Total Score</h3>
-            <p>Score: <span class="total-score-value">0</span>/30</p>
+          <div class="score-item total-score">
+            <span class="score-label">Total Score:</span>
+            <span class="total-score-value">0</span>/30
           </div>
         </div>
-        <button class="btn modal-close">Close</button>
+
+        <div class="stats-section">
+          <h3>Performance Stats</h3>
+          <div class="stat-item">
+            <span class="stat-label">Accuracy:</span>
+            <span class="accuracy-value">0%</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Time Taken:</span>
+            <span class="duration-value">0m 0s</span>
+          </div>
+        </div>
+
+        <div class="error-section">
+          <p class="save-error-message hidden"></p>
+        </div>
+
+        <div class="modal-actions">
+          <a href="/next-game.html" class="btn btn-next-game">Next Game</a>
+        </div>
       </div>
     </div>
   </body>
