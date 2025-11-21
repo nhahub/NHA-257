@@ -598,3 +598,206 @@ function transitionToNextStory(nextStory, nextQuestionSet) {
     storyContainer.classList.remove('hidden');
   }, 750);
 }
+// Add these new variables at the top with other declarations
+let playerName = 'Guest'; // You can set this from user input
+let gameStartTime = Date.now();
+let gameEndTime;
+let totalQuestionsAnswered = 0;
+let correctAnswersCount = 0;
+
+// Modified score tracking
+let storyAttempts = [
+  { correct: 0, total: 0 },
+  { correct: 0, total: 0 },
+  { correct: 0, total: 0 },
+];
+let currentStoryIndex = 0; // Track which story we're on
+
+// Update the answer checking logic to track attempts
+questionContainer.addEventListener('click', function (e) {
+  if (!e.target.classList.contains('answer')) return;
+  if (!acceptingAnswers) return;
+  acceptingAnswers = false;
+
+  const option = e.target;
+  const correct = currentQuestionSet[curQuestion].correctAnswer;
+
+  // Track attempts
+  totalQuestionsAnswered++;
+  storyAttempts[currentStoryIndex].total++;
+
+  if (option.textContent === correct) {
+    option.classList.add('correct--answer');
+    if (score < 10) {
+      score++;
+    }
+    correctAnswersCount++;
+    storyAttempts[currentStoryIndex].correct++;
+    if (scoreValueEl) scoreValueEl.textContent = score;
+  } else {
+    option.classList.add('wrong--answer');
+    answers.forEach(a => {
+      if (a.textContent === correct) a.classList.add('correct--answer');
+    });
+  }
+
+  option.classList.add('answer--animation');
+
+  setTimeout(() => {
+    loadQuestion(curQuestion + 1);
+  }, 700);
+});
+
+// Enhanced endGame function
+function endGame() {
+  gameEndTime = Date.now();
+
+  // Calculate game statistics
+  const gameStats = calculateGameStats();
+
+  // Display the results modal
+  displayEndGameModal(gameStats);
+
+  // Send data to database
+  saveGameData(gameStats);
+}
+
+// Calculate comprehensive game statistics
+function calculateGameStats() {
+  const totalScore = scores.reduce((acc, curr) => acc + curr, 0);
+  const gameDuration = Math.floor((gameEndTime - gameStartTime) / 1000); // in seconds
+  const accuracy =
+    totalQuestionsAnswered > 0
+      ? Math.round((correctAnswersCount / totalQuestionsAnswered) * 100)
+      : 0;
+
+  return {
+    playerName: playerName,
+    timestamp: new Date().toISOString(),
+    scores: {
+      story1: scores[0],
+      story2: scores[1],
+      story3: scores[2],
+      total: totalScore,
+      maxPossible: 30,
+    },
+    attempts: {
+      story1: storyAttempts[0],
+      story2: storyAttempts[1],
+      story3: storyAttempts[2],
+      total: totalQuestionsAnswered,
+    },
+    performance: {
+      correctAnswers: correctAnswersCount,
+      accuracy: accuracy,
+      duration: gameDuration,
+    },
+  };
+}
+
+// Display end game modal with results
+function displayEndGameModal(stats) {
+  // Update modal content
+  document.querySelector('.story1-score').textContent = stats.scores.story1;
+  document.querySelector('.story2-score').textContent = stats.scores.story2;
+  document.querySelector('.story3-score').textContent = stats.scores.story3;
+  document.querySelector('.total-score-value').textContent = stats.scores.total;
+
+  // Add additional stats if elements exist
+  const accuracyEl = document.querySelector('.accuracy-value');
+  if (accuracyEl) accuracyEl.textContent = `${stats.performance.accuracy}%`;
+
+  const durationEl = document.querySelector('.duration-value');
+  if (durationEl) {
+    const minutes = Math.floor(stats.performance.duration / 60);
+    const seconds = stats.performance.duration % 60;
+    durationEl.textContent = `${minutes}m ${seconds}s`;
+  }
+
+  // Show the modal
+  scoresModal.classList.remove('remove');
+  setTimeout(() => {
+    scoresModal.classList.remove('hidden');
+  }, 100);
+}
+
+// Send game data to database
+async function saveGameData(stats) {
+  const apiEndpoint = '/api/game-results'; // Replace with your actual API endpoint
+
+  try {
+    const response = await fetch(apiEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // Add authentication headers if needed
+        // 'Authorization': 'Bearer YOUR_TOKEN'
+      },
+      body: JSON.stringify(stats),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log('Game data saved successfully:', result);
+    return result;
+  } catch (error) {
+    console.error('Error saving game data:', error);
+    // Optionally show user-friendly error message
+    const errorEl = document.querySelector('.save-error-message');
+    if (errorEl) {
+      errorEl.textContent = 'Failed to save results. Please try again.';
+      errorEl.classList.remove('hidden');
+    }
+  }
+}
+
+// Modified showFinalScores to call endGame
+function showFinalScores() {
+  // Hide question container
+  questionContainer.classList.add('hidden');
+  setTimeout(() => {
+    questionContainer.classList.add('remove');
+  }, 500);
+
+  // Call the endGame function
+  endGame();
+}
+
+// Modified transitionToNextStory to track story index
+function transitionToNextStory(nextStory, nextQuestionSet) {
+  question.textContent = 'Great! Next story incoming...';
+  answers.forEach(a => {
+    a.classList.remove('correct--answer', 'wrong--answer', 'answer--animation');
+  });
+  acceptingAnswers = false;
+
+  // Increment story index
+  currentStoryIndex++;
+
+  questionContainer.classList.add('hidden');
+  setTimeout(() => {
+    questionContainer.classList.add('remove');
+    currentStory = nextStory;
+    currentQuestionSet = nextQuestionSet;
+    curPart = 0;
+    score = 0;
+    if (scoreValueEl) scoreValueEl.textContent = score;
+    storyContainer.classList.remove('remove');
+    DisplayStory(currentStory);
+  }, 500);
+  setTimeout(() => {
+    storyContainer.classList.remove('hidden');
+  }, 750);
+}
+
+// Add event listener for "Next Game" button in modal
+const nextGameBtn = document.querySelector('.btn-next-game');
+if (nextGameBtn) {
+  nextGameBtn.addEventListener('click', () => {
+    // Redirect to next game page
+    window.location.href = '/next-game.html'; // Replace with your actual page URL
+  });
+}
