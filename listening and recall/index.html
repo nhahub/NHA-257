@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <title>Listen & Recall</title>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1 class="heading shadowing">Listen & Recall</h1>
+      </header>
+      <section class="section about shadowing">
+        <h1 class="about--header">About Game</h1>
+
+        <p class="about--description">
+          Listen carefully to the stories about famous characters and then
+          answer the questions (Just listen carefully).
+        </p>
+
+        <button class="btn btn--next--aboutSection shadowing">Next</button>
+      </section>
+
+      <section class="section listening hidden remove shadowing">
+        <div class="character--container">
+          <img class="character--image shadowing" src="x" alt="image" />
+          <h2>Listen Carefully</h2>
+        </div>
+        <div class="audio--container">
+          <audio controls autoplay>
+            <source class="audio--source" src="x" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+        <button class="btn btn--questions">Next</button>
+      </section>
+
+      <section class="section questions hidden remove">
+        <div class="question--container">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis,
+          dolore?
+        </div>
+        <div class="answers--container">
+          <!-- <div class="answer shadowing">Karim</div> -->
+        </div>
+      </section>
+
+      <div class="modal hidden remove shadowing">
+        <div class="modal-content">
+          <h2>🎯 Game Over</h2>
+          <p>Your Score: <span id="score">0</span></p>
+          <p>Total Time: <span id="final-time">00:00</span></p>
+          <button class="btn btn--restart">Play Again</button>
+        </div>
+      </div>
+
+      <div class="overlay hidden remove"></div>
+    </main>
+  </body>
+</html>
