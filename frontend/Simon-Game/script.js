@@ -32,7 +32,7 @@ async function sendResult(gameId, score, trials = 0, misses = 0) {
 }
 
 function endGame(finalScore, trials = 0, misses = 0) {
-    sendResult(1, finalScore, trials, misses);  // gameId = 1 → Simon Game
+    sendResult(9, finalScore, trials, misses);  // gameId = 1 → Simon Game
 }
 
 const simonGame = {

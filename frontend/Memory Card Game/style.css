@@ -1,0 +1,246 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-image: linear-gradient(
+    to left top,
+    rgb(105, 208, 255),
+    rgb(173, 215, 255),
+    rgb(254, 194, 232),
+    rgb(231, 137, 255)
+  );
+  width: 99vw;
+  height: 110vh;
+}
+main {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 99vw;
+  height: 100vh;
+}
+
+.about--section {
+  color: rgb(79, 78, 78);
+  width: 60vw;
+  height: 80vh;
+  padding: 1vw;
+  background-color: #dddddd7c;
+  box-shadow: 0 0 5px slategray;
+  border-radius: 2vw;
+  text-align: center;
+  font-size: 25px;
+  transition: display 0.5s ease-in;
+}
+.about--section h1 {
+  font-size: 3rem;
+  margin: 4rem 0;
+}
+.about--section p {
+  font-size: 2.25rem;
+}
+.container {
+  background-color: #fcf8f898;
+  box-shadow: 0 0 10px #ddd;
+  width: 60vw;
+  height: 80vh;
+  border-radius: 2vw;
+  padding: 1vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  transition: all 0.5s ease-in;
+}
+
+.centralize-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  position: relative;
+  width: calc(90%);
+  height: calc(90%);
+  margin: 0.5vw;
+  transform-style: preserve-3d;
+  transform-origin: right center;
+  transition: transform 1s 0.25s linear;
+}
+
+.box-animation {
+  transform: translateX(-100%) rotateY(-180deg);
+}
+
+.face {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  color: white;
+  backface-visibility: hidden;
+  border-radius: 2vw;
+  box-shadow: 0 0 2.5px rgb(41, 38, 38);
+}
+
+.front {
+  background-color: rgb(246, 254, 255);
+  transform: rotateY(180deg);
+}
+
+.back {
+  background-color: rgb(154, 102, 193);
+}
+
+.frame {
+  width: 80%;
+  height: 80%;
+  border: 2px solid white;
+  border-radius: inherit;
+}
+
+/* Style for the crown SVG */
+.back .frame svg image {
+  filter: invert(71%) sepia(87%) saturate(789%) hue-rotate(358deg)
+    brightness(102%) contrast(105%);
+}
+
+.btn--next {
+  color: white;
+  font-size: large;
+  background-color: rgb(154, 102, 193);
+  border: none;
+  width: 10vw;
+  height: 3vw;
+  border-radius: 2vw;
+  position: absolute;
+  left: 45%;
+  bottom: -2%;
+  box-shadow: 0 0 5px rgb(41, 38, 38);
+  cursor: pointer;
+  transition: all 0.5s ease-in;
+}
+
+.btn--animation {
+  transform: translateY(-0.5vw);
+}
+
+.hidden {
+  display: none;
+}
+
+.unvisible {
+  visibility: hidden;
+}
+
+.hidden--opacity {
+  opacity: 0;
+  height: 0;
+}
+
+.timer {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  background-color: rgba(154, 102, 193, 0.9);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 2rem;
+  font-size: 1.5rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 100;
+}
+
+.timer::before {
+  content: '⏱';
+  font-size: 1.2rem;
+}
+
+/* Media query for mobile devices */
+@media screen and (max-width: 768px) {
+  .timer {
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.2rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 90%;
+  width: 400px;
+}
+
+.modal-content h2 {
+  color: rgb(154, 102, 193);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-content p {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+  color: #666;
+}
+
+.restart-btn {
+  background-color: rgb(154, 102, 193);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.restart-btn:hover {
+  transform: translateY(-2px);
+}
+
+.moves {
+  font-size: large;
+  position: absolute;
+  bottom: 2%;
+  /* background-image: linear-gradient(
+    to top left,
+    rgb(236, 165, 197),
+    rgb(231, 182, 211),
+    rgb(202, 227, 229),
+    rgb(184, 227, 232)
+  ); */
+  background-color: #fcf8f898;
+  padding: 5px;
+  color: rgb(79, 78, 78);
+  border-radius: 12px;
+  box-shadow: 0 0 2px rgb(41, 38, 38);
+}

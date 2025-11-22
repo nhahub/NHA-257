@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MemoryGameKidsBack")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8888de4951b4ed9a8e4538900d53160535a54845")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+86f99b5b582c5d16e3c1f2de44c81f2443754172")]
 [assembly: System.Reflection.AssemblyProductAttribute("MemoryGameKidsBack")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MemoryGameKidsBack")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

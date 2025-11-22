@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qx/pJj6nInM=",
+  "dgSpecHash": "JFHXojKChOA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\MemoryGameKidsBack.csproj",
+  "projectFilePath": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\backend\\MemoryGameKidsBack\\MemoryGameKidsBack.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\menan\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\menan\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\MemoryGameKidsBack.csproj": {}
+    "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\backend\\MemoryGameKidsBack\\MemoryGameKidsBack.csproj": {}
   },
   "projects": {
-    "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\MemoryGameKidsBack.csproj": {
+    "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\backend\\MemoryGameKidsBack\\MemoryGameKidsBack.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\MemoryGameKidsBack.csproj",
+        "projectUniqueName": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\backend\\MemoryGameKidsBack\\MemoryGameKidsBack.csproj",
         "projectName": "MemoryGameKidsBack",
-        "projectPath": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\MemoryGameKidsBack.csproj",
+        "projectPath": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\backend\\MemoryGameKidsBack\\MemoryGameKidsBack.csproj",
         "packagesPath": "C:\\Users\\menan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\MemoryGameKidsBack\\MemoryGameKidsBack\\obj\\",
+        "outputPath": "C:\\Users\\menan\\Desktop\\depi\\KidsBackend\\backend\\MemoryGameKidsBack\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

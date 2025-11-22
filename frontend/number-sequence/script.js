@@ -40,7 +40,7 @@ async function sendResult(gameId, score, trials = 0, misses = 0) {
 }
 
 function endGame(finalScore, trials = 0, misses = 0) {
-    sendResult(2, finalScore, trials, misses);  // gameId = 2 → Number Sequence Game
+    sendResult(1, finalScore, trials, misses);  
 }
 
 //  MAIN GAME LOGIC
