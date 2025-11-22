@@ -408,35 +408,243 @@ document.querySelector('.answers').addEventListener('click', function (e) {
     displayInstrument(currentInstrumentIndex);
   }, 1500);
 });
+// Add to game state variables (at the top with other state variables)
+let gameResults = []; // Track each question result
+let gameStartTime = null;
+let gameEndTime = null;
 
-function showFinalScore() {
-  instrumentDisplay.classList.add('hidden');
+// Modified answer click handler - add this to track results
+// Replace the existing answer click event listener with this updated version:
+document.querySelector('.answers').addEventListener('click', function (e) {
+  const answer = e.target.closest('.answer');
+  if (!answer || !acceptingAnswers) return;
+  acceptingAnswers = false;
+
+  const answerText =
+    answer.querySelector('.answer-text').dataset.instrumentName;
+  const currentInstrument = animalData[currentInstrumentIndex];
+  const isCorrect = answerText === currentInstrument.name;
+
+  // Track this answer in game results
+  gameResults.push({
+    questionNumber: currentInstrumentIndex + 1,
+    animal: currentInstrument.name,
+    userAnswer: answerText,
+    correctAnswer: currentInstrument.name,
+    isCorrect: isCorrect,
+    timestamp: new Date().toISOString(),
+  });
+
+  if (isCorrect) {
+    answer.classList.add('correct--answer');
+    if (score < animalData.length) {
+      score++;
+      scoreValueEl.textContent = score;
+    }
+  } else {
+    answer.classList.add('wrong--answer');
+    answers.forEach(a => {
+      if (
+        a.querySelector('.answer-text').dataset.instrumentName ===
+        currentInstrument.name
+      ) {
+        a.classList.add('correct--answer');
+      }
+    });
+  }
+
+  answer.classList.add('answer--animation');
+
+  document.querySelectorAll('.btn-play-choice').forEach(btn => {
+    btn.classList.add('hidden');
+  });
+
   setTimeout(() => {
-    instrumentDisplay.classList.add('remove');
+    document.querySelectorAll('audio').forEach(a => {
+      try {
+        a.pause();
+        a.currentTime = 0;
+      } catch (e) {}
+    });
 
-    // Update the final score
-    document.querySelector('.total-score-value').textContent = score;
+    currentInstrumentIndex++;
+    displayInstrument(currentInstrumentIndex);
+  }, 1500);
+});
 
-    // Show the modal
-    finalScoreModal.classList.remove('remove');
-    setTimeout(() => {
-      finalScoreModal.classList.remove('hidden');
-    }, 100);
+// Initialize game start time when game begins
+// Add to the btnAbout click handler after displaying first instrument:
+btnAbout.addEventListener('click', function () {
+  aboutSec.classList.add('hidden');
+
+  setTimeout(() => {
+    aboutSec.classList.add('remove');
+    instrumentDisplay.classList.remove('remove');
+
+    // Initialize game start time and reset results
+    gameStartTime = new Date();
+    gameResults = [];
+    score = 0;
+    currentInstrumentIndex = 0;
+
+    displayInstrument(currentInstrumentIndex);
+
+    requestAnimationFrame(() => {
+      instrumentDisplay.classList.remove('hidden');
+    });
   }, 500);
+});
+
+// Show final score modal with detailed results
+function showFinalScore() {
+  gameEndTime = new Date();
+  const gameDuration = Math.round((gameEndTime - gameStartTime) / 1000); // in seconds
+
+  // Hide instrument display
+  instrumentDisplay.classList.add('hidden');
+
+  // Build results HTML
+  const resultsHTML = gameResults
+    .map(
+      result => `
+    <div class="result-item ${result.isCorrect ? 'correct' : 'incorrect'}">
+      <span class="result-number">${result.questionNumber}.</span>
+      <span class="result-animal">${result.animal}</span>
+      <span class="result-status">${result.isCorrect ? '✓' : '✗'}</span>
+      ${
+        !result.isCorrect
+          ? `<span class="result-wrong">(You chose: ${result.userAnswer})</span>`
+          : ''
+      }
+    </div>
+  `
+    )
+    .join('');
+
+  const percentage = Math.round((score / animalData.length) * 100);
+
+  // Populate modal content
+  const modalContent = `
+    <h2>Game Complete!</h2>
+    <div class="final-stats">
+      <div class="stat-item">
+        <span class="stat-label">Final Score:</span>
+        <span class="stat-value">${score} / ${animalData.length}</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Accuracy:</span>
+        <span class="stat-value">${percentage}%</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Time:</span>
+        <span class="stat-value">${Math.floor(gameDuration / 60)}:${(
+    gameDuration % 60
+  )
+    .toString()
+    .padStart(2, '0')}</span>
+      </div>
+    </div>
+    <div class="results-list">
+      <h3>Your Answers:</h3>
+      ${resultsHTML}
+    </div>
+    <div class="modal-actions">
+      <a href="next-game.html" class="btn-next-game">Next Game</a>
+    </div>
+  `;
+
+  // Display modal
+  finalScoreModal.innerHTML = modalContent;
+  finalScoreModal.classList.remove('hidden', 'remove');
+
+  // Send data to database
+  sendGameDataToDatabase();
+
+  // Add event listeners for modal buttons
+  document
+    .querySelector('.btn-play-again')
+    .addEventListener('click', resetGame);
+  document
+    .querySelector('.btn-close-modal')
+    .addEventListener('click', closeModal);
 }
 
-// Reset game when clicking close button on final score modal
-modalClose.addEventListener('click', () => {
+// Send game data to database
+async function sendGameDataToDatabase() {
+  const gameData = {
+    score: score,
+    totalQuestions: animalData.length,
+    percentage: Math.round((score / animalData.length) * 100),
+    duration: Math.round((gameEndTime - gameStartTime) / 1000),
+    startTime: gameStartTime.toISOString(),
+    endTime: gameEndTime.toISOString(),
+    results: gameResults,
+    userAgent: navigator.userAgent,
+    timestamp: new Date().toISOString(),
+  };
+
+  try {
+    const response = await fetch(
+      'https://your-api-endpoint.com/api/game-results',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(gameData),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log('Game data saved successfully:', data);
+    return data;
+  } catch (error) {
+    console.error('Error saving game data:', error);
+    // Optionally store locally if server fails
+    localStorage.setItem('lastGameData', JSON.stringify(gameData));
+    return null;
+  }
+}
+
+// Reset game and play again
+function resetGame() {
+  // Reset all game state
+  currentInstrumentIndex = 0;
+  score = 0;
+  gameResults = [];
+  acceptingAnswers = true;
+  mainSoundPlayed = false;
+
+  // Update score display
+  scoreValueEl.textContent = score;
+
+  // Hide modal
+  finalScoreModal.classList.add('hidden');
+
+  // Stop all audio
+  document.querySelectorAll('audio').forEach(a => {
+    try {
+      a.pause();
+      a.currentTime = 0;
+    } catch (e) {}
+  });
+
+  // Show instrument display
+  instrumentDisplay.classList.remove('hidden');
+
+  // Start new game
+  gameStartTime = new Date();
+  displayInstrument(currentInstrumentIndex);
+}
+
+// Close modal without restarting
+function closeModal() {
   finalScoreModal.classList.add('hidden');
   setTimeout(() => {
     finalScoreModal.classList.add('remove');
-    // Reset game state
-    currentInstrumentIndex = 0;
-    score = 0;
-    scoreValueEl.textContent = score;
-    acceptingAnswers = true;
-    // Show first instrument
-    instrumentDisplay.classList.remove('remove', 'hidden');
-    displayInstrument(currentInstrumentIndex);
-  }, 500);
-});
+  }, 300);
+}
