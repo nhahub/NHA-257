@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Memory - Home</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">KM</div>
+        <div class="user-info">
+            <span id="welcome-msg">Loading...</span>
+            <button onclick="handleLogout()" class="logout-btn">Logout</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="header-text">
+            <h1>Select Workspace</h1>
+            <p>Choose where you want to go.</p>
+        </div>
+
+        <div class="cards-grid">
+            
+            <div class="card" onclick="navigateTo('games')">
+                <div class="icon">🎮</div>
+                <h3>Play Games</h3>
+                <p>Play memory games and track progress.</p>
+                <div class="badge">Kids Area</div>
+            </div>
+
+            <div class="card" onclick="navigateTo('doctor')">
+                <div class="icon">🩺</div>
+                <h3>Doctor Dashboard</h3>
+                <p>View patient scores and reports.</p>
+                <div class="badge doctor">Doctor Only</div>
+            </div>
+
+            <div class="card" onclick="navigateTo('admin')">
+                <div class="icon">⚙️</div>
+                <h3>Admin Panel</h3>
+                <p>Manage users and clinics.</p>
+                <div class="badge admin">Admin Only</div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="home.js"></script>
+</body>
+</html>

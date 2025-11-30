@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="./script.js"></script>
+    <title>Animals and Birds Recognition</title>
+  </head>
+  <body>
+    <nav>
+      <h1 class="shadowing"><b>Animals and Birds Recognition</b></h1>
+    </nav>
+    <main>
+      <section class="section About--section shadowing">
+        <header>
+          <h2><b>About the Game</b></h2>
+        </header>
+        <hr />
+        <article>
+          <p>
+            Listen to animal sounds and guess which animal it is! Look at the
+            image and listen to the sound, then choose from the alternatives.
+            Test your knowledge of animal and have fun learning!
+          </p>
+        </article>
+        <button class="btn btn-about shadowing">Continue</button>
+      </section>
+
+      <section class="section instrument-display shadowing hidden remove">
+        <div class="score">Score: <span class="score-value">0</span>/15</div>
+        <article class="instrument-content">
+          <div class="image--container">
+            <img src="" class="shadowing instrument--img" />
+          </div>
+          <div class="instrument-info">
+            <h2 class="instrument-name"></h2>
+            <div class="audio-section">
+              <audio id="main-audio" preload="auto">
+                <source src="" type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
+              <button class="btn btn-play-sound">Listen to Instrument</button>
+            </div>
+          </div>
+        </article>
+        <div class="alternatives-container">
+          <ul class="answers">
+            <li class="answer">
+              <span class="answer-text">Choice 1</span>
+              <audio class="answer-audio" preload="auto">
+                <source src="" type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
+              <button class="btn btn-play-choice">Play</button>
+            </li>
+            <li class="answer">
+              <span class="answer-text">Choice 2</span>
+              <audio class="answer-audio" preload="auto">
+                <source src="" type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
+              <button class="btn btn-play-choice">Play</button>
+            </li>
+            <li class="answer">
+              <span class="answer-text">Choice 3</span>
+              <audio class="answer-audio" preload="auto">
+                <source src="" type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
+              <button class="btn btn-play-choice">Play</button>
+            </li>
+            <li class="answer">
+              <span class="answer-text">Choice 4</span>
+              <audio class="answer-audio" preload="auto">
+                <source src="" type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </audio>
+              <button class="btn btn-play-choice">Play</button>
+            </li>
+          </ul>
+        </div>
+        <button class="btn btn--next">Next</button>
+      </section>
+    </main>
+    <div class="final-score-modal hidden remove"></div>
+  </body>
+</html>

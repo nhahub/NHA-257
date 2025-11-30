@@ -1,0 +1,34 @@
+const storyTemplates = [
+  {
+    name: "the first story",
+    items: [
+      { id: 1, content: "./images/the first story/1.png", label: "first" },
+      { id: 2, content: "./images/the first story/2.png", label: "second" },
+      { id: 3, content: "./images/the first story/3.png", label: "third" },
+      { id: 4, content: "./images/the first story/4.png", label: "fourth" },
+      { id: 5, content: "./images/the first story/5.png", label: "fifth" },
+      { id: 6, content: "./images/the first story/6.png", label: "sixth" },
+    ],
+  },
+  {
+    name: "the second story",
+    items: [
+      { id: 1, content: "./images/the second story/1.png", label: "first" },
+      { id: 2, content: "./images/the second story/2.png", label: "second" },
+      { id: 3, content: "./images/the second story/3.png", label: "third" },
+      { id: 4, content: "./images/the second story/4.png", label: "fourth" },
+      { id: 5, content: "./images/the second story/5.png", label: "fifth" },
+      { id: 6, content: "./images/the second story/6.png", label: "sixth" },
+    ],
+  },
+  {
+    name: "the third story",
+    items: [
+      { id: 1, content: "./images/the third story/1.png", label: "first" },
+      { id: 2, content: "./images/the third story/2.png", label: "second"},
+      { id: 3, content: "./images/the third story/3.png", label: "third"},
+      { id: 4, content: "./images/the third story/4.png", label: "fourth"},
+      { id: 5, content: "./images/the third story/5.png", label: "fifth"},
+      { id: 6, content: "./images/the third story/6.png", label: "sixth"},
+    ],
+  }]

@@ -1,0 +1,106 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #121212;
+  /* Assuming you put the image in src/Games/image/ */
+  background-image: url('../../image/Background.jpg'); 
+  background-size: cover;
+  background-attachment: fixed;
+  color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Exit Button Style */
+.exit-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 1000;
+}
+.exit-btn:hover { background: #dc2626; }
+
+header, footer {
+  background-color: rgba(31, 31, 31, 0.8);
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+header h1 { font-size: 2rem; }
+
+.container {
+  flex: 1;
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background: rgba(0,0,0,0.5); /* Semi-transparent container */
+  border-radius: 20px;
+}
+
+.scoreboard { margin-bottom: 20px; }
+.scoreboard p { font-size: 1.2rem; margin: 10px 0; }
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-content: center;
+  gap: 15px;
+  margin: 20px auto;
+}
+
+.quadrant {
+  width: 200px;
+  aspect-ratio: 1 / 1;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s, border-color 0.2s;
+  border: 4px solid transparent;
+}
+.quadrant.flash {
+  opacity: 0.6;
+  transform: scale(0.98);
+  border-color: #ffffff;
+}
+
+#green { background-color: #008000; }
+#red { background-color: #ff0000; }
+#yellow { background-color: #ffd700; }
+#blue { background-color: #0000ff; }
+
+#startBtn {
+  margin-top: 20px;
+  padding: 10px 25px;
+  font-size: 1rem;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+#startBtn:hover { background-color: #0056b3; }
+
+#message {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  min-height: 1.5em;
+}
+
+@media (max-width: 600px) {
+  .quadrant { width: 150px; }
+  .board { gap: 10px; }
+}

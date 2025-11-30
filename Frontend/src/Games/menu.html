@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kids Memory - Game Menu</title>
+    <link rel="stylesheet" href="menu.css">
+</head>
+<body>
+
+    <header class="menu-header">
+        <button onclick="goHome()" class="back-btn">← Back to Home</button>
+        <h2>Enjoy your Games!</h2>
+        <div class="user-status">
+            <span id="session-badge" class="badge">No Active Session</span>
+        </div>
+    </header>
+
+    <section class="session-control">
+        <div class="control-card">
+            <h3>Start your Session</h3>
+            <p>You must start a session before playing games.</p>
+            
+            <button id="btnStart" onclick="handleStartSession()" class="btn-start">
+                ▶ Start Session
+            </button>
+            
+            <button id="btnEnd" onclick="handleEndSession()" class="btn-end" style="display:none;">
+                ■ End Session
+            </button>
+        </div>
+    </section>
+
+   <main class="games-grid" id="gamesContainer">
+        
+        <div class="game-card locked" onclick="playGame(1)">
+            <div class="icon">🤖</div>
+            <h3>1. Simon Says</h3>
+            <p>Follow the spoken commands.</p>
+        </div>
+
+        <div class="game-card locked" onclick="playGame(2)">
+            <div class="icon">🔢</div>
+            <h3>2. Number Sequence</h3>
+            <p>Recall the numbers in order.</p>
+        </div>
+
+        <div class="game-card locked" onclick="playGame(3)">
+            <div class="icon">🃏</div>
+            <h3>3. Memory Cards</h3>
+            <p>Find the matching pairs.</p>
+        </div>
+
+        <div class="game-card locked" onclick="playGame(4)">
+            <div class="icon">📖</div>
+            <h3>4. Story Chain</h3>
+            <p>Link events to complete the story.</p>
+        </div>
+
+        <div class="game-card locked" onclick="playGame(5)">
+            <div class="icon">🏰</div>
+            <h3>5. History Telling</h3>
+            <p>Retell the events correctly.</p>
+        </div>
+
+        <div class="game-card locked" onclick="playGame(6)">
+            <div class="icon">⏳</div>
+            <h3>6. Memory Timeline</h3>
+            <p>Order events chronologically.</p>
+        </div>
+
+        <div class="game-card locked" onclick="playGame(7)">
+            <div class="icon">🍽️</div>
+            <h3>7. Tray Game</h3>
+            <p>Remember items on the tray.</p>
+        </div>
+
+        <div class="game-card locked" onclick="playGame(8)">
+            <div class="icon">🎭</div>
+            <h3>8. Tricky Cards</h3>
+            <p>Remember the tricky card.</p>
+        </div>
+
+        <div class="game-card locked" onclick="playGame(9)">
+            <div class="icon">👁️</div>
+            <h3>9. Visual Tracking</h3>
+            <p>Follow the moving object.</p>
+        </div>
+
+        <div class="game-card locked" onclick="playGame(10)">
+            <div class="icon">🎧</div>
+            <h3>10. Listen & Recall</h3>
+            <p>Repeat the words you hear.</p>
+        </div>
+
+        <div class="game-card locked" onclick="playGame(11)">
+            <div class="icon">🎻</div>
+            <h3>11. Instruments</h3>
+            <p>Identify the musical sound.</p>
+        </div>
+
+        <div class="game-card locked" onclick="playGame(12)">
+            <div class="icon">🦁</div>
+            <h3>12. Jungle Sounds</h3>
+            <p>Guess the animal sound.</p>
+        </div>
+
+    </main>
+
+    <script src="../../assets/js/SessionManager.js"></script>
+    <script src="menu.js"></script>
+</body>
+</html>

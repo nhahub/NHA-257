@@ -1,0 +1,109 @@
+:root {
+    --bg: #0f172a;
+    --card-bg: #1e293b;
+    --text: #e2e8f0;
+    --accent: #7c5cff;
+    --doctor: #4dd0e1;
+    --admin: #ffdd57;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    
+    /* --- Background Image Setup --- */
+    /* Path goes up 2 levels (../../) to find the 'image' folder */
+    background-image: url('./image/Background.jpg');
+    background-color: var(--bg); /* Fallback color */
+    background-size: cover;      /* Stretch to fit screen */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Don't tile */
+    background-attachment: fixed; /* Keep background in place when scrolling */
+    
+    color: var(--text);
+    min-height: 100vh; /* Ensure it fills at least the whole screen height */
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--accent);
+}
+
+.logout-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.logout-btn:hover { background: rgba(255,255,255,0.1); }
+
+/* Main Container */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.header-text h1 { margin-bottom: 0.5rem; }
+.header-text p { color: #94a3b8; margin-bottom: 3rem; }
+
+/* Grid System */
+.cards-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* Cards */
+.card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 16px;
+    padding: 30px;
+    width: 280px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-color: var(--accent);
+}
+
+.icon { font-size: 3rem; margin-bottom: 1rem; }
+.card h3 { margin: 10px 0; }
+.card p { color: #94a3b8; font-size: 0.9rem; }
+
+/* Badges */
+.badge {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    background: rgba(124, 92, 255, 0.2);
+    color: var(--accent);
+}
+.badge.doctor { background: rgba(77, 208, 225, 0.2); color: var(--doctor); }
+.badge.admin { background: rgba(255, 221, 87, 0.2); color: var(--admin); }

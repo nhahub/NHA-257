@@ -1,0 +1,103 @@
+:root {
+    --bg: #0f172a;
+    --card-bg: rgba(30, 41, 59, 0.9);
+    --accent: #7c5cff;
+    --green: #22c55e;
+    --red: #ef4444;
+}
+
+body {
+    
+    background-image: url('./image/Background.jpg'); 
+    
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+}
+
+.back-btn {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+/* Session Control Box */
+.session-control {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.control-card {
+    background: var(--card-bg);
+    padding: 20px 40px;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 20px rgba(124, 92, 255, 0.3);
+}
+
+.btn-start {
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-end {
+    background: var(--red);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Games Grid */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.game-card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+}
+
+/* Locked State (Grayed out) */
+.game-card.locked {
+    opacity: 0.5;
+    filter: grayscale(1);
+    cursor: not-allowed;
+}
+
+.icon { font-size: 2.5rem; margin-bottom: 10px; }

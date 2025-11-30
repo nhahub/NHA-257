@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Auth — Login & Register</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="wrap">
+    <section class="card" aria-live="polite">
+      <div class="brand">
+        <div class="logo">FM</div>
+        <h1>Memory wizards</h1>
+      </div>
+
+      <nav class="tabs" role="tablist">
+        <button id="tab-login" class="tab active" role="tab" aria-selected="true">Login</button>
+        <button id="tab-register" class="tab" role="tab" aria-selected="false">Register</button>
+      </nav>
+
+      <div class="forms">
+        <form id="form-login" class="form active" autocomplete="on">
+          <h2>Welcome back</h2>
+          <p class="lead">Sign in to continue</p>
+
+          <label class="field">
+            <input id="loginEmail" name="email" type="email" placeholder="Email" required />
+            <span class="field-error" id="loginEmailErr"></span>
+          </label>
+
+          <label class="field">
+            <input id="loginPassword" name="password" type="password" placeholder="Password" required minlength="6" />
+            <span class="field-error" id="loginPasswordErr"></span>
+          </label>
+
+          <button type="submit" class="btn primary">Sign in</button>
+          <div class="helper-row">
+            <div class="msg" id="loginMsg"></div>
+          </div>
+        </form>
+
+        <form id="form-register" class="form" autocomplete="on">
+          <h2>Create account</h2>
+          <p class="lead">Join AuthHub — it only takes a minute</p>
+
+          <label class="field">
+            <input id="regName" name="fullName" type="text" placeholder="Full name" required />
+            <span class="field-error" id="regNameErr"></span>
+          </label>
+
+          <label class="field">
+            <select id="regUserType" required class="input-style">
+                <option value="" disabled selected>Select Role</option>
+                <option value="3">Child / Patient</option>
+                <option value="2">Doctor</option>
+                <option value="1">Clinic Admin</option>
+            </select>
+            <span class="field-error" id="regTypeErr"></span>
+          </label>
+          <label class="field">
+            <input id="regEmail" name="email" type="email" placeholder="Email" required />
+            <span class="field-error" id="regEmailErr"></span>
+          </label>
+
+          <label class="field">
+            <input id="regPassword" name="password" type="password" placeholder="Password (min 6 chars)" required minlength="6" />
+            <meter id="pwdStrength" min="0" max="4" value="0" low="1" high="3"></meter>
+            <span class="field-error" id="regPasswordErr"></span>
+          </label>
+
+          <button type="submit" class="btn primary">Create account</button>
+          <div class="helper-row">
+            <div class="msg" id="regMsg"></div>
+          </div>
+        </form>
+      </div>
+
+      <div class="footer-note">Built for collaboration • Replace </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

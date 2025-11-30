@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simon Says - Kids Memory</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <button class="exit-btn" onclick="goToMenu()">❌ Exit Game</button>
+
+    <header>
+        <h1>Simon Says</h1>
+    </header>
+
+    <div class="container">
+        <div class="scoreboard">
+            <p id="levelDisplay">Level: 0</p>
+        </div>
+        
+        <div class="board">
+            <div class="quadrant" id="green"></div>
+            <div class="quadrant" id="red"></div>
+            <div class="quadrant" id="yellow"></div>
+            <div class="quadrant" id="blue"></div>
+        </div>
+        
+        <button id="startBtn">Start Game</button>
+        <div id="message"></div>
+    </div>
+
+    <audio id="audio-green" src="audio/green.mp3"></audio>
+    <audio id="audio-red" src="audio/red.mp3"></audio>
+    <audio id="audio-yellow" src="audio/yellow.mp3"></audio>
+    <audio id="audio-blue" src="audio/blue.mp3"></audio>
+    <audio id="audio-wrong" src="audio/wrong.mp3"></audio>
+
+    <script src="../../../assets/js/SessionManager.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

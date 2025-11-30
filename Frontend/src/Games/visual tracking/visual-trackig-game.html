@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <title>Where Did It Go?</title>
+  </head>
+  <body>
+    <h1>🤔 Where Did It Go ?</h1>
+
+    <div id="stats">
+      <div>🕹️ Games: <span id="games">0</span></div>
+      <div>✅ Correct: <span id="correct">0</span></div>
+      <div>❌ Wrong: <span id="wrong">0</span></div>
+      <button id="restart">Restart 🔄</button>
+      <button id="show-results">Show Results 📊</button>
+    </div>
+
+    <div id="difficulty">
+      Select Difficulty:
+      <select id="level">
+        <option value="easy">Easy</option>
+        <option value="medium" selected>Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    </div>
+
+    <div id="instructions">
+      <p>📌 Remember all the shapes, then try to find the hidden one.</p>
+      <button id="start">Start Game ▶️</button>
+    </div>
+
+    <div id="game"></div>
+    <div id="message"></div>
+
+    <button id="next">Next Round 🔁</button>
+
+    <!-- Results modal -->
+    <div id="resultsModal" class="modal" aria-hidden="true">
+      <div
+        class="modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+      >
+        <button id="modal-close" class="modal-close" aria-label="Close results">
+          ×
+        </button>
+        <h2 id="modal-title">Game Results</h2>
+        <p class="modal-score">0/100</p>
+        <div class="modal-stats">
+          <div>Games: <strong class="modal-games">0</strong></div>
+          <div>Correct: <strong class="modal-correct">0</strong></div>
+          <div>Wrong: <strong class="modal-wrong">0</strong></div>
+        </div>
+        <!-- Button that contains a hyperlink: opens profile in new tab -->
+        <div class="modal-actions">
+          <button class="modal-action-btn">
+            <a
+              class="modal-link"
+              href="/index.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              >View Profile</a
+            >
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
