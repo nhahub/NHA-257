@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 Magic Tray - Memory Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Header -->
+        <header class="game-header">
+            <div class="header-content">
+                <h1>🧠 Magic Tray 🧠</h1>
+                <div class="current-category" id="currentCategory" style="display: none;">
+                    <span id="categoryName"></span>
+                </div>
+            </div>
+            <div class="score-display">
+                <div class="stat">Level: <span id="levelDisplay">1</span></div>
+                <div class="stat">Score: <span id="scoreDisplay">0</span></div>
+                <div class="stat">Lives: <span id="livesDisplay">3</span></div>
+            </div>
+            <button class="settings-btn" id="settingsBtn">⚙️</button>
+        </header>
+
+        <!-- Progress Bar -->
+        <div class="progress-container" id="progressContainer" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text">Progress: <span id="progressText">0/4</span></div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions" id="instructions">
+            <div class="instruction-title">🎯 Welcome to Magic Tray!</div>
+            <div class="instruction-text">
+                A fun memory game for children! Watch the magic tray carefully, 
+                remember the sequence of items that appear, then recreate it by tapping in the correct order.
+            </div>
+            <div class="instruction-features">
+                <div class="feature">🧠 <strong>Memory Training</strong> - Improve your memory skills</div>
+                <div class="feature">🎨 <strong>Fun Categories</strong> - Choose from fruits, animals, and more!</div>
+                <div class="feature">📱 <strong>Kid-Friendly</strong> - Easy to play on any device</div>
+            </div>
+            <button class="btn btn-primary" id="startBtn">🚀 Choose Category</button>
+        </div>
+
+        <!-- Category Selection -->
+        <div class="category-selection" id="categorySelection" style="display: none;">
+            <div class="category-title">🎭 Choose Your Adventure!</div>
+            <div class="category-subtitle">Pick a category to start your memory challenge</div>
+            
+            <div class="category-grid" id="categoryGrid"></div>
+            
+            <div class="selected-category-info" id="selectedCategoryInfo">
+                <div class="selected-title">✨ Selected Category</div>
+                <div class="selected-name" id="selectedName"></div>
+                <div class="selected-description" id="selectedDescription"></div>
+                <div class="category-preview" id="categoryPreview"></div>
+                <div class="category-actions">
+                    <button class="btn btn-primary" id="startGameBtn">🎮 Start Game</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Magic Tray -->
+        <div class="magic-tray-container" id="magicTrayContainer" style="display: none;">
+            <div class="tray-title" id="trayTitle"></div>
+            <div class="magic-tray" id="magicTray"></div>
+            <div class="tray-status" id="trayStatus">Get ready...</div>
+        </div>
+
+        <!-- Selection Area -->
+        <div class="selection-area" id="selectionArea" style="display: none;">
+            <div class="selection-title" id="selectionTitle"></div>
+            <div class="selection-status" id="selectionStatus"></div>
+            <div class="items-grid" id="itemsGrid"></div>
+            <div class="selection-controls">
+                <button class="btn btn-secondary" id="clearBtn">🗑️ Clear</button>
+            </div>
+        </div>
+
+        <!-- Game Controls -->
+        <div class="game-controls" id="gameControls" style="display: none;">
+            <button class="btn btn-secondary" id="hintBtn">💡 Hint</button>
+            <button class="btn btn-secondary" id="restartBtn">🔄 Restart</button>
+        </div>
+
+        <!-- Result Overlay -->
+        <div class="result-overlay" id="resultOverlay" style="display: none;">
+            <div class="result-content">
+                <div class="result-icon" id="resultIcon"></div>
+                <div class="result-title" id="resultTitle"></div>
+                <div class="result-message" id="resultMessage"></div>
+                <button class="btn btn-primary" id="nextLevelBtn"></button>
+            </div>
+        </div>
+
+        <!-- Settings Panel -->
+        <div class="settings-panel" id="settingsPanel" style="display: none;">
+            <div class="settings-content">
+                <h3>⚙️ Settings</h3>
+                <div class="setting-item">
+                    <label>Difficulty:</label>
+                    <select id="difficultySelect">
+                        <option value="easy">Easy (3-4 items)</option>
+                        <option value="medium" selected>Medium (4-6 items)</option>
+                        <option value="hard">Hard (6-8 items)</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label>Speed:</label>
+                    <select id="speedSelect">
+                        <option value="slow">Slow</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="fast">Fast</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label>Sound:</label>
+                    <input type="checkbox" id="soundCheckbox" checked>
+                </div>
+                <div class="setting-item">
+                    <label>🗣️ Pronunciation:</label>
+                    <input type="checkbox" id="pronunciationCheckbox" checked>
+                    <small>Pronounce object names in English</small>
+                </div>
+                <button class="btn btn-primary" id="closeSettingsBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
