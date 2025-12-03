@@ -1,103 +1,256 @@
+/* Import a Fun "Kids" Font */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap');
+
 :root {
-    --bg: #0f172a;
-    --card-bg: rgba(30, 41, 59, 0.9);
-    --accent: #7c5cff;
-    --green: #22c55e;
-    --red: #ef4444;
+    /* New Palette: Sunny Day bg */
+    --bg-gradient: linear-gradient(135deg, #e0f7fa 0%, #80deea 100%);
+    --text-main: #2c3e50;
+    --text-light: #546e7a;
+    /* Game Category Gradients */
+    --cat1-grad: linear-gradient(135deg, #4fc3f7, #0288d1); /* Blue (Working) */
+    --cat2-grad: linear-gradient(135deg, #ba68c8, #7b1fa2); /* Purple (Episodic) */
+    --cat3-grad: linear-gradient(135deg, #ffb74d, #f57c00); /* Orange (Visual) */
+    --cat4-grad: linear-gradient(135deg, #4db6ac, #00796b); /* Teal (Auditory) */
+    
+    --green: #66bb6a;
+    --red: #ef5350;
+    --shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
 body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
     
-    background-image: url('./image/Background.jpg'); 
+    /* --- Background Image Setup --- */
+    /* Path goes up 2 levels (../../) to find the 'image' folder */
+    background-image: url('./image/Background.jpg');
+    background-color: var(--bg); /* Fallback color */
+    background-size: cover;      /* Stretch to fit screen */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Don't tile */
+    background-attachment: fixed; /* Keep background in place when scrolling */
     
+    color: var(--text);
+    min-height: 100vh; /* Ensure it fills at least the whole screen height */
 }
 
+
+/* --- Header --- */
 .menu-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background: rgba(0,0,0,0.6);
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-radius: 0 0 25px 25px;
+    margin-bottom: 20px;
+}
+
+.menu-header h2 {
+    color: #0288d1;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
 }
 
 .back-btn {
-    background: transparent;
-    border: 1px solid white;
-    color: white;
-    padding: 8px 16px;
+    background: #e1f5fe;
+    border: 2px solid #b3e5fc;
+    color: #0277bd;
+    padding: 10px 20px;
     cursor: pointer;
-    border-radius: 6px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-family: 'Fredoka', sans-serif;
+    transition: all 0.2s;
 }
 
-/* Session Control Box */
+.back-btn:hover {
+    background: #b3e5fc;
+    transform: scale(1.05);
+}
+
+.user-status .badge {
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    background: #eceff1;
+    color: #78909c;
+    border: 2px solid transparent;
+}
+
+/* --- Session Control Box --- */
 .session-control {
     display: flex;
     justify-content: center;
-    margin: 30px 0;
+    margin: 40px 0;
+    padding: 0 20px;
 }
 
 .control-card {
-    background: var(--card-bg);
-    padding: 20px 40px;
-    border-radius: 12px;
+    background: white;
+    padding: 30px 50px;
+    border-radius: 30px;
     text-align: center;
-    border: 2px solid var(--accent);
-    box-shadow: 0 0 20px rgba(124, 92, 255, 0.3);
+    border: 4px solid #fff;
+    box-shadow: var(--shadow);
+    max-width: 600px;
+    width: 100%;
+}
+
+.control-card h3 {
+    color: var(--text-main);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.control-card p {
+    color: var(--text-light);
+    margin-bottom: 25px;
+}
+
+.btn-start, .btn-end {
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.3rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Fredoka', sans-serif;
+    transition: all 0.1s;
 }
 
 .btn-start {
     background: var(--green);
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    font-size: 1.2rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
+    box-shadow: 0 6px 0 #388e3c;
 }
 
 .btn-end {
     background: var(--red);
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    font-size: 1.2rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
+    box-shadow: 0 6px 0 #d32f2f;
 }
 
-/* Games Grid */
+.btn-start:active, .btn-end:active {
+    transform: translateY(6px);
+    box-shadow: none;
+}
+
+/* --- Games Grid & Colored Cards --- */
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    max-width: 1000px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 40px 60px 40px;
 }
 
+/* Base Card Style */
 .game-card {
-    background: var(--card-bg);
-    padding: 20px;
-    border-radius: 12px;
+    /* Default to white, but overridden below */
+    background: white; 
+    color: var(--text-main);
+    padding: 25px;
+    border-radius: 25px;
     text-align: center;
     cursor: pointer;
-    transition: 0.2s;
-    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 3px solid transparent;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
 }
 
+/* --- COLORING THE CATEGORIES --- */
+/* Change text color to white for better contrast on colored backgrounds */
+.game-card:not(.locked) h3,
+.game-card:not(.locked) p,
+.game-card:not(.locked) .icon {
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Category 1: Working Memory (Games 1-3) - BLUE */
+.game-card:nth-child(-n+3) {
+    background: var(--cat1-grad);
+}
+
+/* Category 2: Episodic Memory (Games 4-6) - PURPLE */
+.game-card:nth-child(n+4):nth-child(-n+6) {
+    background: var(--cat2-grad);
+}
+
+/* Category 3: Visual Memory (Games 7-9) - ORANGE */
+.game-card:nth-child(n+7):nth-child(-n+9) {
+    background: var(--cat3-grad);
+}
+
+/* Category 4: Auditory Memory (Games 10-12) - TEAL */
+.game-card:nth-child(n+10) {
+    background: var(--cat4-grad);
+}
+/* --------------------------- */
+
+
+/* Hover Effects */
 .game-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 30px rgba(0,0,0,0.2);
+    border-color: rgba(255,255,255,0.5); /* White glow border on hover */
 }
 
-/* Locked State (Grayed out) */
+.icon {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.game-card:hover .icon {
+    transform: rotate(10deg) scale(1.1);
+}
+
+.game-card h3 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+.game-card p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* --- Locked State --- */
+/* Override the colors if locked */
 .game-card.locked {
-    opacity: 0.5;
-    filter: grayscale(1);
+    opacity: 0.8;
+    background: #eceff1 !important; /* Force gray background */
+    color: var(--text-light) !important; /* Force dark text */
     cursor: not-allowed;
+    border: 3px dashed #cfd8dc;
+    box-shadow: none;
+    transform: none !important;
 }
 
-.icon { font-size: 2.5rem; margin-bottom: 10px; }
+.game-card.locked h3, 
+.game-card.locked p, 
+.game-card.locked .icon {
+    color: var(--text-light); /* Ensure text is dark gray when locked */
+    text-shadow: none;
+}
+
+.game-card.locked .icon {
+    opacity: 0.5;
+}
+
+.game-card.locked::after {
+    content: "🔒";
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+    opacity: 0.6;
+}

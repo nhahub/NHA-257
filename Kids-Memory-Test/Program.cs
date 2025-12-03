@@ -18,7 +18,7 @@ builder.Services.AddScoped<Kids_Memory_Test.Interfaces.IGameSessionService, Kids
 // 3. Add Controllers
 builder.Services.AddControllers();
 
-// --- ADD THIS BLOCK TO FIX THE ERROR ---
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -70,6 +70,10 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll",
         builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
+
+builder.Services.AddScoped<Kids_Memory_Test.Interfaces.IDoctorService, Kids_Memory_Test.Services.DoctorService>();
+builder.Services.AddHttpClient<Kids_Memory_Test.Services.FlaskMLClient>();
+builder.Services.AddScoped<Kids_Memory_Test.Interfaces.IAdminService, Kids_Memory_Test.Services.AdminService>();
 
 var app = builder.Build();
 
