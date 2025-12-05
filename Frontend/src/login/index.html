@@ -42,15 +42,10 @@
 
         <form id="form-register" class="form" autocomplete="on">
           <h2>Create account</h2>
-          <p class="lead">Join AuthHub — it only takes a minute</p>
+          <p class="lead">Join the clinic network</p>
 
           <label class="field">
-            <input id="regName" name="fullName" type="text" placeholder="Full name" required />
-            <span class="field-error" id="regNameErr"></span>
-          </label>
-
-          <label class="field">
-            <select id="regUserType" required class="input-style">
+            <select id="regUserType" required class="input-style" onchange="toggleExtraFields()">
                 <option value="" disabled selected>Select Role</option>
                 <option value="3">Child / Patient</option>
                 <option value="2">Doctor</option>
@@ -58,16 +53,41 @@
             </select>
             <span class="field-error" id="regTypeErr"></span>
           </label>
-          <label class="field">
-            <input id="regEmail" name="email" type="email" placeholder="Email" required />
-            <span class="field-error" id="regEmailErr"></span>
-          </label>
 
           <label class="field">
-            <input id="regPassword" name="password" type="password" placeholder="Password (min 6 chars)" required minlength="6" />
-            <meter id="pwdStrength" min="0" max="4" value="0" low="1" high="3"></meter>
-            <span class="field-error" id="regPasswordErr"></span>
+            <input id="regName" type="text" placeholder="Full Name" required />
           </label>
+          <label class="field">
+            <input id="regEmail" type="email" placeholder="Email" required />
+          </label>
+          <label class="field">
+            <input id="regPassword" type="password" placeholder="Password (min 6 chars)" required minlength="6" />
+          </label>
+
+          <div id="extraFields" style="display:none; border-top:1px solid rgba(255,255,255,0.1); padding-top:10px;">
+              
+              <label class="field">
+                <input id="regPhone" type="text" placeholder="Phone Number" />
+              </label>
+              <label class="field">
+                <input id="regAddress" type="text" placeholder="Address" />
+              </label>
+
+              <div id="doctorFields" style="display:none;">
+                  <label class="field">
+                    <input id="regSpecialty" type="text" placeholder="Specialty (e.g. Neurology)" />
+                  </label>
+              </div>
+
+              <div id="childFields" style="display:none;">
+                  <label class="field">
+                    <input id="regParentName" type="text" placeholder="Parent Name" />
+                  </label>
+                  <label class="field">
+                    <input id="regDob" type="date" placeholder="Date of Birth" style="color:gray" onfocus="this.style.color='white'" />
+                  </label>
+              </div>
+          </div>
 
           <button type="submit" class="btn primary">Create account</button>
           <div class="helper-row">

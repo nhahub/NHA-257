@@ -1,0 +1,222 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+  width: 100%;
+  height: 100vh;
+  /* THE ORIGINAL GRADIENT BACKGROUND */
+  background-image: linear-gradient(
+    to left top,
+    rgb(105, 208, 255),
+    rgb(173, 215, 255),
+    rgb(254, 194, 232),
+    rgb(231, 137, 255)
+  );
+  color: rgb(187, 76, 235);
+  overflow: hidden; /* Added to prevent scrollbars during transitions */
+}
+nav {
+  height: 10%;
+  width: 100%;
+  text-align: center;
+  padding: 1%;
+}
+nav h1 {
+  font-size: 1.5rem;
+  padding: 1%;
+  background-color: rgba(255, 255, 255, 0.671);
+  width: 30%;
+  min-width: 300px;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
+main {
+  width: 100%;
+  height: 80vh;
+  display: grid;
+  place-items: center;
+}
+
+/* ORIGINAL WHITE CONTAINER STYLES */
+.section {
+  width: 60%;
+  height: 80%;
+  background-color: rgba(255, 255, 255, 0.85); /* Slightly more opaque for better readability */
+  border-radius: 12px;
+  transition: all 0.5s linear;
+  position: absolute; /* needed for stacking transitions */
+}
+.About--section header {
+  height: 20%;
+  font-size: 2rem;
+  padding: 5%;
+  display: grid;
+  place-items: center;
+}
+.About--section hr {
+  margin: 20px auto;
+  width: 75%;
+  border: 1px solid rgb(220, 183, 88);
+}
+.About--section article {
+  padding: 5%;
+  font-size: 1.8rem;
+  text-align: center;
+  overflow: auto;
+  height: 50%;
+}
+.shadowing {
+  box-shadow: 0 0 10px rgb(102, 199, 255);
+}
+
+.btn {
+  color: white;
+  background-color: rgb(187, 76, 235);
+  width: 120px;
+  height: 50px;
+  border: none;
+  border-radius: 12px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 5%;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: large;
+  transition: background-color 0.3s linear;
+}
+
+.btn:hover {
+  background-color: rgb(148, 60, 186);
+}
+
+.hidden {
+  transform: translateY(30%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.remove {
+  display: none;
+  visibility: hidden;
+}
+
+/* QUIZ STYLES */
+.question {
+  font-size: 1.8rem;
+  text-align: center;
+  height: 30%;
+  display: grid;
+  place-items: center;
+  padding: 0 20px;
+  font-weight: bold;
+}
+
+.score {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  font-weight: bold;
+  color: rgb(187, 76, 235);
+  font-size: 1.2rem;
+}
+
+.score-value {
+  color: rgb(17, 199, 17);
+}
+
+.answers {
+  list-style-type: none;
+  height: 60%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+  padding: 20px 40px;
+}
+
+/* ORIGINAL WHITE ANSWER BUTTONS */
+.answer {
+  place-self: center;
+  width: 100%;
+  height: 80%;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(187, 76, 235, 0.3);
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  color: rgb(187, 76, 235);
+}
+
+.answer:hover {
+  transform: scale(1.05);
+  background-color: rgb(250, 240, 255);
+}
+
+.answer--animation {
+  /* transform: translateY(-30%); Removed, feels jerky */
+}
+
+.correct--answer {
+  background-color: rgb(17, 199, 17) !important;
+  color: white !important;
+  box-shadow: 0 0 15px rgb(17, 199, 17);
+}
+
+.wrong--answer {
+  background-color: red !important;
+  color: white !important;
+  box-shadow: 0 0 15px red;
+}
+
+/* Modal Styles */
+.scores-modal {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 1000; opacity: 1; transition: opacity 0.3s ease;
+}
+.scores-modal.hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden; /* Add this to be safe */
+}
+.scores-modal.remove { display: none; }
+
+.modal-content {
+  /* Using the gradient from your provided CSS for the modal */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem; border-radius: 20px; width: 90%; max-width: 500px;
+  text-align: center; color: white; position: relative;
+}
+
+.modal-close {
+  position: absolute; top: 1rem; right: 1rem;
+  background: rgba(255, 255, 255, 0.2); color: white;
+  border: none; font-size: 2rem; cursor: pointer;
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.modal-title { font-size: 2rem; margin-bottom: 1.5rem; }
+.score-label { font-size: 1.2rem; }
+
+.btn-next-game {
+  background: white; color: rgb(187, 76, 235);
+  padding: 10px 30px; border: none; border-radius: 50px;
+  font-size: 1.2rem; font-weight: bold; cursor: pointer;
+  text-decoration: none; display: inline-block; margin-top: 20px;
+}

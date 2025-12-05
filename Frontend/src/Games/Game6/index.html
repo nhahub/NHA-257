@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <script defer src="./script.js"></script>
     <title>Story Chain Game</title>
   </head>
   <body>
@@ -25,20 +24,22 @@
         </article>
         <button class="btn btn-about shadowing">Continue</button>
       </section>
+
       <section class="section questions--container shadowing hidden remove">
-        <div class="score">Score: <span class="score-value">0</span>/10</div>
+        <div class="score">Score: <span class="score-value">0</span>/12</div>
         <p class="question">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, earum?
+          Loading...
         </p>
         <ul class="answers">
-          <li class="answer">Lorem, ipsum dolor.</li>
-          <li class="answer">Lorem, ipsum dolor.</li>
-          <li class="answer">Lorem, ipsum dolor.</li>
-          <li class="answer">Lorem, ipsum dolor.</li>
+          <li class="answer">Option 1</li>
+          <li class="answer">Option 2</li>
+          <li class="answer">Option 3</li>
+          <li class="answer">Option 4</li>
         </ul>
         <button class="btn btn--question remove">NEXT</button>
       </section>
     </main>
+
     <div class="scores-modal hidden remove">
       <div class="modal-content">
         <button class="modal-close">&times;</button>
@@ -46,33 +47,22 @@
         <h2 class="modal-title">🎉 Game Complete! 🎉</h2>
 
         <div class="scores-section">
-          <h3>Story Scores</h3>
-          <div class="score-item">
-            <span class="score-label">Final Result :</span>
-            <span class="story1-score">0</span>/12
+          <h3>Results</h3>
+          <div class="score-item" style="justify-content: center; font-weight: bold; font-size: 1.5rem;">
+             Score: &nbsp;<span class="story1-score">0</span> / 12
           </div>
         </div>
-
-        <div class="stats-section">
-          <h3>Performance Stats</h3>
-          <div class="stat-item">
-            <span class="stat-label">Accuracy:</span>
-            <span class="accuracy-value">0%</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-label">Time Taken:</span>
-            <span class="duration-value">0m 0s</span>
-          </div>
-        </div>
-
-        <div class="error-section">
-          <p class="save-error-message hidden"></p>
-        </div>
+        
+        <p style="color: rgb(17, 199, 17); font-weight:bold; text-align:center; margin-top: 20px;">
+            ✅ Saved to Dashboard
+        </p>
 
         <div class="modal-actions">
-          <a href="/index.html" class="btn-next-game">Home page</a>
-        </div>
+<button onclick="goToMenu()" class="btn-next-game">Back to Menu</button>        </div>
       </div>
     </div>
+
+    <script src="../../../assets/js/SessionManager.js"></script>
+    <script defer src="./script.js"></script>
   </body>
 </html>

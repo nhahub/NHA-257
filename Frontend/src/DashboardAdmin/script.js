@@ -123,5 +123,5 @@ function filterUsers() {
 
 function handleLogout() {
     localStorage.clear();
-    window.location.href = '../../Login/login.html';
+    window.location.href = '../login/index.html';
 }

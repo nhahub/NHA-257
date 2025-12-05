@@ -4,10 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kids IQ Number Sequence Game</title>
-    <script defer src="script.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <button class="exit-btn" onclick="goToMenu()">❌ Exit</button>
+
     <div class="game-container">
       <h1>🧠 Number Sequence Game</h1>
       <div id="game-screen">
@@ -18,5 +19,8 @@
       </div>
       <div id="result"></div>
     </div>
+
+    <script src="../../../assets/js/SessionManager.js"></script>
+    <script defer src="script.js"></script>
   </body>
 </html>

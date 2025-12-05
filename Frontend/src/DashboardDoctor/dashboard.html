@@ -10,17 +10,23 @@
 </head>
 <body>
 
-<header class="header">
-    <h1>Doctor Dashboard</h1>
-    <div style="display:flex; gap:15px; align-items:center;">
-        <div style="color:var(--muted); font-size:0.95rem" id="headerDocName">Loading...</div>
-        <button onclick="handleLogout()" style="background:none; border:none; color:var(--danger); cursor:pointer;">
-            <i class="fa-solid fa-right-from-bracket"></i> Logout
-        </button>
-    </div>
-</header>
+<div class="header-wrapper">
+    <header class="header container">
+        <div class="logo-section">
+            <i class="fa-solid fa-user-doctor" style="color:#2563eb; font-size:1.5rem;"></i>
+            <h1>Doctor Dashboard</h1>
+        </div>
+        <div class="user-menu">
+            <div id="headerDocName" style="color:#64748b; font-weight:500;">Loading...</div>
+            <div class="separator"></div>
+            <button onclick="handleLogout()" class="logout-btn-header">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </button>
+        </div>
+    </header>
+</div>
 
-<div class="container">
+<div class="container main-layout">
     <div class="tabs" role="tablist" aria-label="Main tabs">
         <button class="tab-button active" data-tab="overviewTab">Overview</button>
         <button class="tab-button" data-tab="patientsTab">Patients</button>
@@ -28,77 +34,106 @@
     </div>
 
     <div class="layout">
-        <div class="card">
+        
+        <div class="card profile-card">
             <div class="doctor-profile">
-                <div class="avatar">DR</div>
+                <div class="avatar-circle">DR</div>
                 <div class="doc-info">
-                    <h2 id="docName">...</h2>
-                    <p id="docTitle">Specialist</p>
-                    <p id="docClinic">Kids Memory Clinic</p>
+                    <h2 id="docName">Loading...</h2>
+                    <p id="docSpecialty" class="badge-role">Specialist</p>
+                    <p id="docClinic" style="font-size:0.85rem; color:#64748b; margin-top:5px;">Kids Memory Clinic</p>
                 </div>
             </div>
 
-            <div style="margin-top:14px;">
-                <p style="margin:0 0 8px 0; color:var(--muted)">Contact</p>
-                <p style="margin:0; font-weight:700" id="docEmail">...</p>
+            <hr class="divider">
+
+            <div class="contact-section">
+                <p class="section-title">Contact Info</p>
+                
+                <div class="contact-item">
+                    <div class="icon-box"><i class="fa-solid fa-phone"></i></div>
+                    <p id="docPhone">...</p>
+                </div>
+
+                <div class="contact-item">
+                    <div class="icon-box"><i class="fa-solid fa-envelope"></i></div>
+                    <p id="docEmail">...</p>
+                </div>
             </div>
 
-            <div class="stat-grid">
-                <div class="stat">
+            <div class="mini-stats">
+                <div class="mini-stat-item">
                     <div class="value" id="leftTotalPatients">0</div>
-                    <div class="label">Total Patients</div>
+                    <div class="label">Patients</div>
                 </div>
-                <div class="stat">
+                <div class="mini-stat-item">
                     <div class="value" id="leftAssessments">0</div>
                     <div class="label">Sessions</div>
                 </div>
             </div>
-        </div>
+        </div> 
 
         <div class="content">
+            
             <div class="kpi-row">
                 <div class="kpi card">
-                    <div class="num" id="kpiTotalPatients">0</div>
-                    <div class="lbl">Total Patients</div>
+                    <div class="icon-bg blue"><i class="fa-solid fa-users"></i></div>
+                    <div class="kpi-info">
+                        <div class="num" id="kpiTotalPatients">0</div>
+                        <div class="lbl">Total Patients</div>
+                    </div>
                 </div>
                 <div class="kpi card">
-                    <div class="num" id="kpiAssessments">0</div>
-                    <div class="lbl">Total Sessions</div>
+                    <div class="icon-bg purple"><i class="fa-solid fa-brain"></i></div>
+                    <div class="kpi-info">
+                        <div class="num" id="kpiAssessments">0</div>
+                        <div class="lbl">Total Sessions</div>
+                    </div>
                 </div>
                 <div class="kpi card">
-                    <div class="num" id="kpiAvgScore">0</div>
-                    <div class="lbl">Avg Score</div>
+                    <div class="icon-bg orange"><i class="fa-solid fa-star"></i></div>
+                    <div class="kpi-info">
+                        <div class="num" id="kpiAvgScore">0</div>
+                        <div class="lbl">Avg Score</div>
+                    </div>
                 </div>
                 <div class="kpi card">
-                    <div class="num" id="kpiRecentActivity">0</div>
-                    <div class="lbl">Recent Games</div>
+                    <div class="icon-bg green"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <div class="kpi-info">
+                        <div class="num" id="kpiRecentActivity">0</div>
+                        <div class="lbl">Recent Games</div>
+                    </div>
                 </div>
             </div>
 
             <section id="overviewTab" class="tab-content active card">
-                <h3 style="margin-top:0">Welcome, Doctor</h3>
-                <p style="color:var(--muted); margin-top:6px">Select the <b>Patients</b> tab to manage your list or link a new child account.</p>
-                <div style="margin-top: 20px; padding: 20px; background: #f0f9ff; border-radius: 8px;">
+                <div class="welcome-banner">
+                    <h3>Welcome back, Doctor!</h3>
+                    <p>Select the <b>Patients</b> tab to manage your list or link a new child account.</p>
+                </div>
+                <div class="tip-box">
                     <h4><i class="fa-solid fa-lightbulb"></i> Quick Tip</h4>
                     <p>To view detailed AI analytics, go to the Patients tab and click "View" next to a child's name.</p>
                 </div>
             </section>
 
-            <section id="patientsTab" class="tab-content card">
-                <h3 style="margin-top:0">Patient Management</h3>
+            <section id="patientsTab" class="tab-content card hidden">
+                <div class="section-header">
+                    <h3>Patient Management</h3>
+                </div>
                 
-                <div class="link-patient-box" style="background:#eef2ff; padding:15px; border-radius:8px; margin-bottom:20px; border:1px solid #c7d2fe;">
-                    <h4 style="margin:0 0 10px 0; color:#3730a3;">🔗 Link New Patient</h4>
-                    <div style="display:flex; gap:10px;">
-                        <input id="linkEmail" type="email" placeholder="Enter child's email address..." style="flex:1; padding:10px; border-radius:6px; border:1px solid #ccc;">
-                        <button onclick="linkPatient()" class="btn-view" style="background:#3730a3; color:white; border:none;">Link Child</button>
+                <div class="link-patient-box">
+                    <h4>🔗 Link New Patient</h4>
+                    <div class="input-group">
+                        <input id="linkEmail" type="email" placeholder="Enter child's email address...">
+                        <button onclick="linkPatient()" class="btn-primary">Link Child</button>
                     </div>
-                    <div id="linkMsg" style="margin-top:5px; font-size:0.9em;"></div>
+                    <div id="linkMsg"></div>
                 </div>
 
-                <div class="controls" style="margin-top:10px">
+                <div class="controls">
                     <input id="searchInput" type="text" placeholder="Search by name..." />
-                    <select id="catFilter" style="padding:10px; border-radius:8px; border:1px solid #e6eef6">
+                    <select id="catFilter">
                         <option value="">All Categories</option>
                         <option value="Visual">Visual Memory</option>
                         <option value="Auditory">Auditory Memory</option>
@@ -107,49 +142,51 @@
                     </select>
                 </div>
 
-                <table class="patients-table" aria-label="Patients table">
-                    <thead>
-                        <tr>
-                            <th>Child Name</th>
-                            <th>Age</th>
-                            <th>Parent</th>
-                            <th>Last Played</th>
-                            <th>Avg Score</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody id="patientTableBody">
-                        </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="patients-table">
+                        <thead>
+                            <tr>
+                                <th>Child Name</th>
+                                <th>Age</th>
+                                <th>Parent</th>
+                                <th>Last Played</th>
+                                <th>Avg Score</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="patientTableBody">
+                            </tbody>
+                    </table>
+                </div>
             </section>
 
-            <section id="analyticsTab" class="tab-content card">
-                <div class="analytics-top" style="justify-content:space-between">
-                    <div class="child-card">
-                        <div class="avatar" id="childAvatar">--</div>
-                        <div class="child-meta">
-                            <h3 id="childName" style="margin:0">Select a child</h3>
-                            <p id="childSubtitle" style="margin:6px 0 0 0; color:var(--muted)">Click View in Patients tab</p>
+            <section id="analyticsTab" class="tab-content card hidden">
+                <div class="analytics-header">
+                    <div class="child-profile-mini">
+                        <div class="avatar-circle small" id="childAvatar">--</div>
+                        <div>
+                            <h3 id="childName">Select a child</h3>
+                            <p id="childSubtitle">Click View in Patients tab</p>
                         </div>
                     </div>
-                    <div style="min-width:320px;">
-                        <div class="ai-insights" id="aiInsights">Select a patient to see AI insights.</div>
+                    <div class="ai-box" id="aiInsights">
+                        <i class="fa-solid fa-robot"></i> Select a patient to see AI insights.
                     </div>
                 </div>
 
                 <div class="charts-grid">
-                    <div class="chart-card">
-                        <h4 style="margin:0 0 8px 0">Performance Trend</h4>
+                    <div class="chart-container">
+                        <h4>Performance Trend</h4>
                         <canvas id="iqTrend"></canvas>
                     </div>
-                    <div class="chart-card">
-                        <h4 style="margin:0 0 8px 0">Scores by Category</h4>
+                    <div class="chart-container">
+                        <h4>Scores by Category</h4>
                         <canvas id="categoryChart"></canvas>
                     </div>
                 </div>
             </section>
 
-        </div>
+        </div> 
     </div>
 </div>
 

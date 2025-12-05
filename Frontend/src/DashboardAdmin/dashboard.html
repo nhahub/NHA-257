@@ -1,4 +1,28 @@
-<main class="main-content">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel - Kids Memory</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>AdminHub</span>
+        </div>
+        <div class="menu">
+            <a href="#" class="active"><i class="fa-solid fa-gauge"></i> Overview</a>
+            <a href="../Home/home.html"><i class="fa-solid fa-house"></i> Home Hub</a>
+        </div>
+        <button onclick="handleLogout()" class="logout-btn">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </nav>
+
+    <main class="main-content">
         <header>
             <h1>⚙️ System Administration</h1>
             <div class="user-badge">Super Admin</div>
@@ -77,3 +101,8 @@
 
         </div>
     </main>
+
+    <script src="../../assets/js/SessionManager.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

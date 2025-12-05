@@ -17,13 +17,58 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // 2. Fill Profile Info
-    document.getElementById('headerDocName').innerText = user.name;
-    document.getElementById('docName').innerText = `Dr. ${user.name.split('@')[0]}`; // Simple name extraction
-    document.getElementById('docEmail').innerText = user.name;
+    const displayName = user.name.includes('@') ? user.name.split('@')[0] : user.name;
+    document.getElementById('docName').innerText = `Dr. ${displayName}`; 
+    document.getElementById('headerDocName').innerText = `Dr. ${displayName}`;
 
     // 3. Fetch Data
     await fetchPatients();
 });
+
+
+async function loadDoctorProfile() {
+    const user = JSON.parse(localStorage.getItem('user_details'));
+    if (!user) return;
+
+    // 1. Set Email immediately (we have it in local storage)
+    // If user.name is an email, use it. Otherwise, assume it's just a name.
+    const emailText = user.name.includes('@') ? user.name : "Email hidden";
+    document.getElementById('docEmail').innerText = emailText;
+
+    try {
+        // 2. Fetch Full Profile from API
+        const res = await fetch(`${API_BASE}/Doctor/profile`, {
+            headers: { 'Authorization': `Bearer ${user.token}` }
+        });
+        
+        if (res.ok) {
+            const data = await res.json();
+            
+            // Update Name
+            document.getElementById('docName').innerText = `Dr. ${data.fullName}`;
+            document.getElementById('headerDocName').innerText = `Dr. ${data.fullName}`;
+            
+            // Update Phone
+            document.getElementById('docPhone').innerText = data.phone || "No phone linked";
+
+            // Update Specialty
+            document.getElementById('docSpecialty').innerText = `Specialist: ${data.specialty || 'General Practice'}`;
+        }
+    } catch (e) { 
+        console.error("Profile load error:", e); 
+    }
+}
+
+// Ensure this runs on load
+document.addEventListener('DOMContentLoaded', () => {
+    // ... your existing checks ...
+    loadDoctorProfile(); // <--- Make sure this is called!
+    // ... existing fetches ...
+});
+
+// Add this to your DOMContentLoaded event
+loadDoctorProfile();
+
 
 // --- API: FETCH & TRANSFORM DATA ---
 async function fetchPatients() {
@@ -269,7 +314,26 @@ document.getElementById('searchInput').addEventListener('input', function() {
     renderPatientTable();
 });
 
+// --- TAB SWITCHING LOGIC ---
+document.querySelectorAll('.tab-button').forEach(button => {
+    button.addEventListener('click', () => {
+        // 1. Remove 'active' class from all buttons and contents
+        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+        // 2. Add 'active' class to clicked button
+        button.classList.add('active');
+
+        // 3. Show the corresponding tab content
+        const tabId = button.getAttribute('data-tab');
+        const tabContent = document.getElementById(tabId);
+        if (tabContent) {
+            tabContent.classList.add('active');
+        }
+    });
+});
+
 function handleLogout() {
     localStorage.clear();
-    window.location.href = '../../login/index.html';
+    window.location.href = '../login/index.html';
 }

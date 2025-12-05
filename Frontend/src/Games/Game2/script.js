@@ -1,59 +1,38 @@
+const GAME_ID = 2; // Number Sequence
+const sessionMgr = new SessionManager('https://localhost:7101/api');
+
+// 1. Security Check
+document.addEventListener('DOMContentLoaded', () => {
+    if (!sessionMgr.isSessionActive()) {
+        alert("⚠️ Start a session from the menu first!");
+        window.location.href = '../menu.html';
+    }
+});
+
+function goToMenu() {
+    window.location.href = '../menu.html';
+}
+
 const sequenceDisplay = document.getElementById('sequence-display');
 const optionsContainer = document.getElementById('options-container');
 const startBtn = document.getElementById('start-btn');
 const levelInfo = document.getElementById('level-info');
 const resultDiv = document.getElementById('result');
 
-// Game structure: configurable number of levels & questions per level
-const QUESTIONS_PER_LEVEL = 3; // 3 questions per level
-const TOTAL_LEVELS = 5; // 5 levels
-const MAX_SEQUENCES = QUESTIONS_PER_LEVEL * TOTAL_LEVELS; // 15 total sequences
-const MAX_SCORE = 100; // Max score to scale to
+const QUESTIONS_PER_LEVEL = 3; 
+const TOTAL_LEVELS = 5; 
+const MAX_SEQUENCES = QUESTIONS_PER_LEVEL * TOTAL_LEVELS; 
+const MAX_SCORE = 100; 
 
 let level = 1;
 let question = 1;
 let score = 0;
 let correctSequence = [];
-let startTime = null;
 
-//  Send Game Result to Backend
-async function sendResult(gameId, score, trials = 0, misses = 0) {
-  const now = new Date();
-
-  const payload = {
-    userId: 1,
-    gameId: gameId,
-    startTime: startTime,
-    endTime: now.toISOString(),
-    score: score,
-    trials: trials,
-    misses: misses,
-    sessionDate: now.toISOString().split('T')[0],
-  };
-
-  try {
-    await fetch('https://localhost:7134/GameSession', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-
-    console.log('Game 2 result stored:', payload);
-  } catch (err) {
-    console.error('Failed to send Game 2 result:', err);
-  }
-}
-
-function endGame(finalScore, trials = 0, misses = 0) {
-  sendResult(1, finalScore, trials, misses);
-}
-
-//  MAIN GAME LOGIC
 // Start Game
 startBtn.addEventListener('click', startGame);
 
 function startGame() {
-  startTime = new Date().toISOString(); //  record time for API
   startBtn.style.display = 'none';
   resultDiv.textContent = '';
 
@@ -64,26 +43,22 @@ function startGame() {
   nextQuestion();
 }
 
-// Generate next question
-
 function nextQuestion() {
   optionsContainer.innerHTML = '';
   resultDiv.textContent = '';
   levelInfo.textContent = `Level: ${level} | Question: ${question}`;
 
-  let sequenceLength = level;
+  let sequenceLength = level + 1; // Start with 2 numbers
   correctSequence = generateSequence(sequenceLength);
 
   sequenceDisplay.textContent = correctSequence.join(' ');
 
   // Show sequence for 5 seconds then hide it
   setTimeout(() => {
-    sequenceDisplay.textContent = '';
+    sequenceDisplay.textContent = '???';
     showOptions();
-  }, 5000);
+  }, 3000); // Reduced to 3s for better pacing, adjust if needed
 }
-
-// Generate numeric sequence
 
 function generateSequence(length) {
   let arr = [];
@@ -93,7 +68,6 @@ function generateSequence(length) {
   return arr;
 }
 
-// Show options (1 correct + 3 fake)
 function showOptions() {
   const correct = correctSequence.join(' ');
   const options = [correct];
@@ -116,7 +90,6 @@ function showOptions() {
   });
 }
 
-// Check Answer
 function checkAnswer(selected, button) {
   const allButtons = document.querySelectorAll('.option-btn');
   allButtons.forEach((btn) => (btn.disabled = true));
@@ -127,15 +100,12 @@ function checkAnswer(selected, button) {
     resultDiv.style.color = 'green';
     button.style.backgroundColor = '#4CAF50';
   } else {
-    resultDiv.textContent = `❌ Wrong! Correct sequence: ${correctSequence.join(
-      ' '
-    )}`;
+    resultDiv.textContent = `❌ Wrong! It was: ${correctSequence.join(' ')}`;
     resultDiv.style.color = 'red';
     button.style.backgroundColor = '#dc3545';
   }
 
   setTimeout(() => {
-    // QUESTIONS_PER_LEVEL questions per level → TOTAL_LEVELS levels → MAX_SEQUENCES total
     if (question < QUESTIONS_PER_LEVEL) {
       question++;
       nextQuestion();
@@ -150,34 +120,31 @@ function checkAnswer(selected, button) {
 }
 
 // Game Finished
-
-function finishGame() {
+async function finishGame() {
   optionsContainer.innerHTML = '';
   sequenceDisplay.textContent = '';
   levelInfo.textContent = '';
 
-  resultDiv.style.color = '#333';
-
-  // Compute final score scaled to 0..MAX_SCORE based on MAX_SEQUENCES
-  // Save finalScore to a variable to both send to the backend and show in the modal
   const finalScore = Math.round((score / MAX_SEQUENCES) * MAX_SCORE);
+  
+  // Calculate Stats for DB
+  const trials = MAX_SEQUENCES;
+  const misses = MAX_SEQUENCES - score;
 
-  // Update short inline result to show both raw correct count and scaled score
-  resultDiv.textContent = `🎉 Game Over! Correct: ${score} / ${MAX_SEQUENCES} · Score: ${finalScore} / ${MAX_SCORE}`;
+  resultDiv.style.color = '#333';
+  resultDiv.textContent = `Saving Score... (${finalScore} pts)`;
 
-  // Send API result (finalScore is 0..100)
-  endGame(finalScore);
+  // --- SEND TO BACKEND ---
+  await sessionMgr.submitScore(GAME_ID, finalScore, trials, misses);
 
-  // Show modal with results and a button linking to main index.html
+  // Show modal with results
   showResultModal(finalScore, score);
 
   startBtn.textContent = 'Play Again';
   startBtn.style.display = 'inline-block';
 }
 
-// Create and show a modal with final results + link back to project root
 function showResultModal(finalScore, correctCount = 0) {
-  // Remove any existing modal first
   const existing = document.querySelector('.number-seq-result-modal');
   if (existing) existing.remove();
 
@@ -187,35 +154,24 @@ function showResultModal(finalScore, correctCount = 0) {
                 <h2 style="margin:0 0 10px;">🎉 Game Over</h2>
                 <p style="margin:6px 0 6px;font-size:18px;">Final Score: <strong>${finalScore} / ${MAX_SCORE}</strong></p>
                 <p style="margin:6px 0 16px;font-size:16px;">Correct sequences: <strong>${correctCount} / ${MAX_SEQUENCES}</strong></p>
+                <p style="color:green; font-weight:bold;">✅ Saved to Doctor Dashboard</p>
                 <div style="display:flex;gap:10px;justify-content:center;margin-top:12px;">
                     <button id="ns-modal-playagain" style="padding:8px 14px;border-radius:6px;border:0;background:#4CAF50;color:white;cursor:pointer;">Play Again</button>
-                    <a id="ns-modal-main" href="../../index.html" style="display:inline-block;padding:8px 14px;border-radius:6px;background:#1e90ff;color:white;text-decoration:none;">Main Menu</a>
+                    <button onclick="goToMenu()" style="padding:8px 14px;border-radius:6px;border:0;background:#1e90ff;color:white;cursor:pointer;">Main Menu</button>
                 </div>
-                <button id="ns-modal-close" aria-label="close" style="position:absolute;right:14px;top:12px;border:0;background:transparent;font-size:20px;cursor:pointer;">&times;</button>
             </div>
         </div>
         `;
 
   document.body.insertAdjacentHTML('beforeend', modalHTML);
 
-  // Hook up buttons
   const playAgainBtn = document.getElementById('ns-modal-playagain');
-  const closeBtn = document.getElementById('ns-modal-close');
   const modalWrap = document.querySelector('.number-seq-result-modal');
 
   function cleanupAndReset() {
     if (modalWrap) modalWrap.remove();
-    // Reset UI to initial state so player can start again
-    startBtn.textContent = 'Play Again';
-    startBtn.style.display = 'inline-block';
-    level = 1;
-    question = 1;
-    score = 0;
-    correctSequence = [];
-    resultDiv.textContent = '';
+    startBtn.click(); // Auto restart
   }
 
   if (playAgainBtn) playAgainBtn.addEventListener('click', cleanupAndReset);
-  if (closeBtn)
-    closeBtn.addEventListener('click', () => modalWrap && modalWrap.remove());
 }

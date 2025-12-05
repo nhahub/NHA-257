@@ -2,7 +2,9 @@
 using Kids_Memory_Test.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Kids_Memory_Test.DTOs;
-using Kids_Memory_Test.Services; 
+using Kids_Memory_Test.Services;
+using Kids_Memory_Test.Models; // Need this for DbContext
+using Microsoft.EntityFrameworkCore; // Need this for FirstOrDefaultAsync
 
 namespace Kids_Memory_Test.Controllers
 {
@@ -13,12 +15,35 @@ namespace Kids_Memory_Test.Controllers
     {
         private readonly IDoctorService _doctorService;
         private readonly FlaskMLClient _mlClient;
+        private readonly KidsMemoreyTestDbContext _context; // <--- ADD THIS
 
         // --- CONSTRUCTOR ---
-        public DoctorController(IDoctorService doctorService, FlaskMLClient mlClient)
+        public DoctorController(IDoctorService doctorService, FlaskMLClient mlClient, KidsMemoreyTestDbContext context)
         {
             _doctorService = doctorService;
             _mlClient = mlClient;
+            _context = context; // <--- ADD THIS
+        }
+
+        // --- GET PROFILE (Fixes the error) ---
+        [HttpGet("profile")]
+        public async Task<IActionResult> GetMyProfile()
+        {
+            var userIdString = User.FindFirst("UserId")?.Value;
+            int userId = int.Parse(userIdString!);
+
+            // Now _context works because we injected it!
+            var profile = await _context.TblDoctorProfiles
+                .FirstOrDefaultAsync(d => d.UserId == userId);
+
+            if (profile == null) return NotFound("Profile not found");
+
+            return Ok(new
+            {
+                fullName = profile.FullName,
+                phone = profile.Phone,
+                specialty = profile.Specialty
+            });
         }
 
         // --- GET DASHBOARD ---
@@ -66,17 +91,14 @@ namespace Kids_Memory_Test.Controllers
             if (string.IsNullOrEmpty(userIdString)) return Unauthorized();
             int doctorId = int.Parse(userIdString);
 
-            // 1. Get History
             var allPatients = await _doctorService.GetPatientScoresAsync(doctorId);
             var childHistory = allPatients.Where(p => p.ChildId == childId).ToList();
 
             if (!childHistory.Any()) return Ok(new { insight = "No game data available yet." });
 
-            // 2. Mock Age/Gender (Replace with real data later)
             int age = 10;
             string gender = "Male";
 
-            // 3. Call Python
             string insight = await _mlClient.GetImprovementPredictionAsync(childHistory, age, gender);
 
             return Ok(new { insight = insight });

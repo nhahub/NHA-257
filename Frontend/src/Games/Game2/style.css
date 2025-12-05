@@ -8,6 +8,17 @@ body {
   margin: 0;
 }
 
+/* --- Added Exit Button Style --- */
+.exit-btn {
+    position: absolute; top: 20px; left: 20px;
+    background: #ff4757; color: white; border: none;
+    padding: 10px 20px; border-radius: 12px; cursor: pointer;
+    font-family: inherit; font-weight: bold;
+    box-shadow: 0 4px 0 #bf3642;
+}
+.exit-btn:active { transform: translateY(2px); box-shadow: none; }
+/* ------------------------------- */
+
 .game-container {
   background: white;
   border-radius: 25px;
@@ -26,6 +37,7 @@ body {
   font-size: 36px;       /* bigger for visibility */
   font-weight: bold;
   margin: 30px 0;
+  min-height: 50px;      /* Prevent layout jump */
 }
 
 #options-container {
@@ -74,4 +86,5 @@ body {
   font-size: 26px;
   font-weight: bold;
   transition: 0.3s ease;
+  min-height: 40px;
 }

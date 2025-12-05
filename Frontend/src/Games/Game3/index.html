@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Card Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <button class="exit-btn" onclick="goToMenu()">❌ Exit</button>
+
+    <main class="centralize-items">
+      <article class="about--section">
+        <h1>About The Game</h1>
+        <p>
+          The Memory Card Game tests your memory by finding matching pairs of
+          cards. Flip two cards at a time if they match, they fade away
+          <br />if not, flip them back. Keep playing until all pairs are found.
+        </p>
+        <button class="btn btn--next">Start Game</button>
+      </article>
+      
+      <div class="container hidden">
+        </div>
+      
+      <div class="moves hidden">
+        <span>Moves :</span>
+        <span class="score">0</span>
+      </div>
+      
+      <div class="timer hidden" title="Game Timer">00:00</div>
+      
+      <button type="button" class="btn btn--next hidden--opacity" id="nextLevelBtn">Next Level</button>
+    </main>
+
+    <script src="../../../assets/js/SessionManager.js"></script>
+    <script defer src="./script.js"></script>
+  </body>
+</html>
