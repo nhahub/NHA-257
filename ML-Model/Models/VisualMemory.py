@@ -24,7 +24,7 @@ class VisualMemory:
             raise ValueError("Model is not trained yet.")
         return self.model.predict(X)
 
-    def save_model(self, path="gradient_boosting_model.pkl"):
+    def save(self, path="gradient_boosting_model.pkl"):
 
         if self.model is None:
             raise ValueError("Model is not trained yet.")
