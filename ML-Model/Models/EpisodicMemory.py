@@ -121,7 +121,6 @@ class EpisodicImprovementModel:
         y_pred = self.predict(df)
         y_true = df[target_col]
         
-        # حساب المقاييس
         metrics = {
             'r2': r2_score(y_true, y_pred),
             'rmse': np.sqrt(mean_squared_error(y_true, y_pred)),
@@ -159,33 +158,33 @@ class EpisodicImprovementModel:
 def train_and_evaluate_model(df, test_size=0.2, random_state=42):
 
     train_df, test_df = train_test_split(df, test_size=test_size, random_state=random_state)
-    print(f"  • Training samples: {len(train_df)}")
-    print(f"  • Testing samples:  {len(test_df)}")
+    print(f"   Training samples: {len(train_df)}")
+    print(f"   Testing samples:  {len(test_df)}")
     
     model = EpisodicImprovementModel(n_estimators=400, random_state=random_state)
     model.fit(train_df, target_col='improvement_Episodic')
 
     print("\n Results of Train")
     train_metrics, train_pred = model.evaluate(train_df)
-    print(f"  • R²:       {train_metrics['r2']:.4f}")
-    print(f"  • RMSE:     {train_metrics['rmse']:.4f}")
-    print(f"  • MAE:      {train_metrics['mae']:.4f}")
-    print(f"  • Spearman: {train_metrics['spearman']:.4f}")
+    print(f"   R²:       {train_metrics['r2']:.4f}")
+    print(f"   RMSE:     {train_metrics['rmse']:.4f}")
+    print(f"   MAE:      {train_metrics['mae']:.4f}")
+    print(f"   Spearman: {train_metrics['spearman']:.4f}")
     
     print("\n Results of Test")
     test_metrics, test_pred = model.evaluate(test_df)
-    print(f"  • R²:       {test_metrics['r2']:.4f}")
-    print(f"  • RMSE:     {test_metrics['rmse']:.4f}")
-    print(f"  • MAE:      {test_metrics['mae']:.4f}")
-    print(f"  • Spearman: {test_metrics['spearman']:.4f}")
+    print(f"   R²:       {test_metrics['r2']:.4f}")
+    print(f"   RMSE:     {test_metrics['rmse']:.4f}")
+    print(f"   MAE:      {test_metrics['mae']:.4f}")
+    print(f"   Spearman: {test_metrics['spearman']:.4f}")
     
-    print("\n🔄 Cross-Validation (5-fold)...")
+    print("\n Cross-Validation (5-fold)...")
     df_processed = model.preprocessor.transform(train_df)
     X = model.prepare_features(df_processed)
     y = train_df['improvement_Episodic']
     cv_scores = cross_val_score(model.model, X, y, cv=5, scoring='r2', n_jobs=-1)
-    print(f"  • CV R² Mean: {cv_scores.mean():.4f}")
-    print(f"  • CV R² Std:  {cv_scores.std():.4f}")
+    print(f"   CV R² Mean: {cv_scores.mean():.4f}")
+    print(f"   CV R² Std:  {cv_scores.std():.4f}")
     
     print("\n Best Features")
     print(model.feature_importance.head(5).to_string(index=False))
