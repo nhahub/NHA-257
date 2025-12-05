@@ -19,7 +19,7 @@ def evaluate_model(model, X_test, y_test, name):
     mae = mean_absolute_error(y_test, preds)
     rmse = np.sqrt(mean_squared_error(y_test, preds))
 
-    print(f"\n===== {name} Model Metrics =====")
+    print(f"\n_______ {name} Model Metrics _______")
     print(f"R² Score : {r2:.4f}")
     print(f"MAE      : {mae:.4f}")
     print(f"RMSE     : {rmse:.4f}")
@@ -29,7 +29,7 @@ def evaluate_model(model, X_test, y_test, name):
 
 def train_memory_model(model_class, df, target_col, save_name):
 
-    print(f"\n  {save_name}...")
+    print(f"\n  {save_name}....")
 
     X = df.drop(columns=[target_col])
     y = df[target_col]
@@ -52,7 +52,7 @@ def train_memory_model(model_class, df, target_col, save_name):
 
 def main():
 
-    print("\n Loading dataset...")
+    print("\n Loading dataset.......")
     df = pd.read_csv(r"E:/ML/Data.csv")
 
 
@@ -76,6 +76,17 @@ def main():
     for i in Targets:
         df[f'improvement_{i}'] = df[f'post_{i}'] - df[f'pre_{i}']
 
+    print("\n Cleaning data......")
+    initial_rows = df.shape[0]
+    
+    for col in df.columns:
+        df[col] = pd.to_numeric(df[col], errors='coerce')
+        
+    df.dropna(inplace=True)
+    rows_after_dropna = df.shape[0]
+    print(f"  Dropped {initial_rows - rows_after_dropna} rows due to non-numeric values after coercion.")
+
+
 
     train_memory_model(
         VisualMemoryModel,
@@ -98,12 +109,8 @@ def main():
         save_name="auditory_memory_model"
     )
 
-    train_memory_model(
-        EpisodicMemoryModel,
-        df,
-        target_col="improvement_Episodic",      
-        save_name="episodic_memory_model"
-    )
+    print("\n  episodic_memory_model...")
+    train_and_evaluate_model(df)
 
     print("\n All models trained & saved successfully! Ready for deployment")
 
