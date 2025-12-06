@@ -4,18 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <script defer src="script.js"></script>
-    <title>Where Did It Go?</title>
+    <title>Where Did It Go? - Kids Memory</title>
   </head>
   <body>
-    <h1>🤔 Where Did It Go ?</h1>
+    
+    <button class="exit-btn" onclick="goToMenu()">❌ Exit</button>
+
+    <h1>🤔 Where Did It Go?</h1>
 
     <div id="stats">
-      <div>🕹️ Games: <span id="games">0</span></div>
+      <div>🕹️ Round: <span id="games">0</span>/10</div>
       <div>✅ Correct: <span id="correct">0</span></div>
       <div>❌ Wrong: <span id="wrong">0</span></div>
-      <button id="restart">Restart 🔄</button>
-      <button id="show-results">Show Results 📊</button>
     </div>
 
     <div id="difficulty">
@@ -37,37 +37,26 @@
 
     <button id="next">Next Round 🔁</button>
 
-    <!-- Results modal -->
     <div id="resultsModal" class="modal" aria-hidden="true">
-      <div
-        class="modal-content"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-title"
-      >
-        <button id="modal-close" class="modal-close" aria-label="Close results">
-          ×
-        </button>
-        <h2 id="modal-title">Game Results</h2>
+      <div class="modal-content">
+        <h2 id="modal-title">🎉 Game Complete!</h2>
         <p class="modal-score">0/100</p>
         <div class="modal-stats">
-          <div>Games: <strong class="modal-games">0</strong></div>
+          <div>Total Rounds: 10</div>
           <div>Correct: <strong class="modal-correct">0</strong></div>
           <div>Wrong: <strong class="modal-wrong">0</strong></div>
         </div>
-        <!-- Button that contains a hyperlink: opens profile in new tab -->
+        
+        <p style="color:green; font-weight:bold; margin-top:15px;">✅ Saved to Dashboard</p>
+
         <div class="modal-actions">
-          <button class="modal-action-btn">
-            <a
-              class="modal-link"
-              href="/index.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              >View Profile</a
-            >
-          </button>
+           <button class="modal-action-btn" onclick="location.reload()">Play Again</button>
+           <button class="modal-action-btn" style="background:#555" onclick="goToMenu()">Menu</button>
         </div>
       </div>
     </div>
+
+    <script src="../../../assets/js/SessionManager.js"></script>
+    <script defer src="script.js"></script>
   </body>
 </html>

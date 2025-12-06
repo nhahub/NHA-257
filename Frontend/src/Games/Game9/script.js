@@ -1,212 +1,183 @@
-const icons = [
-  '🍎',
-  '⭐',
-  '⚽',
-  '🐥',
-  '🚗',
-  '🎈',
-  '🍌',
-  '🦋',
-  '🌙',
-  '🎁',
-  '🐸',
-  '🎩',
-  '🦓',
-  '🌴',
-  '🌶️',
-  '🎂',
-  '🐶',
-  '🍇',
-  '🎃',
-  '🧸',
-  '🐼',
-  '🐒',
-  '🐋',
-  '🍩',
-  '🎱',
-  '⏰',
-];
-let currentSet = [],
-  missingItem = null;
-let gamesPlayed = 0,
-  correctCount = 0,
-  wrongCount = 0;
+// --- CONFIG ---
+const GAME_ID = 9; // Visual Tracking
+const TOTAL_ROUNDS = 10; // Fixed limit
+const sessionMgr = new SessionManager('https://localhost:7101/api');
 
-// Scoring: maximum score is 100. Score is computed from accuracy (correct/gamesPlayed)
-// Returns an integer from 0..100
-function computeScore() {
-  // Score is based on answered rounds (i.e. completed rounds = correct + wrong)
-  const completed = correctCount + wrongCount;
-  if (completed <= 0) return 0;
-  const ratio = correctCount / completed;
-  return Math.round(Math.min(Math.max(ratio * 100, 0), 100));
-}
+// --- GLOBAL VARIABLES ---
+let game, message, nextBtn, startBtn, instructions, levelSelect;
+let gamesSpan, correctSpan, wrongSpan;
+let currentSet = [], missingItem = null;
+let gamesPlayed = 0, correctCount = 0, wrongCount = 0;
 
-const game = document.getElementById('game');
-const message = document.getElementById('message');
-const nextBtn = document.getElementById('next');
-const startBtn = document.getElementById('start');
-const restartBtn = document.getElementById('restart');
-const instructions = document.getElementById('instructions');
-const levelSelect = document.getElementById('level');
+const icons = ['🍎','⭐','⚽','🐥','🚗','🎈','🍌','🦋','🌙','🎁','🐸','🎩','🦓','🌴','🌶️','🎂','🐶','🍇','🎃','🧸','🐼','🐒','🐋','🍩','🎱','⏰'];
 
-const gamesSpan = document.getElementById('games');
-const correctSpan = document.getElementById('correct');
-const wrongSpan = document.getElementById('wrong');
+// --- INITIALIZATION ---
+document.addEventListener('DOMContentLoaded', () => {
+    if (!sessionMgr.isSessionActive()) {
+        alert("⚠️ Start a session from the menu first!");
+        window.location.href = '../menu.html';
+        return;
+    }
 
-startBtn.style.display = 'inline-block';
+    // Grab Elements
+    game = document.getElementById('game');
+    message = document.getElementById('message');
+    nextBtn = document.getElementById('next');
+    startBtn = document.getElementById('start');
+    instructions = document.getElementById('instructions');
+    levelSelect = document.getElementById('level');
+    gamesSpan = document.getElementById('games');
+    correctSpan = document.getElementById('correct');
+    wrongSpan = document.getElementById('wrong');
 
-startBtn.onclick = () => {
-  instructions.style.display = 'none';
-  startGame();
-};
+    // Attach Listeners
+    if(startBtn) {
+        startBtn.style.display = 'inline-block';
+        startBtn.onclick = () => {
+            instructions.style.display = 'none';
+            // Disable difficulty change after start
+            levelSelect.disabled = true;
+            startGame();
+        };
+    }
 
-restartBtn.onclick = () => {
-  gamesPlayed = 0;
-  correctCount = 0;
-  wrongCount = 0;
-  updateStats();
-  startGame();
-};
+    if(nextBtn) {
+        nextBtn.onclick = startGame;
+    }
+});
 
-// Show a results modal with the final score and stats.
-function showResultsModal() {
-  const score = computeScore();
-  const modal = document.getElementById('resultsModal');
-  if (!modal) return;
-
-  modal.querySelector('.modal-score').textContent = score + '/100';
-  modal.querySelector('.modal-games').textContent = gamesPlayed;
-  modal.querySelector('.modal-correct').textContent = correctCount;
-  modal.querySelector('.modal-wrong').textContent = wrongCount;
-
-  modal.classList.add('open');
-}
-
-function closeResultsModal() {
-  const modal = document.getElementById('resultsModal');
-  if (!modal) return;
-  modal.classList.remove('open');
-}
+function goToMenu() { window.location.href = '../menu.html'; }
 
 function updateStats() {
-  gamesSpan.textContent = gamesPlayed;
-  correctSpan.textContent = correctCount;
-  wrongSpan.textContent = wrongCount;
+    gamesSpan.textContent = gamesPlayed;
+    correctSpan.textContent = correctCount;
+    wrongSpan.textContent = wrongCount;
 }
 
 function startGame() {
-  game.innerHTML = '';
-  message.textContent = '';
-  nextBtn.style.display = 'none';
+    // Reset UI
+    game.innerHTML = '';
+    message.textContent = '';
+    if(nextBtn) nextBtn.style.display = 'none';
 
-  gamesPlayed++;
-  updateStats();
+    // Increment Round
+    gamesPlayed++;
+    updateStats();
 
-  const level = levelSelect.value;
-  let showTime, numShapes, numChoices;
+    const level = levelSelect.value;
+    let showTime, numShapes, numChoices;
 
-  if (level === 'easy') {
-    showTime = 3000;
-    numShapes = 6;
-    numChoices = 4;
-    game.style.gridTemplateColumns = 'repeat(3, 120px)';
-  } else if (level === 'medium') {
-    showTime = 5000;
-    numShapes = 9;
-    numChoices = 7;
-    game.style.gridTemplateColumns = 'repeat(3, 120px)';
-  } else {
-    showTime = 8000;
-    numShapes = 12;
-    numChoices = 9;
-    game.style.gridTemplateColumns = 'repeat(4, 120px)';
-  }
+    if (level === 'easy') {
+        showTime = 4000; numShapes = 6; numChoices = 4;
+        game.style.gridTemplateColumns = 'repeat(3, 120px)';
+    } else if (level === 'medium') {
+        showTime = 5000; numShapes = 9; numChoices = 7;
+        game.style.gridTemplateColumns = 'repeat(3, 120px)';
+    } else {
+        showTime = 8000; numShapes = 12; numChoices = 9;
+        game.style.gridTemplateColumns = 'repeat(4, 120px)';
+    }
 
-  currentSet = shuffle([...icons]).slice(0, numShapes);
+    currentSet = shuffle([...icons]).slice(0, numShapes);
 
-  currentSet.forEach((icon) => {
-    const div = document.createElement('div');
-    div.className = 'item';
-    div.textContent = icon;
-    game.appendChild(div);
-  });
+    currentSet.forEach((icon) => {
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.textContent = icon;
+        game.appendChild(div);
+    });
 
-  setTimeout(() => hideAndRemoveOne(numChoices), showTime);
+    setTimeout(() => hideAndRemoveOne(numChoices), showTime);
 }
 
 function hideAndRemoveOne(numChoices) {
-  game.innerHTML = '';
-  missingItem = currentSet[Math.floor(Math.random() * currentSet.length)];
-  let remaining = currentSet.filter((i) => i !== missingItem);
-  remaining = shuffle(remaining);
+    game.innerHTML = '';
+    missingItem = currentSet[Math.floor(Math.random() * currentSet.length)];
+    let remaining = currentSet.filter((i) => i !== missingItem);
+    remaining = shuffle(remaining);
 
-  remaining.forEach((icon) => {
-    const div = document.createElement('div');
-    div.className = 'item';
-    div.textContent = icon;
-    game.appendChild(div);
-  });
+    remaining.forEach((icon) => {
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.textContent = icon;
+        game.appendChild(div);
+    });
 
-  message.innerHTML = '🤔 Which shape disappeared ?';
+    message.innerHTML = '🤔 Which shape disappeared?';
 
-  // نضمن عدم وجود أي تكرار في الاختيارات
-  const unusedIcons = icons.filter(
-    (i) => !remaining.includes(i) && i !== missingItem
-  );
-  let choices = shuffle([...unusedIcons]).slice(0, numChoices - 1);
-  choices.push(missingItem);
-  choices = shuffle(choices);
+    const unusedIcons = icons.filter((i) => !remaining.includes(i) && i !== missingItem);
+    let choices = shuffle([...unusedIcons]).slice(0, numChoices - 1);
+    choices.push(missingItem);
+    choices = shuffle(choices);
 
-  choices.forEach((icon) => {
-    const btn = document.createElement('button');
-    btn.textContent = icon;
-    btn.style.margin = '10px';
-    btn.style.padding = '10px';
-    btn.style.fontSize = '1.5em';
-    btn.style.cursor = 'pointer';
-    btn.onclick = () => checkAnswer(icon);
-    message.appendChild(btn);
-  });
+    choices.forEach((icon) => {
+        const btn = document.createElement('button');
+        btn.textContent = icon;
+        btn.style.margin = '10px';
+        btn.style.padding = '10px 20px';
+        btn.style.fontSize = '1.5em';
+        btn.style.cursor = 'pointer';
+        btn.style.borderRadius = '10px';
+        btn.style.border = 'none';
+        btn.style.background = '#fff';
+        btn.style.color = '#333';
+        
+        btn.onclick = () => checkAnswer(icon);
+        message.appendChild(btn);
+    });
 }
 
 function checkAnswer(icon) {
-  const buttons = message.querySelectorAll('button');
-  buttons.forEach((btn) => (btn.disabled = true));
-  if (icon === missingItem) {
-    message.innerHTML = `✅ Correct! The hidden shape was ${missingItem}`;
-    correctCount++;
-  } else {
-    message.innerHTML = `❌ Wrong! The hidden shape was ${missingItem}`;
-    wrongCount++;
-  }
-  updateStats();
-  nextBtn.style.display = 'inline-block';
+    const buttons = message.querySelectorAll('button');
+    buttons.forEach((btn) => (btn.disabled = true));
+
+    if (icon === missingItem) {
+        message.innerHTML = `✅ Correct! It was ${missingItem}`;
+        correctCount++;
+    } else {
+        message.innerHTML = `❌ Wrong! It was ${missingItem}`;
+        wrongCount++;
+    }
+    
+    updateStats();
+
+    // --- NEW LOGIC: CHECK IF GAME OVER ---
+    if (gamesPlayed >= TOTAL_ROUNDS) {
+        // Game Finished
+        setTimeout(showResultsModal, 1500);
+    } else {
+        // Show Next Button
+        if(nextBtn) nextBtn.style.display = 'inline-block';
+    }
 }
 
 function shuffle(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
 }
 
-nextBtn.onclick = startGame;
+// --- BACKEND SUBMISSION ---
+function computeScore() {
+    if (gamesPlayed <= 0) return 0;
+    const ratio = correctCount / gamesPlayed;
+    return Math.round(ratio * 100);
+}
 
-// Wire up the Show Results button and modal close actions when available
-document.addEventListener('DOMContentLoaded', () => {
-  const showBtn = document.getElementById('show-results');
-  if (showBtn) showBtn.addEventListener('click', showResultsModal);
+async function showResultsModal() {
+    const score = computeScore();
+    const modal = document.getElementById('resultsModal');
+    
+    // Update Modal UI
+    modal.querySelector('.modal-score').textContent = score + '/100';
+    modal.querySelector('.modal-correct').textContent = correctCount;
+    modal.querySelector('.modal-wrong').textContent = wrongCount;
+    modal.classList.add('open');
+    modal.style.display = 'flex'; 
 
-  const closeBtn = document.getElementById('modal-close');
-  if (closeBtn) closeBtn.addEventListener('click', closeResultsModal);
-
-  // close modal when clicking outside content
-  const modal = document.getElementById('resultsModal');
-  if (modal) {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeResultsModal();
-    });
-  }
-});
+    // Submit to Backend
+    // Note: Sending 'correctCount' as score metric (or calculated percentage)
+    await sessionMgr.submitScore(GAME_ID, score, gamesPlayed, wrongCount);
+}

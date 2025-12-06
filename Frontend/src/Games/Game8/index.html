@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    
+    <button class="exit-btn" onclick="goToMenu()">❌ Exit</button>
+
     <div class="app-container">
       <h1 class="game-title">🧠 Tricky Memory Game</h1>
       <div id="game-content">
@@ -16,6 +19,17 @@
         </div>
       </div>
     </div>
+    
+    <div id="gameOverModal" class="scores-modal hidden" style="display:none;">
+        <div class="modal-content">
+            <h2>🎉 Game Complete! 🎉</h2>
+            <p>Score: <span id="finalScore">0</span></p>
+            <p style="color:green;font-weight:bold;">✅ Saved to Dashboard</p>
+            <button class="play-again-btn" onclick="goToMenu()">Back to Menu</button>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/SessionManager.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

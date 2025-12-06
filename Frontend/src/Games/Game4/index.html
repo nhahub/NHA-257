@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Story Chain Game</title>
+  </head>
+  <body>
+    
+    <button class="exit-btn" onclick="goToMenu()">❌ Exit</button>
+
+    <nav>
+      <h1 class="shadowing"><b>Story Chain Game</b></h1>
+    </nav>
+
+    <main>
+      <section class="section About--section shadowing">
+        <header>
+          <h2><b>About the Game</b></h2>
+        </header>
+        <hr />
+        <article>
+          <p>
+            Read the story carefully. After it ends, answer questions about what you remember.
+            <br><br>There are 3 stories in total!
+          </p>
+        </article>
+        <button class="btn btn-about shadowing">Start</button>
+      </section>
+
+      <section class="section story shadowing hidden remove">
+        <article class="story--telling">
+          <div class="image--container">
+            <img src="" class="shadowing story--img" />
+          </div>
+          <p class="story--part">...</p>
+        </article>
+        <button class="btn btn--next">Continue</button>
+      </section>
+
+      <section class="section questions--container shadowing hidden remove">
+        <div class="score">Total Score: <span class="score-value">0</span>/18</div>
+        <p class="question">Loading...</p>
+        <ul class="answers">
+          <li class="answer">Option 1</li>
+          <li class="answer">Option 2</li>
+          <li class="answer">Option 3</li>
+          <li class="answer">Option 4</li>
+        </ul>
+      </section>
+    </main>
+
+    <div class="scores-modal hidden remove">
+      <div class="modal-content">
+        <button class="modal-close">&times;</button>
+
+        <h2 class="modal-title">🎉 All Stories Complete! 🎉</h2>
+
+        <div class="scores-section">
+          <h3>Final Result</h3>
+          <div class="score-item" style="justify-content: center; font-size: 1.5rem; font-weight: bold;">
+             Total Correct: &nbsp;<span class="story1-score">0</span> / 18
+          </div>
+        </div>
+
+        <p style="color: rgb(17, 199, 17); font-weight:bold; text-align:center; margin-top: 20px;">
+            ✅ Saved to Dashboard
+        </p>
+
+        <div class="modal-actions">
+          <button onclick="goToMenu()" class="btn-next-game">Back to Menu</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../../assets/js/SessionManager.js"></script>
+    <script defer src="./script.js"></script>
+  </body>
+</html>

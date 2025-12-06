@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Delius", cursive;
+  background-color: #f9f9f9;
+}
+
+header {
+  height: 10vh;
+  padding: 12px;
+  border: 0.5px solid #333;
+}
+aside {
+  width: 20%;
+  height: 80vh;
+  text-align: center;
+  border: 0.5px solid #333;
+  border-top: none;
+}
+aside a {
+  padding: 15px;
+  display: inline-flex;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  font-weight: 700;
+  font-size: 1.25rem;
+  transition: color 0.3s ease 0s;
+}
+aside a:hover {
+  color: #00bcd4;
+}
+aside a img {
+  margin-right: 0.5rem;
+}
+aside hr {
+  width: 70%;
+  margin: 0 auto;
+  border: 0.5px solid rgba(172, 172, 172, 0.474);
+}
+
+main {
+  display: flex;
+
+  width: 100%;
+  height: 80vh;
+}
+.content {
+  width: 80%;
+  height: 100%;
+}

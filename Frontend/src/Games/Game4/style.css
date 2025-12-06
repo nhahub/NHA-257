@@ -1,0 +1,86 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+body {
+  width: 100%; height: 100vh;
+  background-image: linear-gradient(to left top, rgb(105, 208, 255), rgb(173, 215, 255), rgb(254, 194, 232), rgb(231, 137, 255));
+  color: rgb(187, 76, 235);
+  overflow: hidden;
+}
+
+/* Exit Button */
+.exit-btn {
+    position: absolute; top: 20px; left: 20px;
+    background: #ef4444; color: white; border: none;
+    padding: 10px 20px; border-radius: 50px; cursor: pointer;
+    font-weight: bold; z-index: 2000; box-shadow: 0 4px 0 #b91c1c;
+}
+.exit-btn:active { transform: translateY(4px); box-shadow: none; }
+
+nav { height: 10%; width: 100%; text-align: center; padding: 1%; }
+nav h1 { font-size: 1.5rem; padding: 1%; background-color: rgba(255, 255, 255, 0.671); width: 30%; min-width: 300px; margin: 0 auto; border-radius: 12px; }
+
+main { width: 100%; height: 80vh; display: grid; place-items: center; }
+
+.section {
+  width: 60%; height: 80%;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 12px; transition: all 0.5s linear; position: absolute;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.shadowing { box-shadow: 0 0 10px rgb(102, 199, 255); }
+
+.hidden { transform: translateY(30%); opacity: 0; pointer-events: none; }
+.remove { display: none !important; visibility: hidden; }
+
+/* Buttons */
+.btn {
+  color: white; background-color: rgb(187, 76, 235);
+  width: 120px; height: 50px; border: none; border-radius: 12px;
+  cursor: pointer; font-weight: bold; font-size: large; margin-top: 20px;
+  transition: background-color 0.3s linear;
+}
+.btn:hover { background-color: rgb(148, 60, 186); }
+
+/* Story Styling */
+.story--telling {
+  text-align: center;
+  width: 100%;
+  height: 70%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.image--container img { width: 300px; height: 300px; border-radius: 12px; object-fit: cover; margin-bottom: 20px; }
+.story--part { font-size: 1.8rem; padding: 0 40px; }
+
+/* Quiz Styling */
+.question { font-size: 1.8rem; text-align: center; padding: 0 20px; font-weight: bold; margin-bottom: 30px; }
+.score { position: absolute; top: 10px; right: 20px; background: #fff; padding: 8px 12px; border-radius: 10px; font-weight: bold; }
+.score-value { color: rgb(17, 199, 17); }
+
+.answers { list-style: none; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 0 40px; }
+.answer {
+  background: #fff; padding: 20px; border-radius: 12px; cursor: pointer;
+  font-weight: bold; font-size: 1.2rem; text-align: center;
+  box-shadow: 0 0 10px rgba(187, 76, 235, 0.3); transition: 0.3s;
+}
+.answer:hover { transform: scale(1.05); background: #f8f0ff; }
+
+.correct--answer { background-color: rgb(17, 199, 17) !important; color: white !important; }
+.wrong--answer { background-color: red !important; color: white !important; }
+.answer--animation { transform: scale(1.1); }
+
+/* Modal */
+.scores-modal {
+  position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.8);
+  display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 1;
+}
+.scores-modal.hidden { opacity: 0; pointer-events: none; }
+.modal-content {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem; border-radius: 20px; width: 90%; max-width: 500px;
+  text-align: center; color: white;
+}
+.btn-next-game {
+  background: white; color: rgb(187, 76, 235); padding: 10px 30px; border: none;
+  border-radius: 50px; font-size: 1.2rem; font-weight: bold; cursor: pointer;
+  text-decoration: none; display: inline-block; margin-top: 20px;
+}

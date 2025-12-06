@@ -1,493 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Memory Timeline Game</title>
-    <script defer src="./script.js"></script>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        color: rgb(187, 76, 235);
-      }
+    <title>Memory Timeline - Kids Memory</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
 
-      body {
-        background-image: linear-gradient(
-          to left top,
-          rgb(105, 208, 255),
-          rgb(173, 215, 255),
-          rgb(254, 194, 232),
-          rgb(231, 137, 255)
-        );
-        min-height: 100vh;
-        text-align: center;
-        display: grid;
-        place-items: center;
-        padding: 20px;
-      }
+    <button class="exit-btn" onclick="goToMenu()">❌ Exit Game</button>
 
-      header {
-        height: 10vh;
-        display: grid;
-        place-items: center;
-      }
-
-      .heading {
-        background-color: rgba(255, 255, 255, 0.671);
-        border-radius: 12px;
-        padding: 12px;
-      }
-
-      .start-menu {
-        justify-content: center;
-        gap: 20px;
-      }
-
-      .start-menu h1 {
-        font-size: 48px;
-      }
-
-      .start-menu p {
-        font-size: 20px;
-        padding: 0 40px;
-      }
-
-      .shadowing {
-        box-shadow: 0 0 10px rgb(102, 199, 255);
-      }
-
-      .game--container {
-        display: grid;
-        place-items: center;
-        position: relative;
-      }
-
-      .game--container h2 {
-        height: 20%;
-        display: grid;
-        place-items: center;
-        margin-bottom: 20px;
-      }
-
-      .story-info {
-        margin: 10px 0;
-        font-size: 18px;
-        font-weight: bold;
-      }
-
-      .container {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-bottom: 20px;
-        flex-wrap: wrap;
-      }
-
-      .drop-zone {
-        width: 130px;
-        height: 130px;
-        border: 2px dashed #aaa;
-        border-radius: 10px;
-        background-color: #fff;
-        overflow: hidden;
-        transition: 0.3s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-      }
-
-      .drop-zone::before {
-        content: attr(data-order);
-        position: absolute;
-        top: 5px;
-        left: 5px;
-        background: rgba(187, 76, 235, 0.8);
-        color: white;
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 14px;
-      }
-
-      .drop-zone.drag-over {
-        background-color: #d8e9ff;
-        border-color: #007bff;
-      }
-
-      .drop-zone.correct {
-        border-color: #28a745;
-        background-color: #d4edda;
-      }
-
-      .drop-zone.incorrect {
-        border-color: #dc3545;
-        background-color: #f8d7da;
-      }
-
-      .items {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        flex-wrap: wrap;
-        min-height: 150px;
-        padding: 20px;
-        background-color: rgba(255, 255, 255, 0.3);
-        border-radius: 12px;
-        margin-bottom: 20px;
-      }
-
-      .draggable {
-        background-color: #e3f2fd;
-        border-radius: 10px;
-        cursor: grab;
-        width: 130px;
-        height: 130px;
-        transition: 0.2s;
-        border-radius: 12px;
-        box-shadow: 0 0 3px gray;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 48px;
-        font-weight: bold;
-      }
-
-      .draggable img {
-        border-radius: 12px;
-        width: 130px;
-        height: 130px;
-        object-fit: cover;
-      }
-
-      .draggable:active {
-        cursor: grabbing;
-        background-color: #bbdefb;
-      }
-
-      .draggable.dragging {
-        opacity: 0.4;
-      }
-
-      .hidden {
-        transform: translateY(50px);
-        opacity: 0;
-      }
-
-      .remove {
-        display: none !important;
-      }
-
-      .section {
-        width: 90vw;
-        max-width: 1000px;
-        min-height: 70vh;
-        background-color: rgba(255, 255, 255, 0.671);
-        border-radius: 12px;
-        display: flex;
-        flex-direction: column;
-        transition: all 0.5s linear;
-        padding: 20px;
-        position: relative;
-      }
-
-      .btn {
-        color: white;
-        background-color: rgb(187, 76, 235);
-        min-width: 100px;
-        height: 45px;
-        border: none;
-        border-radius: 12px;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: large;
-        transition: background-color 0.3s linear;
-        padding: 0 20px;
-        margin: 10px;
-      }
-
-      .btn:hover {
-        background-color: rgb(167, 56, 215);
-      }
-
-      .btn:disabled {
-        background-color: #ccc;
-        cursor: not-allowed;
-      }
-
-      .btn-container {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 20px;
-      }
-
-      /* Modal Styles */
-      .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        animation: fadeIn 0.3s;
-      }
-
-      .modal.show {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .modal-content {
-        background-color: white;
-        padding: 30px;
-        border-radius: 15px;
-        max-width: 500px;
-        width: 90%;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        animation: slideIn 0.3s;
-      }
-
-      .modal-content h2 {
-        margin-bottom: 20px;
-        font-size: 28px;
-      }
-
-      .results-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 15px;
-        margin: 20px 0;
-        text-align: left;
-      }
-
-      .result-item {
-        background-color: rgba(187, 76, 235, 0.1);
-        padding: 15px;
-        border-radius: 8px;
-      }
-
-      .result-item label {
-        display: block;
-        font-size: 14px;
-        font-weight: bold;
-        margin-bottom: 5px;
-      }
-
-      .result-item .value {
-        font-size: 24px;
-        font-weight: bold;
-      }
-
-      .feedback-message {
-        margin: 20px 0;
-        padding: 15px;
-        border-radius: 8px;
-        font-size: 18px;
-        font-weight: bold;
-      }
-
-      .feedback-message.excellent {
-        background-color: #d4edda;
-        color: #155724;
-      }
-
-      .feedback-message.good {
-        background-color: #d1ecf1;
-        color: #0c5460;
-      }
-
-      .feedback-message.needswork {
-        background-color: #fff3cd;
-        color: #856404;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      @keyframes slideIn {
-        from {
-          transform: translateY(-50px);
-          opacity: 0;
-        }
-        to {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-
-      .stats-bar {
-        display: flex;
-        justify-content: space-around;
-        margin: 15px 0;
-        padding: 15px;
-        background-color: rgba(255, 255, 255, 0.5);
-        border-radius: 8px;
-      }
-
-      .stat {
-        text-align: center;
-      }
-
-      .stat-label {
-        font-size: 12px;
-        font-weight: bold;
-      }
-
-      .stat-value {
-        font-size: 24px;
-        font-weight: bold;
-      }
-    </style>
-  </head>
-  <body>
     <header>
-      <h1 class="heading shadowing">Memory Timeline</h1>
+        <h1 class="heading shadowing">Memory Timeline</h1>
     </header>
 
-    <!-- Start Menu -->
     <div class="section start-menu shadowing">
-      <h1 style="margin-bottom: 20px">🧠 Memory Timeline</h1>
-      <p style="font-size: 18px; margin-bottom: 30px">
-        Test your memory by arranging story events in the correct order!
-      </p>
-
-      <div class="btn-container">
-        <button class="btn btn--start">Start Game</button>
-        <button class="btn btn--about">About</button>
-      </div>
+        <h1 style="margin-bottom: 20px">🧠 Memory Timeline</h1>
+        <p style="font-size: 18px; margin-bottom: 30px">
+            Test your memory by arranging story events in the correct order!
+        </p>
+        <div class="btn-container">
+            <button class="btn btn--start">Start Game</button>
+            <button class="btn btn--about">About</button>
+        </div>
     </div>
 
-    <!-- About Section -->
     <div class="section about--section shadowing remove">
-      <h1>About the Game</h1>
-      <hr style="width: 60%; margin: 20px auto" />
-
-      <div
-        style="
-          text-align: left;
-          padding: 30px;
-          max-width: 700px;
-          margin: 0 auto;
-        "
-      >
-        <h3 style="margin-top: 20px">📖 How to Play:</h3>
-        <p style="margin: 10px 0; line-height: 1.6">
-          1. You'll be shown 3 different stories, one at a time<br />
-          2. Each story has 6 images that need to be arranged in order<br />
-          3. Drag and drop the images into the numbered positions<br />
-          4. Click "Check Order" to see if you got it right<br />
-          5. Try to complete all stories with as few mistakes as possible!
-        </p>
-
-        <h3 style="margin-top: 30px">🎯 Scoring:</h3>
-        <p style="margin: 10px 0; line-height: 1.6">
-          • Each story starts with 100 points<br />
-          • You lose 5 points for each incorrect placement<br />
-          • Maximum score: 300 points (100 per story)<br />
-          • Your trials and misses are tracked throughout the game
-        </p>
-
-        <h3 style="margin-top: 30px">🏆 Goal:</h3>
-        <p style="margin: 10px 0; line-height: 1.6">
-          Challenge your memory and sequencing skills! Try to achieve a perfect
-          score by arranging all stories correctly on your first try.
-        </p>
-      </div>
-
-      <div class="btn-container" style="margin-top: 30px">
-        <button class="btn btn--back-menu">Back to Menu</button>
-      </div>
+        <h1>About the Game</h1>
+        <hr style="width: 60%; margin: 20px auto" />
+        <div style="text-align: left; padding: 30px; max-width: 700px; margin: 0 auto;">
+            <h3 style="margin-top: 20px">📖 How to Play:</h3>
+            <p style="margin: 10px 0; line-height: 1.6">
+                1. You'll be shown 3 different stories.<br />
+                2. Drag and drop images into the correct order.<br />
+                3. Click "Check Order".
+            </p>
+        </div>
+        <div class="btn-container" style="margin-top: 30px">
+            <button class="btn btn--back-menu">Back</button>
+        </div>
     </div>
 
     <div class="section game--container shadowing remove">
-      <h2>🧠 Arrange the events in the correct order:</h2>
-
-      <div class="story-info">
-        <span>Story <span id="current-story">1</span> of 3</span>
-      </div>
-
-      <div class="stats-bar">
-        <div class="stat">
-          <div class="stat-label">Trials</div>
-          <div class="stat-value" id="trials-count">0</div>
+        <h2>🧠 Arrange the events in order:</h2>
+        <div class="story-info">
+            <span>Story <span id="current-story">1</span> of 3</span>
         </div>
-        <div class="stat">
-          <div class="stat-label">Misses</div>
-          <div class="stat-value" id="misses-count">0</div>
+        
+        <div class="stats-bar">
+            <div class="stat">
+                <div class="stat-label">Trials</div>
+                <div class="stat-value" id="trials-count">0</div>
+            </div>
+            </div>
+
+        <div class="container">
+            <div class="drop-zone" id="zone1" data-order="1"></div>
+            <div class="drop-zone" id="zone2" data-order="2"></div>
+            <div class="drop-zone" id="zone3" data-order="3"></div>
+            <div class="drop-zone" id="zone4" data-order="4"></div>
+            <div class="drop-zone" id="zone5" data-order="5"></div>
+            <div class="drop-zone" id="zone6" data-order="6"></div>
         </div>
-        <div class="stat">
-          <div class="stat-label">Score</div>
-          <div class="stat-value" id="score-count">0</div>
-        </div>
-      </div>
 
-      <!-- Drop zones -->
-      <div class="container">
-        <div class="drop-zone" id="zone1" data-order="1"></div>
-        <div class="drop-zone" id="zone2" data-order="2"></div>
-        <div class="drop-zone" id="zone3" data-order="3"></div>
-        <div class="drop-zone" id="zone4" data-order="4"></div>
-        <div class="drop-zone" id="zone5" data-order="5"></div>
-        <div class="drop-zone" id="zone6" data-order="6"></div>
-      </div>
-
-      <!-- Draggable items pool -->
-      <div class="items" id="pool"></div>
-
-      <div class="btn-container">
-        <button class="btn btn--check">Check Order</button>
-        <button class="btn btn--reset">Reset</button>
-        <button class="btn btn--next-story remove">Next Story</button>
-      </div>
-    </div>
-
-    <!-- Results Modal -->
-    <div class="modal" id="results-modal">
-      <div class="modal-content">
-        <h2>🎉 Game Complete!</h2>
-
-        <div class="feedback-message" id="feedback"></div>
-
-        <div class="results-grid">
-          <div class="result-item">
-            <label>Final Score</label>
-            <div class="value" id="final-score">0</div>
-          </div>
-          <div class="result-item">
-            <label>Total Trials</label>
-            <div class="value" id="final-trials">0</div>
-          </div>
-          <div class="result-item">
-            <label>Total Misses</label>
-            <div class="value" id="final-misses">0</div>
-          </div>
-          <div class="result-item">
-            <label>Time Played</label>
-            <div class="value" id="final-time">0:00</div>
-          </div>
-        </div>
+        <div class="items" id="pool"></div>
 
         <div class="btn-container">
-          <button class="btn btn--next-game">Next Game</button>
+            <button class="btn btn--check">Check Order</button>
+            <button class="btn btn--reset">Reset</button>
+            <button class="btn btn--next-story remove">Next Story ➡</button>
         </div>
-      </div>
     </div>
-  </body>
+
+    <div class="modal" id="results-modal">
+        <div class="modal-content">
+            <h2>🎉 Game Complete!</h2>
+            <div class="feedback-message" id="feedback"></div>
+            <div class="results-grid">
+                <div class="result-item"><label>Final Score</label><div class="value" id="final-score">0</div></div>
+                <div class="result-item"><label>Time Played</label><div class="value" id="final-time">0:00</div></div>
+            </div>
+            <p style="color:green; font-weight:bold;">✅ Saved to Doctor Dashboard</p>
+            <div class="btn-container">
+                <button class="btn btn--next-game" onclick="location.reload()">Play Again</button>
+                <button class="btn" style="background:#666" onclick="goToMenu()">Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/SessionManager.js"></script>
+    <script defer src="script.js"></script>
+</body>
 </html>

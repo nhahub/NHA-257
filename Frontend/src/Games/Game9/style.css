@@ -9,6 +9,16 @@
     margin: 0;
     padding: 20px;
   }
+/* Exit Button */
+.exit-btn {
+    position: absolute; top: 20px; left: 20px;
+    background: #ef4444; color: white; border: none;
+    padding: 10px 20px; border-radius: 50px; cursor: pointer;
+    font-weight: bold; font-family: inherit; z-index: 2000;
+    box-shadow: 0 4px 0 #b91c1c;
+}
+.exit-btn:active { transform: translateY(4px); box-shadow: none; }
+
   @keyframes gradientMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -26,6 +36,26 @@
     font-size: 1.1em;
     margin-top: 20px;
   }
+  /* Modal styles */
+.modal {
+  position: fixed; inset: 0; display: none; align-items: center;
+  justify-content: center; background: rgba(0,0,0,0.6); z-index: 9999;
+}
+.modal.open { display: flex !important; }
+
+.modal-content {
+  background: #fff; color: #222; border-radius: 12px; padding: 30px;
+  width: min(94%, 420px); box-shadow: 0 10px 30px rgba(0,0,0,0.4); text-align: center;
+}
+
+.modal-score { font-size: 3rem; font-weight: 800; margin: 10px 0 20px; color: #2980b9; }
+.modal-stats { display:flex; justify-content:space-around; gap:8px; margin-bottom: 20px; font-size: 1.1rem; }
+.modal-actions { margin-top: 15px; display: flex; gap: 10px; justify-content: center; }
+
+.modal-action-btn {
+  padding: 10px 20px; border-radius: 8px; border: none;
+  background: #2980b9; color: white; cursor: pointer; font-weight: bold;
+}
   #restart {
     margin-left: 40px;
     padding: 5px 15px;
@@ -103,6 +133,7 @@
     transition: background 0.3s;
   }
   #next:hover, #start:hover {
+    transform: scale(1.05);
     background: #eee;
   }
   #instructions {
