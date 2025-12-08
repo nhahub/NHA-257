@@ -69,18 +69,35 @@ function generateSequence(length) {
 }
 
 function showOptions() {
-  const correct = correctSequence.join(' ');
-  const options = [correct];
+  const correctStr = correctSequence.join(' ');
+  const options = [correctStr];
 
-  while (options.length < 4) {
-    const fake = generateSequence(correctSequence.length).join(' ');
-    if (!options.includes(fake)) options.push(fake);
+  let safetyCounter = 0; // Prevents infinite loops
+
+  while (options.length < 4 && safetyCounter < 50) {
+    // 1. Try to generate a similar looking fake
+    let fakeArr = generateSimilarFake(correctSequence);
+    let fakeStr = fakeArr.join(' ');
+
+    // 2. If the fake accidentally matches the correct one (e.g. swapping two 5s), 
+    //    or if we already have this option, generate a totally random one instead.
+    if (fakeStr === correctStr || options.includes(fakeStr)) {
+       fakeArr = generateSequence(correctSequence.length);
+       fakeStr = fakeArr.join(' ');
+    }
+
+    // 3. Add if unique
+    if (!options.includes(fakeStr)) {
+      options.push(fakeStr);
+    }
+    
+    safetyCounter++;
   }
 
-  // shuffle
+  // Shuffle the buttons so the correct answer isn't always first
   options.sort(() => Math.random() - 0.5);
 
-  // create buttons
+  // Create buttons (Same as before)
   options.forEach((option) => {
     const btn = document.createElement('button');
     btn.classList.add('option-btn');
@@ -88,6 +105,52 @@ function showOptions() {
     btn.onclick = () => checkAnswer(option, btn);
     optionsContainer.appendChild(btn);
   });
+}
+
+// NEW: Generates a wrong answer that looks similar to the correct one
+function generateSimilarFake(originalSequence) {
+    // Create a copy of the array so we don't change the original
+    let fake = [...originalSequence];
+    const len = fake.length;
+
+    // Pick a random strategy to mess up the sequence
+    const strategy = Math.random();
+
+    if (strategy < 0.4 && len > 1) {
+        // STRATEGY 1: SWAP TWO NUMBERS (Very confusing)
+        // Example: [1, 2, 3] -> [1, 3, 2]
+        const idx1 = Math.floor(Math.random() * len);
+        let idx2 = Math.floor(Math.random() * len);
+        // Ensure we picked two different indices
+        while (idx1 === idx2) {
+            idx2 = Math.floor(Math.random() * len);
+        }
+        // Swap
+        [fake[idx1], fake[idx2]] = [fake[idx2], fake[idx1]];
+
+    } else if (strategy < 0.7) {
+        // STRATEGY 2: CHANGE ONE NUMBER RANDOMLY
+        // Example: [1, 2, 3] -> [1, 9, 3]
+        const idx = Math.floor(Math.random() * len);
+        let newVal = Math.floor(Math.random() * 9) + 1;
+        // Ensure the new value is actually different
+        while (newVal === fake[idx]) {
+            newVal = Math.floor(Math.random() * 9) + 1;
+        }
+        fake[idx] = newVal;
+
+    } else {
+        // STRATEGY 3: OFF-BY-ONE ( subtle change)
+        // Example: [1, 5, 3] -> [1, 6, 3]
+        const idx = Math.floor(Math.random() * len);
+        const val = fake[idx];
+        // If 9, make it 8. If 1, make it 2. Otherwise random +1 or -1.
+        if (val === 9) fake[idx] = 8;
+        else if (val === 1) fake[idx] = 2;
+        else fake[idx] = Math.random() > 0.5 ? val + 1 : val - 1;
+    }
+
+    return fake;
 }
 
 function checkAnswer(selected, button) {

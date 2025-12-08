@@ -317,13 +317,13 @@ main {
   position: static;
   margin: 0 auto;
 }
-/* Final Score Modal */
+/* --- Final Score Modal --- */
 .final-score-modal {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2b32b2 0%, #1488cc 100%); /* Darker background based on your image */
   border-radius: 20px;
   padding: 40px;
   max-width: 600px;
@@ -334,6 +334,12 @@ main {
   z-index: 1000;
   opacity: 1;
   transition: opacity 0.3s ease, transform 0.3s ease;
+  
+  /* NEW: Centering all content inside the box */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; 
 }
 
 .final-score-modal.hidden {
@@ -342,26 +348,73 @@ main {
   pointer-events: none;
 }
 
-.final-score-modal.remove {
-  display: none;
-}
-
 .final-score-modal h2 {
   color: #fff;
   font-size: 2.5rem;
-  margin: 0 0 30px 0;
-  text-align: center;
+  margin: 0 0 20px 0; /* Adjusted margin */
   font-weight: 700;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  width: 100%; /* Ensure it spans full width for centering */
 }
 
-.final-score-modal h3 {
+/* --- Modal Actions (Button Container) --- */
+.modal-actions {
+  display: flex;
+  justify-content: center; /* Centers buttons horizontally */
+  align-items: center;     /* Centers buttons vertically if heights differ */
+  gap: 20px;               /* Adds space between the two buttons */
+  margin-top: 25px;
+  width: 100%;
+  flex-wrap: wrap;         /* Allows buttons to stack on very small screens */
+}
+
+/* --- Shared Style for Both Buttons --- */
+/* This targets the existing class and any generic button inside the actions */
+.modal-actions button, 
+.btn-next-game {
+  display: flex;             /* FLEXBOX to center text inside button */
+  justify-content: center;   /* Center text horizontally */
+  align-items: center;       /* Center text vertically */
+  
+  padding: 12px 25px;        /* Comfortable padding */
+  min-width: 140px;          /* Minimum width so buttons look uniform */
+  height: 50px;              /* Fixed height for uniformity */
+  
+  font-size: 1.1rem;         /* Suitable font size */
+  font-weight: 700;
+  text-decoration: none;
   color: #fff;
-  font-size: 1.4rem;
-  margin: 25px 0 15px 0;
-  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: capitalize; /* Makes "Play Again" look nice */
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Specific color for the main action (Play Again) */
+.btn-next-game {
+  background: linear-gradient(135deg, #d53369 0%, #daae51 100%); /* Example distinct color */
+}
+
+/* Specific color for the secondary action (Back to Menu) */
+/* Assuming you add a class like .btn-menu to the second button HTML */
+.btn-menu {
+  background: linear-gradient(135deg, #434343 0%, #000000 100%); /* Darker/Grey for secondary action */
+}
+
+/* Hover effects */
+.modal-actions button:hover,
+.btn-next-game:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.modal-actions button:active,
+.btn-next-game:active {
+  transform: translateY(-1px);
+}
 /* Final Stats Section */
 .final-stats {
   background: rgba(255, 255, 255, 0.15);
@@ -650,3 +703,11 @@ main {
     transform: scale(1.05);
   }
 }
+.exit-btn {
+    position: absolute; top: 20px; left: 20px;
+    background: #ef4444; color: white; border: none;
+    padding: 10px 20px; border-radius: 50px; cursor: pointer;
+    font-weight: bold; font-family: inherit; z-index: 2000;
+    box-shadow: 0 4px 0 #b91c1c;
+}
+.exit-btn:active { transform: translateY(4px); box-shadow: none; }

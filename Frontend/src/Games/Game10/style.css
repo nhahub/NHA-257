@@ -17,6 +17,15 @@ body {
   height: 100vh;
 }
 
+.exit-btn {
+    position: absolute; top: 20px; left: 20px;
+    background: #ef4444; color: white; border: none;
+    padding: 10px 20px; border-radius: 50px; cursor: pointer;
+    font-weight: bold; font-family: inherit; z-index: 2000;
+    box-shadow: 0 4px 0 #b91c1c;
+}
+.exit-btn:active { transform: translateY(4px); box-shadow: none; }
+
 main {
   display: grid;
   place-items: center;
@@ -107,43 +116,53 @@ header {
   padding: 15px;
   margin: 30px 0 50px 0;
 }
-/* .answers--container {
-  display: grid;
-  place-items: center;
-  /* justify-content: center;
-  align-items: center; */
-/* flex-direction: column; */
-/* height: 70%;
-} */
 
+/* Container for the buttons */
+.answers--container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* The individual answer buttons */
 .answer {
   background-color: #f9f9f9;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  gap: 15vh;
+  color: rgb(187, 76, 235);
+  border-radius: 15px;
+  display: flex; /* Changed from grid to flex for better centering */
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   font-weight: bold;
-  padding: 1vh;
-  height: 75%;
-  width: 60%;
-  margin: 20px 0;
-  transition: all 0.5s ease;
+  font-size: 1.3rem;
+  padding: 15px 30px;
+  width: 60%; /* Controls button width */
+  min-width: 300px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
 }
+
 .answer:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
+  background-color: white;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
 
 .correct--answer {
-  background-color: rgb(7, 170, 37);
-  color: white;
-}
-.wrong--answer {
-  color: white;
-  background-color: rgb(223, 8, 8);
+  background-color: #4CAF50 !important;
+  color: white !important;
 }
 
-/* Timer */
+.wrong--answer {
+  background-color: #f44336 !important;
+  color: white !important;
+}
+
+
 .timer {
   position: absolute;
   top: 20px;

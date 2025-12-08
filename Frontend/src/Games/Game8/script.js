@@ -25,9 +25,10 @@ let shuffledImages = [];
 let correctAnswers = 0;
 let wrongAnswers = 0;
 let totalTime = 0;
-
 let currentRound = 1;
 let roundScores = [];
+let currentCorrectVariant = 1;
+let groupVariants = {};
 
 const gameContent = document.getElementById('game-content');
 
@@ -43,9 +44,13 @@ function showStartScreen() {
   `;
 }
 
+
 function startGame() {
   const groups = Array.from({ length: TOTAL_GROUPS }, (_, i) => i + 1);
   selectedGroups = groups.sort(() => 0.5 - Math.random()).slice(0, SHOW_GROUPS);
+  
+  // --- NEW: Reset the variants storage ---
+  groupVariants = {}; 
   
   phase = 'memorize';
   currentIndex = 0;
@@ -66,8 +71,17 @@ function showMemorizePhase() {
   }
 
   const group = selectedGroups[currentIndex];
-  // Ensure images exist in src/Games/Game8/cards/
-  const correctImage = `cards/${group}-1.png`;
+  
+  // --- NEW LOGIC START ---
+  // 1. Pick a random variant (1, 2, 3, or 4)
+  const randomVariant = Math.floor(Math.random() * 4) + 1;
+  
+  // 2. Save it specifically for this group ID
+  groupVariants[group] = randomVariant;
+
+  // 3. Show that specific random image
+  const correctImage = `cards/${group}-${randomVariant}.png`;
+  // --- NEW LOGIC END ---
 
   gameContent.innerHTML = `
     <div class="memorize-container">
@@ -127,12 +141,25 @@ function showQuizPhase() {
 
 function handleImageClick(e) {
   const imgIndex = parseInt(e.target.dataset.index);
-  const isCorrect = imgIndex === 1;
+  
+  // --- NEW LOGIC START ---
+  // 1. Get the current group ID based on the current question index
+  const currentGroup = selectedGroups[currentIndex];
+  
+  // 2. Retrieve the correct variant we saved earlier for THIS group
+  const correctVariant = groupVariants[currentGroup];
+
+  // 3. Compare
+  const isCorrect = imgIndex === correctVariant;
+  // --- NEW LOGIC END ---
 
   if (isCorrect) correctAnswers++;
   else wrongAnswers++;
 
+  // Remove listener to prevent double clicks
   document.querySelectorAll('.quiz-image').forEach(img => img.removeEventListener('click', handleImageClick));
+  
+  // Visual feedback
   e.target.classList.add(isCorrect ? 'correct' : 'incorrect');
 
   setTimeout(() => {

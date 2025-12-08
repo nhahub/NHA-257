@@ -4,10 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <script defer src="./script.js"></script>
     <title>Instruments Recognition</title>
   </head>
   <body>
+    
+    <button class="exit-btn" onclick="goToMenu()">❌ Exit</button>
+
     <nav>
       <h1 class="shadowing"><b>Instruments Recognition</b></h1>
     </nav>
@@ -21,8 +23,7 @@
           <p>
             Listen to instrument sounds and guess which instrument it is! Look
             at the image and listen to the sound, then choose from the
-            alternatives. Test your knowledge of musical instruments and have
-            fun learning!
+            alternatives.
           </p>
         </article>
         <button class="btn btn-about shadowing">Continue</button>
@@ -39,63 +40,39 @@
             <div class="audio-section">
               <audio id="main-audio" preload="auto">
                 <source src="" type="audio/mpeg" />
-                Your browser does not support the audio element.
               </audio>
               <button class="btn btn-play-sound">Listen to Instrument</button>
             </div>
           </div>
         </article>
+        
         <div class="alternatives-container">
           <ul class="answers">
-            <li class="answer">
-              <span class="answer-text">Choice 1</span>
-              <audio class="answer-audio" preload="auto">
-                <source src="" type="audio/mpeg" />
-                Your browser does not support the audio element.
-              </audio>
-              <button class="btn btn-play-choice">Play</button>
-            </li>
-            <li class="answer">
-              <span class="answer-text">Choice 2</span>
-              <audio class="answer-audio" preload="auto">
-                <source src="" type="audio/mpeg" />
-                Your browser does not support the audio element.
-              </audio>
-              <button class="btn btn-play-choice">Play</button>
-            </li>
-            <li class="answer">
-              <span class="answer-text">Choice 3</span>
-              <audio class="answer-audio" preload="auto">
-                <source src="" type="audio/mpeg" />
-                Your browser does not support the audio element.
-              </audio>
-              <button class="btn btn-play-choice">Play</button>
-            </li>
-            <li class="answer">
-              <span class="answer-text">Choice 4</span>
-              <audio class="answer-audio" preload="auto">
-                <source src="" type="audio/mpeg" />
-                Your browser does not support the audio element.
-              </audio>
-              <button class="btn btn-play-choice">Play</button>
-            </li>
-          </ul>
+            </ul>
         </div>
-        <button class="btn btn--next">Next</button>
+        
+        <button class="btn btn--next remove">Next</button>
       </section>
 
       <div class="final-score-modal hidden remove">
-        <div class="modal-content">
-          <h2>Your Score</h2>
-          <div class="final-score">
-            <h3>Total Score</h3>
-            <p>Score: <span class="total-score-value">0</span>/100</p>
-          </div>
-          <button class="btn modal-close">
-            <a href="/index.html">Home Page</a>
-          </button>
-        </div>
-      </div>
+  <div class="modal-content">
+    <h2>🎉 Game Complete!</h2>
+    <div class="final-score">
+      <h3>Total Score</h3>
+      <p>Score: <span class="total-score-value">0</span>/100</p>
+    </div>
+    <p style="color:green; font-weight:bold; margin-bottom: 15px;">✅ Saved to Dashboard</p>
+    
+    <div class="modal-actions" style="display: flex; justify-content: center; gap: 10px;">
+       <button class="btn" onclick="location.reload()">🔄 Play Again</button>
+       
+       <button class="btn" style="background:#555" onclick="goToMenu()">☰ Back to Menu</button>
+    </div>
+  </div>
+</div>
     </main>
+
+    <script src="../../../assets/js/SessionManager.js"></script>
+    <script defer src="script.js"></script>
   </body>
 </html>
