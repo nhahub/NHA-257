@@ -12,16 +12,15 @@ body {
     font-family: 'Segoe UI', sans-serif;
     
     /* --- Background Image Setup --- */
-    /* Path goes up 2 levels (../../) to find the 'image' folder */
     background-image: url('./image/Background.jpg');
-    background-color: var(--bg); /* Fallback color */
-    background-size: cover;      /* Stretch to fit screen */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Don't tile */
-    background-attachment: fixed; /* Keep background in place when scrolling */
+    background-color: var(--bg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     
     color: var(--text);
-    min-height: 100vh; /* Ensure it fills at least the whole screen height */
+    min-height: 100vh;
 }
 
 /* Navbar */
@@ -77,11 +76,19 @@ body {
     border: 1px solid rgba(255,255,255,0.05);
     border-radius: 16px;
     padding: 30px;
+    padding-bottom: 25px; /* Add a little padding at the bottom */
     width: 280px;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
-    position: relative;
+    
+    /* 1. Necessary for the corner badge */
+    position: relative; 
     overflow: hidden;
+    
+    /* 2. Flex column to center standard content (like icons) */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
 }
 
 .card:hover {
@@ -97,13 +104,24 @@ body {
 /* Badges */
 .badge {
     display: inline-block;
-    margin-top: 15px;
-    padding: 4px 10px;
+    margin-top: auto; /* Pushes the badge to the bottom of the card */
+    padding: 6px 14px;
     border-radius: 20px;
     font-size: 0.75rem;
     font-weight: bold;
     background: rgba(124, 92, 255, 0.2);
     color: var(--accent);
+    /* Ensure it centers if the card uses flexbox */
+    align-self: center; 
 }
-.badge.doctor { background: rgba(77, 208, 225, 0.2); color: var(--doctor); }
-.badge.admin { background: rgba(255, 221, 87, 0.2); color: var(--admin); }
+
+/* Specific Colors - NO POSITIONING needed */
+.badge.doctor { 
+    background: rgba(77, 208, 225, 0.2); 
+    color: var(--doctor);
+}
+
+.badge.admin { 
+    background: rgba(255, 221, 87, 0.2); 
+    color: var(--admin);
+}

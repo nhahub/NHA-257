@@ -2,15 +2,20 @@
 const sessionMgr = new SessionManager('https://localhost:7101/api');
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // 1. Ask Server: "Am I playing?"
-    const activeId = await sessionMgr.getActiveSession();
-    
-    // 2. Update UI based on Server Truth
-    updateUI();
-    
-    if (activeId) {
-        console.log("Resuming Session:", activeId);
+    // 1. Check Login
+    const user = JSON.parse(localStorage.getItem('user_details'));
+    if (!user) {
+        window.location.href = '../../login/index.html';
+        return;
     }
+
+    // 2. Sync Session Status (Only necessary for Kids)
+    if (user.role === "3") {
+        await sessionMgr.getActiveSession();
+    }
+
+    // 3. Update UI based on User Role & Session Status
+    updateUI(user);
 });
 
 async function handleStartSession() {
@@ -22,8 +27,9 @@ async function handleStartSession() {
     const sessionId = await sessionMgr.startSession();
 
     if (sessionId) {
-        alert(`Session Started! (ID: ${sessionId})`);
-        updateUI();
+        // Refresh UI with new status
+        const user = JSON.parse(localStorage.getItem('user_details'));
+        updateUI(user);
     } else {
         btn.innerText = "▶ Start Session";
         btn.disabled = false;
@@ -35,25 +41,50 @@ async function handleEndSession() {
 
     const success = await sessionMgr.endSession();
     if (success) {
-        updateUI();
+        const user = JSON.parse(localStorage.getItem('user_details'));
+        updateUI(user);
     } else {
         alert("Failed to end session.");
     }
 }
 
-function updateUI() {
+function updateUI(user) {
     const btnStart = document.getElementById('btnStart');
     const btnEnd = document.getElementById('btnEnd');
     const badge = document.getElementById('session-badge');
     const cards = document.querySelectorAll('.game-card');
-    
-    // Check Status
+
+    // --- SCENARIO A: DOCTOR OR ADMIN (Practice Mode) ---
+    if (user && (user.role === "1" || user.role === "2")) {
+        // 1. Badge Status
+        badge.innerHTML = '<i class="fa-solid fa-user-shield"></i> Practice Mode';
+        badge.style.color = "#64748b"; // Grey
+        badge.style.border = "1px solid #64748b";
+        badge.title = "Scores will not be saved";
+
+        // 2. Hide Session Controls (Not needed)
+        if(btnStart) btnStart.style.display = 'none';
+        if(btnEnd) btnEnd.style.display = 'none';
+
+        // 3. ALWAYS Unlock Games
+        cards.forEach(card => {
+            card.classList.remove('locked');
+            card.onclick = function() { 
+                const text = this.querySelector('h3').innerText;
+                const id = text.split('.')[0]; 
+                playGame(id); 
+            };
+        });
+        return; // STOP here.
+    }
+
+    // --- SCENARIO B: CHILD (Regular Logic) ---
     const isActive = sessionMgr.isSessionActive();
 
     if (isActive) {
-        // SHOW "End", HIDE "Start"
-        btnStart.style.display = 'none';
-        btnEnd.style.display = 'inline-block';
+        // Active Session
+        if(btnStart) btnStart.style.display = 'none';
+        if(btnEnd) btnEnd.style.display = 'inline-block';
         
         badge.innerText = "Session Active 🟢";
         badge.style.color = "#22c55e";
@@ -63,7 +94,6 @@ function updateUI() {
         cards.forEach(card => {
             card.classList.remove('locked');
             card.onclick = function() { 
-                // Get the game ID from the H3 text (e.g. "1. Simon Says" -> 1)
                 const text = this.querySelector('h3').innerText;
                 const id = text.split('.')[0]; 
                 playGame(id); 
@@ -71,11 +101,13 @@ function updateUI() {
         });
 
     } else {
-        // SHOW "Start", HIDE "End"
-        btnStart.style.display = 'inline-block';
-        btnEnd.style.display = 'none';
-        btnStart.innerText = "▶ Start Session";
-        btnStart.disabled = false;
+        // No Session
+        if(btnStart) {
+            btnStart.style.display = 'inline-block';
+            btnStart.innerText = "▶ Start Session";
+            btnStart.disabled = false;
+        }
+        if(btnEnd) btnEnd.style.display = 'none';
 
         badge.innerText = "No Active Session 🔴";
         badge.style.color = "#ef4444";
@@ -90,17 +122,30 @@ function updateUI() {
 }
 
 function playGame(gameId) {
-    // 1. Check if session is active
-    if (!sessionMgr.isSessionActive()) {
+    const user = JSON.parse(localStorage.getItem('user_details'));
+
+    // 1. Guard for KIDS only
+    if (user.role === "3" && !sessionMgr.isSessionActive()) {
         alert("Please click 'Start Session' first!");
         return;
     }
 
-    // 2. Navigate to the game folder
-    // This assumes folders are named Game1, Game2, Game3...
+    // 2. Navigate to Game
     window.location.href = `Game${gameId}/index.html`;
 }
 
 function goHome() {
-    window.location.href = '../Home/home.html';
+    const user = JSON.parse(localStorage.getItem('user_details'));
+    
+    // Logic: If kid clicks "Back", they effectively Logout since they can't see the dashboard
+    if (user.role === "3") {
+        if(confirm("Log out?")) {
+            localStorage.clear();
+            window.location.href = '../login/index.html';
+        }
+    } else {
+        // Doctors/Admins go back to dashboard
+        window.location.href = '../Home/home.html';
+    }
+
 }

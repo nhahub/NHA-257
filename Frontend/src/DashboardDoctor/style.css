@@ -77,15 +77,61 @@ body {
 /* --- LAYOUT GRID --- */
 .layout {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 300px minmax(0, 1fr); /* minmax(0, 1fr) prevents overflow */
     gap: 25px;
     align-items: start;
 }
-
 @media (max-width: 900px) {
     .layout { grid-template-columns: 1fr; }
 }
 
+.chart-row-full {
+    margin-top: 25px;
+}
+
+/* Bottom Row (Split Side-by-Side) */
+.chart-row-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 25px;
+    margin-top: 25px;
+}
+
+/* Responsive: Stack the split row on smaller screens */
+@media (max-width: 992px) {
+    .chart-row-split {
+        grid-template-columns: 1fr; /* Stack vertically */
+    }
+}
+
+/* --- EXISTING CHART CONTAINER STYLES (Ensure these are present) --- */
+.chart-container {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    height: 400px; /* Fixed height for consistency */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.chart-container h4 {
+    margin: 0 0 15px 0;
+    font-size: 1.05rem;
+    color: var(--muted);
+    text-align: center;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.chart-container canvas {
+    flex-grow: 1;
+    max-height: 340px;
+    width: 100% !important;
+}
 /* --- CARDS --- */
 .card {
     background: var(--card);

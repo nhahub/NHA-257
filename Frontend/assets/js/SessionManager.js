@@ -2,6 +2,7 @@ class SessionManager {
     constructor(apiBaseUrl) {
         // Ensure this matches your running .NET API port
         this.baseUrl = apiBaseUrl; 
+        this.user = this.getUser(); // Cache user on init
     }
 
     // --- HELPER: Get User Details from Storage ---
@@ -73,11 +74,19 @@ class SessionManager {
     }
 
     // --- 3. CHECK STATUS (Is session active?) ---
-    // Since we don't have a "CheckStatus" API yet, we rely on sessionStorage for now.
-    // In a real app, you would call the API here to double-check.
+    // UPDATED: Admins (1) and Doctors (2) bypass this check
     isSessionActive() {
+        const user = this.getUser();
+        
+        // Allow Admins and Doctors to play without starting a "Medical Session"
+        if (user && (user.role === "1" || user.role === "2")) {
+            return true; 
+        }
+
+        // For Kids, check the storage
         return sessionStorage.getItem('active_session_id') !== null;
     }
+
     // --- 4. GET ACTIVE SESSION (Sync) ---
     async getActiveSession() {
         const user = this.getUser();
@@ -103,10 +112,18 @@ class SessionManager {
         sessionStorage.removeItem('active_session_id');
         return null;
     }
+
     // --- 5. SUBMIT SCORE ---
     async submitScore(gameId, score, trials, misses) {
         const user = this.getUser();
         if (!user) return false;
+
+        // --- SECURITY GUARD: BLOCK NON-KIDS ---
+        // If user is Admin (1) or Doctor (2), DO NOT save score.
+        if (user.role !== "3") {
+            console.log("🚫 Score submission skipped: User is not a child.");
+            return true; // Pretend it succeeded so the game doesn't crash
+        }
 
         const payload = {
             userId: parseInt(user.userId),
@@ -129,7 +146,7 @@ class SessionManager {
             } else {
                 const err = await response.json();
                 console.error("Score Error:", err);
-                alert("Failed to save score: " + (err.error || err.message));
+                // alert("Failed to save score: " + (err.error || err.message)); // Optional: Disable alert for smoother play
                 return false;
             }
         } catch (error) {

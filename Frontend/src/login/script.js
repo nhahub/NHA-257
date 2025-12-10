@@ -37,7 +37,7 @@ function parseJwt (token) {
     }
 }
 
-// --- LOGIN LOGIC ---
+// --- LOGIN LOGIC (Updated for Role Redirection) ---
 formLogin.addEventListener('submit', async (e) => {
     e.preventDefault();
     setMsg('loginMsg', 'Logging in...');
@@ -64,13 +64,14 @@ formLogin.addEventListener('submit', async (e) => {
 
         // 2. Decode Token
         const decoded = parseJwt(token);
+        // Fallback checks for different claim names
         const userRole = decoded.Role || decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] || "3";
         const userEmail = decoded.email || decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"];
 
         const userDetails = {
             token: token,
             userId: decoded.UserId, 
-            role: userRole,
+            role: userRole, // "1"=Admin, "2"=Doctor, "3"=Child
             name: userEmail
         };
 
@@ -80,9 +81,15 @@ formLogin.addEventListener('submit', async (e) => {
         setMsg('loginMsg', 'Success!', 'green');
         showToast(`Welcome back!`);
 
-        // 4. Redirect to Home Hub
+        // 4. Role-Based Redirect
         setTimeout(() => {
-            window.location.href = '../../src/Home/home.html'; 
+            if (userRole === "3" || userRole === 3) {
+                // Kid: Go DIRECTLY to Games Menu
+                window.location.href = '../../src/Games/menu.html'; 
+            } else {
+                // Doctor/Admin: Go to Home Hub
+                window.location.href = '../../src/Home/home.html'; 
+            }
         }, 1000);
 
     } catch (err) {

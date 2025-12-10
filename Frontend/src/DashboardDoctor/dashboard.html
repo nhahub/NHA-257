@@ -98,12 +98,12 @@
                     </div>
                 </div>
                 <div class="kpi card">
-                    <div class="icon-bg green"><i class="fa-solid fa-clock-rotate-left"></i></div>
-                    <div class="kpi-info">
-                        <div class="num" id="kpiRecentActivity">0</div>
-                        <div class="lbl">Recent Games</div>
-                    </div>
-                </div>
+    <div class="icon-bg green"><i class="fa-solid fa-gamepad"></i></div>
+    <div class="kpi-info">
+        <div class="num" id="kpiGamesPlayed">0</div>
+        <div class="lbl">Games Played</div>
+    </div>
+</div>
             </div>
 
             <section id="overviewTab" class="tab-content active card">
@@ -150,7 +150,7 @@
                                 <th>Age</th>
                                 <th>Parent</th>
                                 <th>Last Played</th>
-                                <th>Avg Score</th>
+                                <th>Score</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -161,30 +161,37 @@
             </section>
 
             <section id="analyticsTab" class="tab-content card hidden">
-                <div class="analytics-header">
-                    <div class="child-profile-mini">
-                        <div class="avatar-circle small" id="childAvatar">--</div>
-                        <div>
-                            <h3 id="childName">Select a child</h3>
-                            <p id="childSubtitle">Click View in Patients tab</p>
-                        </div>
-                    </div>
-                    <div class="ai-box" id="aiInsights">
-                        <i class="fa-solid fa-robot"></i> Select a patient to see AI insights.
-                    </div>
-                </div>
+    <div class="analytics-header">
+        <div class="child-profile-mini">
+            <div class="avatar-circle small" id="childAvatar">--</div>
+            <div>
+                <h3 id="childName">Select a child</h3>
+                <p id="childSubtitle">Click View in Patients tab</p>
+            </div>
+        </div>
+        <div class="ai-box" id="aiInsights">
+            <i class="fa-solid fa-robot"></i> Select a patient to see AI insights.
+        </div>
+    </div>
 
-                <div class="charts-grid">
-                    <div class="chart-container">
-                        <h4>Performance Trend</h4>
-                        <canvas id="iqTrend"></canvas>
-                    </div>
-                    <div class="chart-container">
-                        <h4>Scores by Category</h4>
-                        <canvas id="categoryChart"></canvas>
-                    </div>
-                </div>
-            </section>
+    <div class="chart-row-full">
+        <div class="chart-container">
+            <h4>Performance Trend History</h4>
+            <canvas id="iqTrend"></canvas>
+        </div>
+    </div>
+
+    <div class="chart-row-split">
+        <div class="chart-container">
+            <h4>No. of Games Played (by Category)</h4>
+            <canvas id="categoryChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <h4>Historical summary score (Weighted)</h4>
+            <canvas id="cognitiveRadar"></canvas>
+        </div>
+    </div>
+</section>
 
         </div> 
     </div>
