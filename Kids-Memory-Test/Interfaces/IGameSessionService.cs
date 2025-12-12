@@ -11,5 +11,7 @@ namespace Kids_Memory_Test.Interfaces
         Task<bool> EndSessionAsync(int userId);
         Task<int?> GetActiveSessionIdAsync(int userId);
         Task<bool> SubmitGameScoreAsync(SubmitScoreDto score);
+        Task<AdminUserDetailsDto?> GetUserDetailsAsync(int userId);
+        Task ManageUserAsync(int userId, string actionType);
     }
 }

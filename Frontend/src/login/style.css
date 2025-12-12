@@ -42,24 +42,41 @@ body {
   backdrop-filter: blur(12px);
   transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.2, 1);
 }
+/* 1. Center the brand section */
 .brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
 }
-.logo {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  display: grid;
-  place-items: center;
+
+/* 2. Style the new Image */
+.login-logo {
+    width: 80px;  /* Adjust size as needed */
+    height: auto;
+    margin-bottom: 10px; /* Space between Logo and Text */
+    
+    /* Optional: detailed animation like a floating wizard */
+    animation: float 3s ease-in-out infinite;
 }
+
+/* 3. Style the Title */
 .brand h1 {
-  font-size: 18px;
-  margin: 0;
+    font-family: 'Fredoka One', cursive; /* Your project font */
+    color: #7c5cff; /* Primary Purple */
+    font-size: 1.8rem;
+    margin: 0;
 }
+
+/* Optional Animation Effect */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+}
+
+
 .tabs {
   display: flex;
   gap: 10px;

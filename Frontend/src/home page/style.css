@@ -1,207 +1,186 @@
+:root {
+  --primary: #7c5cff;
+  --secondary: #00bcd4;
+  --accent: #FFD166;
+  --dark: #333;
+  --light: #fff;
+  --glass: rgba(255, 255, 255, 0.15);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Delius", cursive;
+  margin: 0; padding: 0; box-sizing: border-box;
+  font-family: 'Delius', 'Open Sans', cursive;
 }
 
-header {
-  position: fixed;
-  width: 100%;
-  background-color: #f3f3f338;
-  backdrop-filter: blur(12px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  height: 10vh;
-  z-index: 12;
-}
-header img {
-  width: 120px;
-  height: 60px;
-}
-.profile {
-  width: 45px;
-  height: 45px;
-}
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
+html { scroll-behavior: smooth; }
 
-.navbar ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  height: 100%;
-}
-.navbar ul li {
-  margin-left: 1.5rem;
-}
-.navbar ul li a {
-  color: #6b007e;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.3s ease;
-  font-weight: 700;
-}
-
-.navbar ul li a:hover {
-  color: #00bcd4;
-}
-
-.menu-toggle {
-  display: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-}
-.home {
-  color: #fff;
-  background-image: url("/images/Background.jpg");
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 12px;
-}
-.home h1,
-.about h1 {
-  font-size: 4rem;
-  margin-bottom: 0.5rem;
-}
-
-.home p,
-.about p {
-  font-size: 1.5rem;
-}
-.about {
-  color: #fff;
-  height: 100vh;
-  width: 100%;
-  background-image: url("/images/Background\ 2.jpg");
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 12px;
-}
-span {
-  color: #6b007e;
-}
-.games {
-  background-image: url("/images/Background\ 3.jpg");
-  width: 100%;
-  height: 127vh;
-  display: grid;
-  place-items: center;
-}
-.games .sec--header {
-  color: #6b007e;
-  margin-top: 60px;
-}
-.games--container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  gap: 1vh;
-  padding: 2vw;
-}
-.game {
-  color: #fff;
-  background-image: linear-gradient(
-    to right,
-    #4dc2ed,
-    rgb(55, 175, 255),
-    rgb(170, 94, 252),
-    #ec87dc,
-    #eb4ad0,
-    #fb15d0
-  );
-  border-radius: 12px;
-  padding: 12px;
-  border: 2px #33333379 solid;
-  transition: all 0.3s ease 0s;
-}
-.game:hover {
-  transform: scale(1.03);
-}
-.game p {
-  font-weight: 500;
-}
-.game a {
-  color: white;
-  font-weight: 700;
-}
-.contact {
-  width: 100%;
-  height: 100vh;
+body {
+  overflow-x: hidden;
   background-color: #333;
 }
-.contact--container {
-  color: #fff;
-  height: 80%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  place-items: center;
+
+/* --- HEADER --- */
+header {
+  position: fixed; top: 0; width: 100%; height: 80px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 5%;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
-.Copy--rights {
-  color: #fff;
+
+.logo-container img { height: 50px; width: auto; }
+
+.navbar ul { display: flex; list-style: none; gap: 30px; }
+.navbar a {
+  text-decoration: none; color: #494949; font-weight: bold; font-size: 1.1rem;
+  transition: color 0.3s;
+}
+.navbar a:hover { color: var(--primary); }
+
+.header-actions { display: flex; align-items: center; gap: 15px; }
+
+.btn-login {
+  text-decoration: none;
+  background: var(--primary); color: white;
+  padding: 10px 25px; border-radius: 25px;
+  font-weight: bold; transition: transform 0.2s;
+}
+.btn-login:hover { transform: scale(1.05); background: #6b007e; }
+
+.menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: var(--dark); }
+
+/* --- SECTIONS COMMON --- */
+/* This handles the layout for ALL sections (Home, About, Instructions) */
+.section {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
   text-align: center;
+  padding: 80px 20px;
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
-/* 🔹 Responsive styles */
+
+.hidden { opacity: 0; transform: translateY(50px); }
+
+/* --- CONTENT BOX STYLES (UNIFIED) --- */
+.content-box {
+  background: rgba(0, 0, 0, 0.7); /* Dark Semi-Transparent for ALL sections */
+  padding: 40px; 
+  border-radius: 20px; 
+  color: white; /* White text for contrast */
+  max-width: 800px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Since we want them all to look the same, we simply remove the 
+   conflicting styles from the .glass class, or make it do nothing. */
+
+
+h1 { font-size: 3rem; margin-bottom: 20px; font-family: 'Fredoka One', cursive; }
+p { font-size: 1.2rem; line-height: 1.6; margin-bottom: 15px; }
+
+/* Unified Highlight Color (Yellow looks best on Dark Grey) */
+.highlight { 
+  color: var(--accent); 
+  font-weight: bold; 
+}
+
+/* Force the highlight inside glass boxes to be Yellow too (override previous purple) */
+.content-box.glass .highlight {
+  color: var(--accent);
+}
+h1 { font-size: 3rem; margin-bottom: 20px; font-family: 'Fredoka One', cursive; }
+p { font-size: 1.2rem; line-height: 1.6; margin-bottom: 15px; }
+
+
+/* --- BACKGROUNDS --- */
+.home { 
+  background-image: url("images/Background.jpg"); 
+}
+
+/* Quotes around path help with spaces in filename */
+.about { 
+  background-image: url("images/Background 2.jpg"); 
+}
+
+/* Ensure class name matches HTML (.Instructions vs .instructions) */
+.Instructions { 
+  background-image: url("images/Background.jpg"); 
+}
+
+.games { 
+  background-image: url("images/Background 3.jpg"); 
+  height: auto; 
+}
+
+/* --- BUTTONS --- */
+.btn-cta {
+  display: inline-block; margin-top: 20px;
+  padding: 15px 40px; background: var(--secondary); color: white;
+  text-decoration: none; font-size: 1.5rem; border-radius: 50px;
+  font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+.btn-cta:hover { transform: translateY(-5px); }
+
+/* --- GAMES GRID --- */
+.category--nav { margin-bottom: 40px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.nav-btn {
+  padding: 10px 25px; border: none; border-radius: 20px;
+  background: white; cursor: pointer; font-weight: bold;
+  transition: 0.3s;
+}
+.nav-btn.active, .nav-btn:hover { background: var(--primary); color: white; }
+
+.games--container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px; width: 100%; max-width: 1200px;
+}
+
+.game-card {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 25px; border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+  position: relative; overflow: hidden;
+  text-align: left;
+}
+.game-card:hover { transform: translateY(-10px); }
+
+.game-card h2 { font-size: 1.3rem; color: var(--primary); margin-bottom: 10px; }
+.game-card p { font-size: 0.95rem; color: #555; }
+.game-card.remove { display: none; }
+
+.badge {
+  position: absolute; top: 10px; right: 10px;
+  padding: 4px 10px; font-size: 0.7rem; border-radius: 10px;
+  color: white; font-weight: bold;
+}
+.Working .badge { background: #FFD166; color: #333; }
+.Episodic .badge { background: #6BCB77; }
+.Visual .badge { background: #4D96FF; }
+.Auditory .badge { background: #FF6B6B; }
+
+footer { background: #111; color: #888; padding: 20px; text-align: center; }
+
+/* --- MOBILE RESPONSIVE --- */
 @media (max-width: 768px) {
-  .navbar ul {
-    display: none;
-    flex-direction: column;
-    background-color: #333;
-    position: absolute;
-    top: 60px;
-    right: 40px;
-    width: 200px;
-    border-radius: 8px;
-    padding: 10px 0;
+  .navbar {
+    position: absolute; top: 80px; left: 0; width: 100%;
+    background: white; flex-direction: column; padding: 20px;
+    transform: translateY(-150%); transition: transform 0.3s;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
   }
-
-  .navbar ul.active {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-  .home h1,
-  .about h1 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .home p,
-  .about p {
-    font-size: 1rem;
-  }
-
-  .profile {
-    width: 25px;
-    height: 25px;
-  }
-  .games {
-    height: 210vh;
-  }
-  .games--container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(1fr, 12);
-    gap: 1vh;
-    padding: 2vw;
-  }
-
-  .contact--container {
-    display: grid;
-    font-size: 0.5rem;
-    grid-template-columns: 1fr 1fr;
-    place-items: center;
-  }
+  .navbar.active { transform: translateY(0); }
+  .navbar ul { flex-direction: column; gap: 15px; }
+  .menu-toggle { display: block; }
+  .header-actions .btn-login { display: none; }
+  h1 { font-size: 2rem; }
+  .section { padding-top: 100px; }
 }

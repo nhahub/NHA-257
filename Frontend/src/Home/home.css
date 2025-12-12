@@ -34,10 +34,31 @@ body {
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.logo {
-    font-weight: bold;
-    font-size: 1.5rem;
-    color: var(--accent);
+/* Container for the Logo + Text */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* The Image */
+.nav-logo-img {
+    height: 45px; /* Fits nicely inside the navbar */
+    width: auto;
+}
+
+/* The Text */
+.nav-logo-text {
+    font-family: 'Fredoka One', cursive; /* Fun font */
+    font-size: 1.1rem;
+    line-height: 1.1;
+    color: #fff; /* White text for dark navbar */
+    text-align: left;
+}
+
+/* Optional: Make the bottom word pop with color */
+.nav-logo-text::first-line {
+    color: #fff;
 }
 
 .logout-btn {

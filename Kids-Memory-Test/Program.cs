@@ -1,8 +1,10 @@
+using Kids_Memory_Test.Interfaces;
 using Kids_Memory_Test.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
+using Kids_Memory_Test.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -70,7 +72,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll",
         builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
-
+builder.Services.AddScoped<IGameSessionService, GameSessionService>();
 builder.Services.AddScoped<Kids_Memory_Test.Interfaces.IDoctorService, Kids_Memory_Test.Services.DoctorService>();
 builder.Services.AddHttpClient<Kids_Memory_Test.Services.FlaskMLClient>();
 builder.Services.AddScoped<Kids_Memory_Test.Interfaces.IAdminService, Kids_Memory_Test.Services.AdminService>();

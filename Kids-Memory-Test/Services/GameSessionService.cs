@@ -68,5 +68,29 @@ namespace Kids_Memory_Test.Services
 
             return true;
         }
+        public async Task<AdminUserDetailsDto?> GetUserDetailsAsync(int userId)
+        {
+            var result = await _context.AdminUserDetails
+                .FromSqlRaw("EXEC sp_Admin_GetUserDetails @UserId = {0}", userId)
+                .ToListAsync();
+
+            return result.FirstOrDefault();
+        }
+
+        // 2. MANAGE USER (Calls sp_Admin_ManageUser)
+        public async Task ManageUserAsync(int userId, string actionType)
+        {
+            // Validate ActionType to prevent SQL injection or errors
+            var validActions = new[] { "DEACTIVATE", "ACTIVATE", "DELETE" };
+            if (!validActions.Contains(actionType))
+            {
+                throw new ArgumentException("Invalid action type.");
+            }
+
+            await _context.Database.ExecuteSqlRawAsync(
+                "EXEC sp_Admin_ManageUser @UserId = {0}, @ActionType = {1}",
+                userId, actionType
+            );
+        }
     }
 }

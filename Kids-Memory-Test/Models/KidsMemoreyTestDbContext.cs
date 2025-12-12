@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Kids_Memory_Test.DTOs; 
 
 namespace Kids_Memory_Test.Models;
 
@@ -35,8 +36,11 @@ public partial class KidsMemoreyTestDbContext : DbContext
 
     public virtual DbSet<VChildPerformance> VChildPerformances { get; set; }
 
+    // ---  DBSET FOR ADMIN DASHBOARD ---
+    public virtual DbSet<AdminUserDetailsDto> AdminUserDetails { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. 
         => optionsBuilder.UseSqlServer("Server=DESKTOP-IG01C0F\\SQLEXPRESS;Database=KidsMemoreyTestDB;Trusted_Connection=True;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -151,10 +155,10 @@ public partial class KidsMemoreyTestDbContext : DbContext
             entity.HasKey(e => e.SessionId).HasName("PK__tblGameS__C9F492907008F90D");
 
             entity.ToTable("tblGameSession", tb =>
-                {
-                    tb.HasTrigger("SetGameWeight");
-                    tb.HasTrigger("trg_CalculateCategoryScores");
-                });
+            {
+                tb.HasTrigger("SetGameWeight");
+                tb.HasTrigger("trg_CalculateCategoryScores");
+            });
 
             entity.HasIndex(e => e.SummarySessionId, "IX_GameSession_SummarySession");
 
@@ -257,6 +261,13 @@ public partial class KidsMemoreyTestDbContext : DbContext
             entity.Property(e => e.ParentName).HasMaxLength(100);
             entity.Property(e => e.SessionEndTime).HasColumnType("datetime");
             entity.Property(e => e.SessionStartTime).HasColumnType("datetime");
+        });
+
+        // --- 3. ADDED CONFIGURATION FOR ADMIN DTO ---
+        modelBuilder.Entity<AdminUserDetailsDto>(entity =>
+        {
+            entity.HasNoKey();
+            entity.ToView(null);
         });
 
         OnModelCreatingPartial(modelBuilder);

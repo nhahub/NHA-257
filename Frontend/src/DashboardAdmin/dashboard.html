@@ -5,6 +5,7 @@
     <title>Admin Panel - Kids Memory</title>
     <link rel="stylesheet" href="style.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="shortcut icon" href="../home page/images/logo2-removebg-preview.png" type="image/x-icon" />
 </head>
 <body>
 
@@ -101,7 +102,30 @@
 
         </div>
     </main>
+<div id="userModal" class="modal-overlay">
+        <div class="user-card">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            
+            <div class="card-avatar">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            
+            <h2 id="modalName">User Name</h2>
+            <p id="modalEmail" style="color:gray; margin-bottom:20px;">email@example.com</p>
+            
+            <div id="modalDetails">
+                </div>
 
+            <div class="action-buttons">
+                <button id="btnToggleStatus" class="btn-action btn-toggle" onclick="toggleUserStatus()">
+                    Deactivate
+                </button>
+                <button id="btnDeleteUser" class="btn-action btn-delete" onclick="deleteUser()">
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
     <script src="../../assets/js/SessionManager.js"></script>
     <script src="script.js"></script>
 </body>

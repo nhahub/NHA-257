@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Kids_Memory_Test.Interfaces;
+﻿using Kids_Memory_Test.Interfaces;
+using Kids_Memory_Test.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Kids_Memory_Test.Interfaces;
+using Kids_Memory_Test.DTOs;
+
 
 namespace Kids_Memory_Test.Controllers
 {
@@ -11,9 +15,13 @@ namespace Kids_Memory_Test.Controllers
     {
         private readonly IAdminService _adminService;
 
-        public AdminController(IAdminService adminService)
+        private readonly IGameSessionService _gameSessionService;
+
+        
+        public AdminController(IAdminService adminService, IGameSessionService gameSessionService)
         {
             _adminService = adminService;
+            _gameSessionService = gameSessionService;
         }
 
         // GET: api/Admin/stats
@@ -41,6 +49,28 @@ namespace Kids_Memory_Test.Controllers
         {
             var role = User.FindFirst("Role")?.Value;
             return role == "1"; // 1 = Admin
+        }
+
+        [HttpGet("user/{id}")]
+        public async Task<IActionResult> GetUserDetails(int id)
+        {
+            var result = await _gameSessionService.GetUserDetailsAsync(id);
+
+            if (result == null) return NotFound("User details not found.");
+
+            return Ok(result);
+        }
+
+
+        [HttpPost("manage-user")]
+        public async Task<IActionResult> ManageUser([FromBody] UserActionDto request)
+        {
+            if (request == null) return BadRequest("Invalid request.");
+
+            await _gameSessionService.ManageUserAsync(request.UserId, request.ActionType);
+
+            // IMPORTANT: Return an OK status
+            return Ok(new { message = "Success" });
         }
     }
 }
