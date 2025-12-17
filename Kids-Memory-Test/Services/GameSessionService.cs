@@ -44,19 +44,15 @@ namespace Kids_Memory_Test.Services
         }
         public async Task<int?> GetActiveSessionIdAsync(int userId)
         {
-            // Call the Helper SP you created in SQL
             var result = await _context.Database
                 .SqlQueryRaw<SessionResult>("EXEC sp_GetActiveSession @UserId = {0}", userId)
                 .ToListAsync();
 
-            // Return the ID if found, otherwise null
             return result.FirstOrDefault()?.SessionId;
         }
 
         public async Task<bool> SubmitGameScoreAsync(SubmitScoreDto score)
         {
-            // This calls your Stored Procedure: sp_AddGameToSession
-            // The SP automatically finds the Active Session ID, so we don't need to send it!
             await _context.Database.ExecuteSqlRawAsync(
                 "EXEC sp_AddGameToSession @UserId={0}, @GameId={1}, @Score={2}, @Trials={3}, @Misses={4}",
                 score.UserId,
@@ -77,7 +73,7 @@ namespace Kids_Memory_Test.Services
             return result.FirstOrDefault();
         }
 
-        // 2. MANAGE USER (Calls sp_Admin_ManageUser)
+        // MANAGE USER (Calls sp_Admin_ManageUser)
         public async Task ManageUserAsync(int userId, string actionType)
         {
             // Validate ActionType to prevent SQL injection or errors

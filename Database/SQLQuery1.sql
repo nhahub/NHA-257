@@ -110,7 +110,7 @@ values('Working Memory'),
       ('Visual Memory'),
       ('Auditory Memory');
 
-INSERT INTO lkpGame(GameId, CategoryId, GameName,Weight, Description,isDeleted)
+INSERT INTO lkpGame(GameId, CategoryId, Weight,GameName, Description,isDeleted)
 VALUES
 (1, 1,0.95, 'Simon Says','Players follow spoken commands that increase in complexity (e.g., “Simon says touch your nose”). It trains auditory attention, sequencing, and working memory.',0),
 (2, 1,0.85, 'Number Sequence', 'Players are shown a sequence of numbers that disappears after a short time. They must recall and repeat it in the correct order, enhancing numerical and sequential memory.', 0),
@@ -479,36 +479,6 @@ BEGIN
 END;
 GO
 
--- 2. Manage User (Ensures Deactivate/Delete works)
-CREATE OR ALTER PROCEDURE sp_Admin_ManageUser
-    @UserId INT,
-    @ActionType VARCHAR(20)
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    IF @ActionType = 'DEACTIVATE'
-    BEGIN
-        UPDATE tblUser SET IsDeleted = 1 WHERE UserId = @UserId;
-    END
-    ELSE IF @ActionType = 'ACTIVATE'
-    BEGIN
-        UPDATE tblUser SET IsDeleted = 0 WHERE UserId = @UserId;
-    END
-    ELSE IF @ActionType = 'DELETE'
-    BEGIN
-        -- Order matters to prevent FK errors
-        DELETE FROM tblGameSession WHERE UserId = @UserId;
-        DELETE FROM tblMemoryScoreSummary WHERE UserId = @UserId;
-        -- Delete profiles based on type
-        DELETE FROM tblChildProfile WHERE UserId = @UserId;
-        DELETE FROM tblDoctorProfile WHERE UserId = @UserId;
-        DELETE FROM tblClinicProfile WHERE UserId = @UserId;
-        -- Finally delete user
-        DELETE FROM tblUser WHERE UserId = @UserId;
-    END
-END;
-GO
 
 -- 9. Manage User Status (Soft & Hard Delete)
 CREATE OR ALTER PROCEDURE sp_Admin_ManageUser
@@ -518,32 +488,39 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
+    -- 1. DEACTIVATE (Soft Delete)
     IF @ActionType = 'DEACTIVATE'
     BEGIN
-        -- Soft Delete: Just marks them as inactive
+        -- Mark User as deleted
         UPDATE tblUser SET IsDeleted = 1 WHERE UserId = @UserId;
         
-        --  mark their profile as deleted 
+        -- Also mark specific profiles to ensure data consistency
+        -- (This checks if the record exists before trying to update, which is safer)
         UPDATE tblChildProfile SET IsDeleted = 1 WHERE UserId = @UserId;
         UPDATE tblDoctorProfile SET IsDeleted = 1 WHERE UserId = @UserId;
+        UPDATE tblClinicProfile SET IsDeleted = 1 WHERE UserId = @UserId; -- Added for completeness
     END
 
+    -- 2. ACTIVATE (Restore)
     ELSE IF @ActionType = 'ACTIVATE'
     BEGIN
-        -- Restore them
         UPDATE tblUser SET IsDeleted = 0 WHERE UserId = @UserId;
         UPDATE tblChildProfile SET IsDeleted = 0 WHERE UserId = @UserId;
         UPDATE tblDoctorProfile SET IsDeleted = 0 WHERE UserId = @UserId;
+        UPDATE tblClinicProfile SET IsDeleted = 0 WHERE UserId = @UserId;
     END
 
+    -- 3. DELETE (Hard Delete - Permanent)
     ELSE IF @ActionType = 'DELETE'
     BEGIN
-        -- HARD DELETE (Permanent)
-        -- We must delete in specific order to avoid Foreign Key errors
+        -- Order matters: Delete child tables first, then the parent User table
         DELETE FROM tblGameSession WHERE UserId = @UserId;
         DELETE FROM tblMemoryScoreSummary WHERE UserId = @UserId;
+        
+        -- Delete Profiles
         DELETE FROM tblChildProfile WHERE UserId = @UserId;
         DELETE FROM tblDoctorProfile WHERE UserId = @UserId;
+        DELETE FROM tblClinicProfile WHERE UserId = @UserId; 
         DELETE FROM tblUser WHERE UserId = @UserId;
     END
 END;

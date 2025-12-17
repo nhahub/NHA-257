@@ -2,12 +2,12 @@
 using Kids_Memory_Test.Interfaces;
 using Kids_Memory_Test.Models;
 using Microsoft.EntityFrameworkCore; 
-using BCrypt.Net; //  for hashing
+using BCrypt.Net; 
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.Extensions.Configuration; // To read appsettings
+using Microsoft.Extensions.Configuration; 
 
 namespace Kids_Memory_Test.Services
 {
@@ -24,11 +24,11 @@ namespace Kids_Memory_Test.Services
 
         public async Task<TblUser> RegisterAsync(RegisterDto request)
         {
-            // 1. Check existing email
+            // Check existing email
             if (await _context.TblUsers.AnyAsync(u => u.Email == request.Email))
                 throw new Exception("Email already exists.");
 
-            // 2. Create User Account
+            // Create User Account
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
             var newUser = new TblUser
             {
@@ -38,9 +38,9 @@ namespace Kids_Memory_Test.Services
             };
 
             _context.TblUsers.Add(newUser);
-            await _context.SaveChangesAsync(); // Save to get the new UserId
+            await _context.SaveChangesAsync(); 
 
-            // 3. Create Profile based on Role
+            // Create Profile based on Role
             if (request.UserTypeId == 2) // Doctor
             {
                 var docProfile = new TblDoctorProfile
@@ -55,7 +55,7 @@ namespace Kids_Memory_Test.Services
                 };
                 _context.TblDoctorProfiles.Add(docProfile);
             }
-            else if (request.UserTypeId == 3) // Child
+            else if (request.UserTypeId == 3) 
             {
                 var childProfile = new TblChildProfile
                 {
@@ -70,13 +70,13 @@ namespace Kids_Memory_Test.Services
                 _context.TblChildProfiles.Add(childProfile);
             }
 
-            // 4. Save Profile
+            // Save Profile
             await _context.SaveChangesAsync();
 
             return newUser;
         }
 
-        public async Task<string?> LoginAsync(LoginDto request) // <--- CHANGED Return Type to string? (The Token)
+        public async Task<string?> LoginAsync(LoginDto request) 
         {
             var user = await _context.TblUsers
                 .FirstOrDefaultAsync(u => u.Email == request.Email);
@@ -86,11 +86,9 @@ namespace Kids_Memory_Test.Services
                 return null;
             }
 
-            // --- NEW: Generate JWT Token ---
             return GenerateJwtToken(user);
         }
 
-        // --- NEW HELPER METHOD ---
         private string GenerateJwtToken(TblUser user)
         {
             var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!);
@@ -98,7 +96,7 @@ namespace Kids_Memory_Test.Services
             var claims = new List<Claim>
         {
             new Claim("UserId", user.UserId.ToString()),
-            new Claim("Role", user.UserTypeId.ToString() ?? "3"), // Default to Child if null
+            new Claim("Role", user.UserTypeId.ToString() ?? "3"), 
             new Claim(ClaimTypes.Email, user.Email)
         };
 

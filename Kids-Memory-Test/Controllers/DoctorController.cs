@@ -3,8 +3,8 @@ using Kids_Memory_Test.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Kids_Memory_Test.DTOs;
 using Kids_Memory_Test.Services;
-using Kids_Memory_Test.Models; // Need this for DbContext
-using Microsoft.EntityFrameworkCore; // Need this for FirstOrDefaultAsync
+using Kids_Memory_Test.Models;
+using Microsoft.EntityFrameworkCore; 
 
 namespace Kids_Memory_Test.Controllers
 {
@@ -15,17 +15,16 @@ namespace Kids_Memory_Test.Controllers
     {
         private readonly IDoctorService _doctorService;
         private readonly FlaskMLClient _mlClient;
-        private readonly KidsMemoreyTestDbContext _context; // <--- ADD THIS
+        private readonly KidsMemoreyTestDbContext _context; 
 
-        // --- CONSTRUCTOR ---
         public DoctorController(IDoctorService doctorService, FlaskMLClient mlClient, KidsMemoreyTestDbContext context)
         {
             _doctorService = doctorService;
             _mlClient = mlClient;
-            _context = context; // <--- ADD THIS
+            _context = context; 
         }
 
-        // --- GET PROFILE (Fixes the error) ---
+        // GET PROFILE 
         [HttpGet("profile")]
         public async Task<IActionResult> GetMyProfile()
         {
@@ -46,7 +45,7 @@ namespace Kids_Memory_Test.Controllers
             });
         }
 
-        // --- GET DASHBOARD ---
+        // GET DASHBOARD 
         [HttpGet("dashboard")]
         public async Task<IActionResult> GetDashboard()
         {
@@ -59,7 +58,7 @@ namespace Kids_Memory_Test.Controllers
             return Ok(data);
         }
 
-        // --- ASSIGN PATIENT ---
+        // ASSIGN PATIENT
         [HttpPost("assign")]
         public async Task<IActionResult> AssignPatient([FromBody] AssignPatientDto request)
         {
@@ -83,7 +82,7 @@ namespace Kids_Memory_Test.Controllers
             }
         }
 
-        // --- GET AI INSIGHT ---
+        //  GET AI INSIGHT
         [HttpGet("predict/{childId}")]
         public async Task<IActionResult> GetAIInsight(int childId)
         {

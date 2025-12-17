@@ -35,7 +35,6 @@ namespace Kids_Memory_Test.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto request)
         {
-            // The service now returns a secure "Token String", not the User Object
             var token = await _authService.LoginAsync(request);
 
             if (token == null)
@@ -47,7 +46,7 @@ namespace Kids_Memory_Test.Controllers
             return Ok(new
             {
                 message = "Login successful!",
-                token = token // <--- The Golden Ticket
+                token = token 
             });
         }
     

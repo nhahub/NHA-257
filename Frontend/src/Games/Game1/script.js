@@ -136,7 +136,7 @@ async function nextLevel() {
   await playSequence();
 }
 
-// --- 3. MODIFIED GAMEOVER TO SEND SCORE ---
+// --- 3. GAMEOVER TO SEND SCORE ---
 async function gameOver(won = false) {
   acceptingInput = false;
   const gameEndTime = Date.now();
@@ -144,12 +144,18 @@ async function gameOver(won = false) {
   if (gameStartTime)
     timeTakenSeconds = Math.round((gameEndTime - gameStartTime) / 1000);
 
-  const finalScore = Math.round((level / MAX_LEVELS) * MAX_SCORE);
+  // If they won, they completed the current level. 
+  // If they lost, they failed the current level, so we count (level - 1).
+  let levelsCompleted = won ? level : level - 1;
   
+  // Prevent negative score if they fail Level 1 immediately
+  if (levelsCompleted < 0) levelsCompleted = 0;
+
+  const finalScore = Math.round((levelsCompleted / MAX_LEVELS) * MAX_SCORE);  
   // Calculate stats for DB
-  const gameId = 1; // Simon Says ID
-  const trials = level; // Levels passed
-  const misses = won ? 0 : 1; // 1 miss if they lost, 0 if they won
+  const gameId = 1; 
+  const trials = level; 
+  const misses = won ? 0 : 1; 
 
   showMessage("Saving Score...");
 
@@ -159,11 +165,12 @@ async function gameOver(won = false) {
   // Show Modal
   showGameOverModal({
     won,
-    levelReached: level,
+    // Display completed levels vs attempted levels is a UI choice, 
+    levelReached: level, 
     maxLevels: MAX_LEVELS,
     score: finalScore,
     timeTakenSeconds,
-    linkUrl: '../menu.html', // Redirect to Menu
+    linkUrl: '../menu.html', 
   });
 
   // Reset

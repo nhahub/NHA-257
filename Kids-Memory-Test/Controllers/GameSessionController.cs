@@ -7,7 +7,7 @@ namespace Kids_Memory_Test.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize] // <--- REQUIRE LOGIN!
+    [Authorize] 
     public class GameSessionController : ControllerBase
     {
         private readonly IGameSessionService _sessionService;
@@ -28,7 +28,7 @@ namespace Kids_Memory_Test.Controllers
             }
             catch (Exception ex)
             {
-                // This catches the RAISERROR from SQL ("User already has an active session")
+                // catches the RAISERROR from SQL ("User already has an active session")
                 return BadRequest(new { error = ex.Message });
             }
         }
@@ -47,12 +47,11 @@ namespace Kids_Memory_Test.Controllers
                 return BadRequest(new { error = ex.Message });
             }
         }
-        // GET: api/GameSession/active/5
+        // GET: api/GameSession/active
         [HttpGet("active/{userId}")]
         public async Task<IActionResult> GetActiveSession(int userId)
         {
             var sessionId = await _sessionService.GetActiveSessionIdAsync(userId);
-            // Returns { "sessionId": 55 } or { "sessionId": null }
             return Ok(new { sessionId = sessionId });
         }
         // POST: api/GameSession/submit
@@ -66,7 +65,6 @@ namespace Kids_Memory_Test.Controllers
             }
             catch (Exception ex)
             {
-                // This catches errors like "No active session found"
                 return BadRequest(new { error = ex.Message });
             }
         }

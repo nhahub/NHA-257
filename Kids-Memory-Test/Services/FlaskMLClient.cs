@@ -23,7 +23,6 @@ namespace Kids_Memory_Test.Services
             var episodic = CalculateAvg(history, 4, 6);
 
             // 2. Build Payload (Matching EXACTLY what train_all.py expects)
-            // We pass current score as both 'pre' and 'post' to satisfy input shape
             var payload = new
             {
                 pre_Visual = visual,
@@ -31,7 +30,7 @@ namespace Kids_Memory_Test.Services
                 pre_Auditory = auditory,
                 pre_Episodic = episodic,
 
-                // Dummy "Post" values (required by your specific model file)
+                // Dummy "Post" values 
                 post_Visual = visual,
                 post_Working = working,
                 post_Auditory = auditory,
@@ -54,7 +53,6 @@ namespace Kids_Memory_Test.Services
                     var result = await response.Content.ReadAsStringAsync();
                     using var doc = JsonDocument.Parse(result);
 
-                    // Read the number (e.g., 12.5)
                     if (doc.RootElement.TryGetProperty("improvement_prediction", out var predElement))
                     {
                         double val = predElement.GetDouble();

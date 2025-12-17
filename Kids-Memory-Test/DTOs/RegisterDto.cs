@@ -5,9 +5,8 @@
         public required string Email { get; set; }
         public required string Password { get; set; }
         public required string FullName { get; set; }
-        public int UserTypeId { get; set; } // 1=Admin, 2=Doctor, 3=Child
+        public int UserTypeId { get; set; } 
 
-        // --- OPTIONAL FIELDS ---
         public string? Address { get; set; }
         public string? Phone { get; set; }
 

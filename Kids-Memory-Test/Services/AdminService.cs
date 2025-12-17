@@ -27,7 +27,7 @@ namespace Kids_Memory_Test.Services
 
         public async Task<List<UserSummaryDto>> GetAllUsersAsync()
         {
-            // 1. Fetch all raw tables (Efficient way to avoid complex EF translation errors)
+            // 1. Fetch all raw tables 
             var allUsers = await _context.TblUsers.ToListAsync();
             var allDoctors = await _context.TblDoctorProfiles.ToListAsync();
             var allChildren = await _context.TblChildProfiles.ToListAsync();
@@ -46,21 +46,18 @@ namespace Kids_Memory_Test.Services
                     Role = u.UserTypeId == 1 ? "Admin" : (u.UserTypeId == 2 ? "Doctor" : "Child"),
                     IsActive = !u.IsDeleted.GetValueOrDefault(),
 
-                    // --- SMART MAPPING ---
                     // If Doctor, use Doc Profile. If Child, use Child Profile.
                     FullName = u.UserTypeId == 2 ? docProfile?.FullName : childProfile?.ChildName,
 
                     Address = u.UserTypeId == 2 ? docProfile?.Address : childProfile?.Address,
 
-                    // Map 'Phone' to either Doctor's Phone or Child's Parent Number
                     Phone = u.UserTypeId == 2 ? docProfile?.Phone : childProfile?.ParentNumber,
 
                     Specialty = u.UserTypeId == 2 ? docProfile?.Specialty : null,
 
-                    // Note: Ensure your DTO uses DateOnly? if you are on .NET 8/9
                     DateOfBirth = u.UserTypeId == 3 ? childProfile?.DateOfBirth : null,
 
-                    // Count Assigned Kids (Only valid for doctors)
+                    // Count Assigned Kids 
                     AssignedCount = u.UserTypeId == 2 && docProfile != null
                         ? allChildren.Count(c => c.DoctorId == docProfile.DoctorId)
                         : 0

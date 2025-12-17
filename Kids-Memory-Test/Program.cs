@@ -9,15 +9,17 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. Add Database Context
+//  Add Database Context
 builder.Services.AddDbContext<KidsMemoreyTestDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// 2. Add Services (Auth & GameSession)
+//  Add Services 
 builder.Services.AddScoped<Kids_Memory_Test.Interfaces.IAuthService, Kids_Memory_Test.Services.AuthService>();
 builder.Services.AddScoped<Kids_Memory_Test.Interfaces.IGameSessionService, Kids_Memory_Test.Services.GameSessionService>();
-
-// 3. Add Controllers
+builder.Services.AddScoped<Kids_Memory_Test.Interfaces.IDoctorService, Kids_Memory_Test.Services.DoctorService>();
+builder.Services.AddHttpClient<Kids_Memory_Test.Services.FlaskMLClient>();
+builder.Services.AddScoped<Kids_Memory_Test.Interfaces.IAdminService, Kids_Memory_Test.Services.AdminService>();
+// Add Controllers
 builder.Services.AddControllers();
 
 
@@ -39,9 +41,8 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
     };
 });
-// ---------------------------------------
 
-// 4. Configure Swagger with JWT Auth
+//  Configure Swagger with JWT Auth
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -66,20 +67,17 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// 5. Add CORS
+//  Add CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
         builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
-builder.Services.AddScoped<IGameSessionService, GameSessionService>();
-builder.Services.AddScoped<Kids_Memory_Test.Interfaces.IDoctorService, Kids_Memory_Test.Services.DoctorService>();
-builder.Services.AddHttpClient<Kids_Memory_Test.Services.FlaskMLClient>();
-builder.Services.AddScoped<Kids_Memory_Test.Interfaces.IAdminService, Kids_Memory_Test.Services.AdminService>();
+
 
 var app = builder.Build();
 
-// --- PIPELINE ---
+// PIPELINE 
 
 if (app.Environment.IsDevelopment())
 {
@@ -89,7 +87,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors("AllowAll"); // Must be before Auth
+app.UseCors("AllowAll"); 
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

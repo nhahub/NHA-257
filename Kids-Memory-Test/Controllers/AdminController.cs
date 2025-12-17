@@ -48,7 +48,7 @@ namespace Kids_Memory_Test.Controllers
         private bool IsAdmin()
         {
             var role = User.FindFirst("Role")?.Value;
-            return role == "1"; // 1 = Admin
+            return role == "1"; // Admin
         }
 
         [HttpGet("user/{id}")]
@@ -68,8 +68,7 @@ namespace Kids_Memory_Test.Controllers
             if (request == null) return BadRequest("Invalid request.");
 
             await _gameSessionService.ManageUserAsync(request.UserId, request.ActionType);
-
-            // IMPORTANT: Return an OK status
+            
             return Ok(new { message = "Success" });
         }
     }

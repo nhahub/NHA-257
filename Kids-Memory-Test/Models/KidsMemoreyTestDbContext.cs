@@ -39,10 +39,6 @@ public partial class KidsMemoreyTestDbContext : DbContext
     // ---  DBSET FOR ADMIN DASHBOARD ---
     public virtual DbSet<AdminUserDetailsDto> AdminUserDetails { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. 
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-IG01C0F\\SQLEXPRESS;Database=KidsMemoreyTestDB;Trusted_Connection=True;TrustServerCertificate=True;");
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<LkpGame>(entity =>
