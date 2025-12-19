@@ -37,7 +37,7 @@ function parseJwt (token) {
     }
 }
 
-// --- LOGIN LOGIC (Updated for Role Redirection) ---
+// LOGIN LOGIC 
 formLogin.addEventListener('submit', async (e) => {
     e.preventDefault();
     setMsg('loginMsg', 'Logging in...');
@@ -98,7 +98,7 @@ formLogin.addEventListener('submit', async (e) => {
     }
 });
 
-// --- REGISTER LOGIC (Fixed) ---
+// REGISTER LOGIC-
 formRegister.addEventListener('submit', async (e) => {
     e.preventDefault();
     setMsg('regMsg', 'Creating account...');
@@ -133,7 +133,7 @@ formRegister.addEventListener('submit', async (e) => {
         const res = await fetch(`${API_BASE}/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload), // Use the full payload
+            body: JSON.stringify(payload), 
         });
 
         const data = await res.json();
